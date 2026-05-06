@@ -2,19 +2,19 @@
 
 Une application web moderne, performante et élégante pour lire vos playlists IPTV (M3U/M3U8). Conçue pour offrir une expérience utilisateur exceptionnelle sur tous les appareils, du smartphone à la Smart TV.
 
-![Interface Preview](https://anonyme-afk.github.io/VLC-iptv-links/)
+### 🚀 [Démo Live - Tester l'application](https://anonyme-afk.github.io/VLC-iptv-links/)
 
-##  Fonctionnalités Clés
+## ✨ Fonctionnalités Clés
 
-*   ** Design Ultra-Premium** : Interface moderne utilisant le *glassmorphism* (effets de flou) et une palette de couleurs optimisée pour le confort visuel.
-*   ** Navigation TV (Spatial Nav)** : Entièrement pilotable à la télécommande ou au clavier grâce à un algorithme de navigation 2D intelligent.
-*   ** Auto-i18n** : Détection automatique de la langue du navigateur (Support Français et Anglais inclus).
-*   ** Multi-Responsif** :
+*   **🎨 Design Ultra-Premium** : Interface moderne utilisant le *glassmorphism* (effets de flou) et une palette de couleurs optimisée pour le confort visuel.
+*   **🎮 Navigation TV (Spatial Nav)** : Entièrement pilotable à la télécommande ou au clavier grâce à un algorithme de navigation 2D intelligent.
+*   **🌍 Auto-i18n** : Détection automatique de la langue du navigateur (Support Français et Anglais inclus).
+*   **📱 Multi-Responsif** :
     *   **Desktop** : Vue complète avec tableau de bord.
     *   **Tablette** : Barre latérale compacte pour maximiser l'espace vidéo.
     *   **Mobile** : Tiroir coulissant (drawer) et contrôles tactiles optimisés.
     *   **TV** : Focus visuel amplifié (glow & scale) pour une utilisation à distance.
-*   ** Performance & Robustesse** :
+*   **⚡ Performance & Robustesse** :
     *   Lecture fluide via **Hls.js**.
     *   Parser M3U intelligent supportant de nombreuses balises (`tvg-name`, `group-title`, etc.).
     *   Mémoire de session : Le site se souvient de votre dernière playlist automatiquement.
