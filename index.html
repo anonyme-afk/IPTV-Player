@@ -639,8 +639,9 @@ const nowPlaying = document.getElementById('now-playing');
 function playChannel(ch, idx) {
   if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
   video.src = '';
+  video.removeAttribute('src');
   overlay.style.display = 'none';
-  setStatus('loading', '⏳ Connexion à ' + ch.name + '...');
+  setStatus('loading', t('conn_to') + ' ' + ch.name + '...');
 
   currentIndex = idx;
   renderList();
@@ -648,29 +649,94 @@ function playChannel(ch, idx) {
   addToHistory(ch);
 
   const url = ch.url;
-  if (Hls.isSupported()) {
-    hlsInstance = new Hls({ enableWorker: true, lowLatencyMode: true });
-    hlsInstance.loadSource(url);
-    hlsInstance.attachMedia(video);
-    hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
-      video.play().catch(()=>{});
-      setStatus('ok', '✔ ' + t('playback_ok') + ' : ' + ch.name);
-      setTimeout(() => hideStatus(), 3000);
-    });
-    hlsInstance.on(Hls.Events.ERROR, (e, data) => {
-      if (data.fatal) setStatus('error', '✖ Erreur stream : ' + (data.details || 'inconnu'));
-    });
-  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-    video.src = url;
-    video.play().catch(()=>{});
-    setStatus('ok', '✔ Lecture native : ' + ch.name);
-    setTimeout(() => hideStatus(), 3000);
+
+  // Try direct playback first for non-HLS URLs
+  const isHlsUrl = url.includes('.m3u8') || url.includes('/hls/') || url.includes('m3u8');
+  
+  if (isHlsUrl && Hls.isSupported()) {
+    playWithHls(url, ch);
+  } else if (video.canPlayType('application/vnd.apple.mpegurl') || video.canPlayType('application/x-mpegURL')) {
+    // Safari / native HLS support
+    playDirect(url, ch);
+  } else if (Hls.isSupported()) {
+    // Try HLS anyway as a guess, with fallback
+    playWithHls(url, ch);
   } else {
-    // Fallback: try direct src anyway
-    video.src = url;
-    video.play().catch(()=>{});
+    playDirect(url, ch);
   }
   closeSidebar();
+}
+
+function playWithHls(url, ch) {
+  hlsInstance = new Hls({
+    enableWorker: true,
+    lowLatencyMode: true,
+    fragLoadingMaxRetry: 5,
+    manifestLoadingMaxRetry: 3,
+    levelLoadingMaxRetry: 3,
+    fragLoadingRetryDelay: 1000,
+    xhrSetup: (xhr) => {
+      xhr.withCredentials = false;
+    }
+  });
+  hlsInstance.loadSource(url);
+  hlsInstance.attachMedia(video);
+
+  hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
+    video.play().catch(() => {});
+    setStatus('ok', t('playback_ok') + ' : ' + ch.name);
+    setTimeout(() => hideStatus(), 3000);
+  });
+
+  hlsInstance.on(Hls.Events.ERROR, (e, data) => {
+    if (data.fatal) {
+      console.warn('HLS fatal error:', data.type, data.details);
+      
+      switch (data.type) {
+        case Hls.ErrorTypes.NETWORK_ERROR:
+          // Try to recover network errors
+          setStatus('loading', (currentLang === 'fr' ? 'Tentative de reconnexion...' : 'Retrying connection...'));
+          hlsInstance.startLoad();
+          // If still failing after 5s, fallback
+          setTimeout(() => {
+            if (statusBar.className === 'loading') {
+              hlsInstance.destroy();
+              hlsInstance = null;
+              playDirect(url, ch);
+            }
+          }, 5000);
+          break;
+        case Hls.ErrorTypes.MEDIA_ERROR:
+          setStatus('loading', (currentLang === 'fr' ? 'Récupération média...' : 'Recovering media...'));
+          hlsInstance.recoverMediaError();
+          break;
+        default:
+          // Unrecoverable: destroy HLS and try direct playback
+          hlsInstance.destroy();
+          hlsInstance = null;
+          playDirect(url, ch);
+          break;
+      }
+    }
+  });
+}
+
+function playDirect(url, ch) {
+  setStatus('loading', (currentLang === 'fr' ? 'Lecture directe...' : 'Direct playback...'));
+  video.src = url;
+  
+  video.onloadeddata = () => {
+    setStatus('ok', t('playback_ok') + ' : ' + ch.name);
+    setTimeout(() => hideStatus(), 3000);
+  };
+  
+  video.onerror = () => {
+    setStatus('error', (currentLang === 'fr' 
+      ? 'Flux indisponible ou bloqué (CORS). Essayez une autre chaîne.' 
+      : 'Stream unavailable or blocked (CORS). Try another channel.'));
+  };
+  
+  video.play().catch(() => {});
 }
 
 function playUrl() {
