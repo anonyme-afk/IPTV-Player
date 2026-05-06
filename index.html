@@ -724,18 +724,31 @@ function playWithHls(url, ch) {
 function playDirect(url, ch) {
   setStatus('loading', (currentLang === 'fr' ? 'Lecture directe...' : 'Direct playback...'));
   video.src = url;
-  
+  video.onloadeddata = null;
+  video.onerror = null;
+
   video.onloadeddata = () => {
     setStatus('ok', t('playback_ok') + ' : ' + ch.name);
     setTimeout(() => hideStatus(), 3000);
   };
-  
+
   video.onerror = () => {
-    setStatus('error', (currentLang === 'fr' 
-      ? 'Flux indisponible ou bloqué (CORS). Essayez une autre chaîne.' 
-      : 'Stream unavailable or blocked (CORS). Try another channel.'));
+    // Try via CORS proxy as last resort
+    const proxy = 'https://corsproxy.io/?' + encodeURIComponent(url);
+    setStatus('loading', (currentLang === 'fr' ? 'Tentative via proxy...' : 'Trying via proxy...'));
+    video.onloadeddata = () => {
+      setStatus('ok', t('playback_ok') + ' : ' + ch.name);
+      setTimeout(() => hideStatus(), 3000);
+    };
+    video.onerror = () => {
+      setStatus('error', (currentLang === 'fr'
+        ? 'Flux indisponible. Ce stream ne peut pas etre lu dans un navigateur (CORS/DRM).'
+        : 'Stream unavailable. This stream cannot be played in a browser (CORS/DRM).'));
+    };
+    video.src = proxy;
+    video.play().catch(() => {});
   };
-  
+
   video.play().catch(() => {});
 }
 
@@ -793,7 +806,9 @@ function setVolume(v) {
 function toggleMute() {
   isMuted = !isMuted;
   video.muted = isMuted;
-  document.getElementById('vol-icon').textContent = isMuted ? '🔇' : '🔊';
+  const icon = isMuted ? 'volume-x' : 'volume-2';
+  document.getElementById('vol-icon').innerHTML = `<i data-lucide="${icon}"></i>`;
+  lucide.createIcons({ nodes: [document.getElementById('vol-icon')] });
 }
 
 // ── FULLSCREEN ──
@@ -803,26 +818,6 @@ function toggleFullscreen() {
   } else {
     document.exitFullscreen?.();
   }
-}
-
-// ── M3U PARSER ──
-function parseM3U(text) {
-  const lines = text.split('\n').map(l => l.trim()).filter(l => l);
-  const chs = [];
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i].startsWith('#EXTINF')) {
-      const info = lines[i];
-      const url  = lines[i + 1] && !lines[i + 1].startsWith('#') ? lines[i + 1] : '';
-      if (!url) continue;
-      const name  = info.includes(',') ? info.split(',').slice(1).join(',').trim() : 'Chaîne';
-      const group = (info.match(/group-title="([^"]*)"/) || [])[1] || 'Général';
-      const logo  = (info.match(/tvg-logo="([^"]*)"/) || [])[1] || '';
-      const id    = (info.match(/tvg-id="([^"]*)"/) || [])[1] || '';
-      chs.push({ name, group, logo, url, id });
-      i++;
-    }
-  }
-  return chs;
 }
 
 // ── LOAD M3U ──
@@ -839,15 +834,29 @@ async function loadM3U() {
     if (url.includes('github.com') && !url.includes('raw')) {
       url = url.replace('github.com','raw.githubusercontent.com').replace('/blob/','/')
     }
-    setStatus('loading','⏳ Téléchargement de la playlist...');
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      text = await res.text();
-    } catch(e) {
-      setStatus('error','✖ Impossible de charger : ' + e.message);
-      return;
+    setStatus('loading', currentLang === 'fr' ? 'Téléchargement de la playlist...' : 'Downloading playlist...');
+    const CORS_PROXIES = [
+      '',  // direct first
+      'https://corsproxy.io/?',
+      'https://api.allorigins.win/raw?url='
+    ];
+    let loaded = false;
+    for (const proxy of CORS_PROXIES) {
+      try {
+        const fetchUrl = proxy ? proxy + encodeURIComponent(url) : url;
+        const res = await fetch(fetchUrl);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        text = await res.text();
+        loaded = true;
+        break;
+      } catch(e) {
+        if (proxy === CORS_PROXIES[CORS_PROXIES.length - 1]) {
+          setStatus('error', (currentLang === 'fr' ? 'Impossible de charger : ' : 'Failed to load: ') + e.message);
+          return;
+        }
+      }
     }
+    if (!loaded) return;
   } else if (tab === 'file') {
     const file = document.getElementById('m3u-file').files[0];
     if (!file) return alert('Sélectionne un fichier.');
