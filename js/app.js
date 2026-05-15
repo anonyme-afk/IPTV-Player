@@ -21,10 +21,36 @@ const App = (() => {
     url => `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}`,
   ];
 
+  // ── REGISTER SERVICE WORKER (PWA) ──
+  function _registerSW() {
+    if ('serviceWorker' in navigator && location.protocol === 'https:') {
+      navigator.serviceWorker.register('sw.js').catch(() => { });
+    }
+  }
+
+  // ── DETECT SLOW DEVICE ──
+  function _isSlowDevice() {
+    // Mobile / low-RAM / old devices detection
+    const ua = navigator.userAgent;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    const lowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
+    const lowCores = navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4;
+    return isMobile || lowMemory || lowCores;
+  }
+
   // ── INIT ──
   async function init() {
+    _registerSW();
     Lang.apply();
-    if (typeof lucide !== 'undefined') lucide.createIcons();
+    // Use requestIdleCallback for non-critical icons init
+    const initIcons = () => {
+      if (typeof lucide !== 'undefined') lucide.createIcons();
+    };
+    if (window.requestIdleCallback) {
+      requestIdleCallback(initIcons, { timeout: 2000 });
+    } else {
+      setTimeout(initIcons, 100);
+    }
 
     // URL param auto-load
     const params = new URLSearchParams(location.search);

@@ -1180,6 +1180,31 @@ svg {
   flex-shrink: 0;
 }
 
+/* ── HARDWARE ACCELERATION ── */
+#app,
+#sidebar,
+#ch-list,
+#player-area,
+#video-wrap {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+#ch-list {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}
+
+.ch-item {
+  contain: layout style paint;
+}
+
+#video {
+  will-change: transform;
+}
+
 /* ── FOCUS (TV NAVIGATION) ── */
 [data-nav]:focus {
   outline: none;

@@ -1,0 +1,21 @@
+{
+    "name": "IPTV Player",
+    "short_name": "IPTV",
+    "description": "Lecteur de playlists IPTV M3U/M3U8 - Navigation TV 2D, multi-langues, responsive",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#050608",
+    "theme_color": "#f08c00",
+    "orientation": "any",
+    "categories": [
+        "entertainment",
+        "video"
+    ],
+    "icons": [
+        {
+            "src": "assets/favicon.ico",
+            "sizes": "64x64",
+            "type": "image/x-icon"
+        }
+    ]
+}
