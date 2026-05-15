@@ -230,11 +230,16 @@ const App = (() => {
         </div>`;
     }).join('');
 
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [container] });
+    // Optimisation: ne recreer les icones Lucide que si le container est visible
+    if (typeof lucide !== 'undefined') {
+      try { lucide.createIcons({ nodes: [container] }); } catch (_) { }
+    }
 
-    // Scroll to active
+    // Scroll to active avec fallback smooth
     const activeEl = container.querySelector('.ch-item.active');
-    if (activeEl) activeEl.scrollIntoView({ block: 'nearest' });
+    if (activeEl) {
+      try { activeEl.scrollIntoView({ block: 'nearest', behavior: 'auto' }); } catch (_) { activeEl.scrollIntoView(); }
+    }
   }
 
   // ── FAVORITES ──

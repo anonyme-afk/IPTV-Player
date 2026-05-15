@@ -1,5 +1,7 @@
 # IPTV Player - Lecteur de playlists M3U
 
+> **Acces direct** : [https://anonyme-afk.github.io/IPTV-channe/](https://anonyme-afk.github.io/IPTV-channe/)
+
 Une application web moderne, rapide et elegante pour lire des playlists IPTV (M3U/M3U8). Concue pour fonctionner partout : du smartphone a la Smart TV, en passant par le desktop et la tablette.
 
 > **Remerciements speciaux** : Les playlists integrees proviennent du projet **[iptv-org/iptv](https://github.com/iptv-org/iptv)** qui maintient la plus grande collection mondiale de chaines IPTV publiques. Un grand merci a eux pour leur travail colossal !
