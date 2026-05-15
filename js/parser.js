@@ -10,40 +10,58 @@ const Parser = {
       if (!line) continue;
 
       if (line.startsWith('#EXTINF:')) {
-        // Extract tags using a reliable regex
-        const getTag = (tag) => {
-          const m = line.match(new RegExp(tag + '="([^"]*)"', 'i'));
-          return m ? m[1].trim() : '';
+        // Extract tags using a flexible regex that handles escaped quotes too
+        const getAllTags = (str) => {
+          const tags = {};
+          // Match all key="value" patterns, including values with escaped chars
+          const tagRe = /([\w-]+)\s*=\s*"((?:[^"\\]|\\.)*)"/g;
+          let m;
+          while ((m = tagRe.exec(str)) !== null) {
+            tags[m[1].toLowerCase()] = m[2].replace(/\\(.)/g, '$1');
+          }
+          return tags;
         };
 
-        // Name is after the last comma
-        const commaIdx = line.lastIndexOf(',');
-        const name = commaIdx !== -1 ? line.slice(commaIdx + 1).trim() : 'Unnamed';
+        const tags = getAllTags(line);
+
+        // Name: strip all key="value" pairs, then take what's after the last comma
+        // Also handle quoted names: #EXTINF:-1, "Name Here", http://...
+        let name = '';
+        const cleaned = line.replace(/[\w-]+="(?:[^"\\]|\\.)*"/g, '').trim();
+        const commaIdx = cleaned.lastIndexOf(',');
+        if (commaIdx !== -1) {
+          name = cleaned.slice(commaIdx + 1).trim().replace(/^"|"$/g, '').trim();
+        }
+        if (!name) name = 'Unnamed';
 
         meta = {
-          name:  name || 'Unnamed',
-          group: getTag('group-title') || getTag('tvg-group') || 'General',
-          logo:  getTag('tvg-logo')   || getTag('logo')       || '',
-          id:    getTag('tvg-id')     || getTag('tvg-name')   || '',
+          name: name,
+          group: tags['group-title'] || tags['tvg-group'] || 'General',
+          logo: tags['tvg-logo'] || tags['logo'] || '',
+          id: tags['tvg-id'] || tags['tvg-name'] || '',
         };
       } else if (line.startsWith('#EXTVLCOPT') || line.startsWith('#EXTGRP')) {
         // Skip VLC options but grab group if present
         if (line.startsWith('#EXTGRP:') && meta) {
           meta.group = line.slice(8).trim() || meta.group;
         }
+      } else if (line.startsWith('#KODIPROP') || line.startsWith('#EXTM3U')) {
+        // Skip KODI properties and playlist header
+        continue;
       } else if (!line.startsWith('#')) {
         // This is a URL line
+        const url = line.split('|')[0].trim(); // remove potential auth params after |
         if (meta) {
-          channels.push({ ...meta, url: line });
+          channels.push({ ...meta, url });
           meta = null;
         } else {
           // URL without preceding EXTINF — add with minimal info
           channels.push({
-            name:  line.split('/').pop().split('?')[0] || 'Stream',
+            name: url.split('/').pop().split('?')[0].split('.')[0] || 'Stream',
             group: 'General',
-            logo:  '',
-            id:    '',
-            url:   line,
+            logo: '',
+            id: '',
+            url: url,
           });
         }
       }

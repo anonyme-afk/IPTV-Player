@@ -1,47 +1,118 @@
-# 📺 IPTV Player Premium
+# 📺 IPTV Player — Lecteur de playlists M3U
 
-Une application web moderne, performante et élégante pour lire vos playlists IPTV (M3U/M3U8). Conçue pour offrir une expérience utilisateur exceptionnelle sur tous les appareils, du smartphone à la Smart TV.
+Une application web moderne, rapide et élégante pour lire des playlists IPTV (M3U/M3U8). Conçue pour fonctionner partout : du smartphone à la Smart TV, en passant par le desktop et la tablette.
 
-### 🚀 [Démo Live - Tester l'application](https://anonyme-afk.github.io/VLC-iptv-links/)
-
-## ✨ Fonctionnalités Clés
-
-*   **🎨 Design Ultra-Premium** : Interface moderne utilisant le *glassmorphism* (effets de flou) et une palette de couleurs optimisée pour le confort visuel.
-*   **🎮 Navigation TV (Spatial Nav)** : Entièrement pilotable à la télécommande ou au clavier grâce à un algorithme de navigation 2D intelligent.
-*   **🌍 Auto-i18n** : Détection automatique de la langue du navigateur (Support Français et Anglais inclus).
-*   **📱 Multi-Responsif** :
-    *   **Desktop** : Vue complète avec tableau de bord.
-    *   **Tablette** : Barre latérale compacte pour maximiser l'espace vidéo.
-    *   **Mobile** : Tiroir coulissant (drawer) et contrôles tactiles optimisés.
-    *   **TV** : Focus visuel amplifié (glow & scale) pour une utilisation à distance.
-*   **⚡ Performance & Robustesse** :
-    *   Lecture fluide via **Hls.js**.
-    *   Parser M3U intelligent supportant de nombreuses balises (`tvg-name`, `group-title`, etc.).
-    *   Mémoire de session : Le site se souvient de votre dernière playlist automatiquement.
-*   ** Recherche & Filtres** : Trouvez vos chaînes instantanément par nom ou par catégorie.
-*   ** Favoris & Historique** : Gérez vos chaînes préférées et retrouvez vos dernières lectures.
-
-##  Installation & Utilisation
-
-Aucune installation complexe n'est requise. Le projet utilise du Vanilla JS pur.
-
-1.  Clonez ce dépôt ou téléchargez les fichiers.
-2.  Ouvrez le fichier `index.html` dans n'importe quel navigateur moderne.
-3.  Cliquez sur **"+ Charger"** et collez l'URL de votre playlist M3U ou importez un fichier local.
-
-## 🛠️ Technologies Utilisées
-
-*   **HTML5 / CSS3** (Variables CSS, Grid, Flexbox, Backdrop-filter).
-*   **Vanilla JavaScript** (ES6+).
-*   **[Hls.js](https://github.com/video-dev/hls.js/)** pour la diffusion des flux vidéo.
-*   **[Lucide Icons](https://lucide.dev/)** pour une iconographie vectorielle propre.
-*   **Google Fonts** (Rajdhani, Share Tech Mono).
-
-## 🌍 Langues
-
-Le système i18n détecte automatiquement la langue.
-*   Français (par défaut si détecté)
-*   Anglais (fallback)
+> **Remerciements spéciaux** : Les playlists intégrées proviennent du projet **[iptv-org/iptv](https://github.com/iptv-org/iptv)** qui maintient la plus grande collection mondiale de chaînes IPTV publiques. Un grand merci à eux pour leur travail colossal ! 🙏
 
 ---
-*Développé avec passion pour une expérience IPTV sans compromis.*
+
+## ✨ Fonctionnalités
+
+| Fonctionnalité | Détail |
+|---|---|
+| **📺 Playlists M3U** | Charge depuis URL, fichier local ou texte brut |
+| **🎮 Navigation 2D TV** | Pilotable au clavier, à la manette (Gamepad API) ou à la télécommande virtuelle |
+| **🌍 i18n** | Interface en français, anglais, espagnol, allemand, arabe, portugais |
+| **📱 Responsive** | Smartphone, tablette, desktop, TV 4K (1920px+) |
+| **🎯 Presets intégrés** | 80+ playlists iptv-org en 1 clic (catégories, pays, langues, régions) |
+| **💾 Persistance** | Dernière playlist, favoris et historique sauvegardés automatiquement |
+| **🔍 Recherche** | Filtre instantané par nom ou catégorie |
+| **🔄 Proxy CORS** | 5 proxys de secours pour les playlists et les flux |
+| **🔊 Son de focus** | Feedback audio subtil sur la navigation |
+| **🎮 Télécommande tactile** | D-Pad virtuel (touche `R` ou 3 doigts) |
+
+---
+
+## 🚀 Utilisation rapide
+
+### Option 1 — Serveur local (recommandé)
+
+```bash
+# Cloner le dépôt
+git clone https://github.com/anonyme-afk/IPTV-channe.git
+cd IPTV-channe
+
+# Lancer le serveur (nécessite Node.js)
+node server.js
+
+# Ouvrir dans le navigateur
+http://localhost:8080
+```
+
+### Option 2 — Sans serveur (limité)
+
+Ouvrir `index.html` dans un navigateur.  
+⚠️ **Attention** : depuis `file://`, les requêtes fetch vers des URLs externes sont bloquées.  
+→ Utilise plutôt le serveur local.
+
+---
+
+## 🎮 Navigation
+
+| Touche | Action |
+|--------|--------|
+| `↑ ↓ ← →` | Navigation 2D entre les éléments |
+| `Enter` / `␣` | Sélectionner / Lire |
+| `Esc` / `⌫` | Fermer / Retour |
+| `F` | Plein écran |
+| `M` | Muet |
+| `R` | Télécommande tactile |
+| `Pg↑` / `Pg↓` | Chaîne précédente / suivante |
+| `Home` | Premier élément |
+| `Tab` | Élément suivant |
+| `?` | Aide |
+| `D` | Mode debug (console) |
+
+### Manette de jeu / Télécommande TV
+
+Le support Gamepad API est automatique : branche une manette et utilise le D-Pad ou le stick gauche.
+
+---
+
+## 📦 Playlists intégrées
+
+Toutes les playlists proviennent d'**[iptv-org/iptv](https://github.com/iptv-org/iptv)** (licence : domaine public / UFL-1.0).
+
+| Onglet | Contenu |
+|--------|---------|
+| **Populaires** | Tout IPTV-org, index, France, USA, UK, Français |
+| **Catégories** | News (940), Sports (332), Films (415), Éducation, Science, Cuisine… |
+| **Pays** | France, Belgique, Suisse, Canada, USA, Maroc, Algérie, Tunisie… |
+| **Langues** | Français (422), Anglais (2314), Espagnol (1700), Arabe, Russe… |
+| **Régions** | Europe, Asie, Afrique, Amériques, Océanie, Balkans… |
+
+---
+
+## 🛠️ Technologies
+
+- **HTML5 / CSS3** — Variables CSS, Grid, Flexbox, backdrop-filter
+- **Vanilla JavaScript** (ES6+) — Aucune dépendance lourde
+- **[Hls.js](https://github.com/video-dev/hls.js)** — Lecture des flux HLS
+- **[Lucide Icons](https://lucide.dev/)** — Iconographie vectorielle
+- **Google Fonts** — Rajdhani + Share Tech Mono
+
+## 📂 Structure du projet
+
+```
+📁 IPTV-channe/
+├── index.html          # Page principale
+├── server.js           # Serveur local Node.js
+├── css/
+│   └── style.css       # Styles complets
+├── js/
+│   ├── app.js          # Logique principale
+│   ├── parser.js       # Parseur M3U
+│   ├── player.js       # Lecteur vidéo
+│   ├── nav.js          # Navigation 2D spatiale
+│   ├── i18n.js         # Internationalisation
+│   └── storage.js      # Stockage local
+└── README.md
+```
+
+---
+
+## 📝 Licence
+
+Ce projet est libre d'utilisation. Les playlists M3U intégrées proviennent d'[iptv-org/iptv](https://github.com/iptv-org/iptv) et sont sous licence [Unlicense](http://unlicense.org/) / domaine public.
+
+*Développé avec ❤️ pour une expérience IPTV sans compromis.*

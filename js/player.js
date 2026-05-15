@@ -1,18 +1,22 @@
 // ── PLAYER MODULE ──
 const Player = (() => {
-  let hls     = null;
-  let muted   = false;
+  let hls = null;
+  let muted = false;
   let current = null;
 
-  const video      = () => document.getElementById('video');
-  const overlay    = () => document.getElementById('overlay');
-  const statusBar  = () => document.getElementById('status-bar');
+  const video = () => document.getElementById('video');
+  const overlay = () => document.getElementById('overlay');
+  const statusBar = () => document.getElementById('status-bar');
   const nowPlaying = () => document.getElementById('now-playing');
 
   // CORS proxies tried in order when direct playback fails
   const STREAM_PROXIES = [
     url => url,                                                    // direct
     url => `https://corsproxy.io/?${encodeURIComponent(url)}`,    // corsproxy.io
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.org/?.${encodeURIComponent(url)}`,
+    url => `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}`,
+    url => `https://cors-anywhere.herokuapp.com/${url}`,
   ];
 
   // ── STATUS ──
@@ -40,8 +44,8 @@ const Player = (() => {
     setStatus('loading', `${Lang.t('conn_to')} ${ch.name}...`);
 
     const rawUrl = ch.url;
-    const url    = STREAM_PROXIES[proxyIndex] ? STREAM_PROXIES[proxyIndex](rawUrl) : rawUrl;
-    const isHls  = rawUrl.match(/\.m3u8(\?|$)/i) || rawUrl.includes('/hls/');
+    const url = STREAM_PROXIES[proxyIndex] ? STREAM_PROXIES[proxyIndex](rawUrl) : rawUrl;
+    const isHls = rawUrl.match(/\.m3u8(\?|$)/i) || rawUrl.includes('/hls/');
 
     if (isHls && typeof Hls !== 'undefined' && Hls.isSupported()) {
       _playHls(url, ch, rawUrl, proxyIndex);
@@ -59,19 +63,19 @@ const Player = (() => {
 
   function _playHls(url, ch, rawUrl, proxyIndex) {
     hls = new Hls({
-      enableWorker:           true,
-      lowLatencyMode:         true,
-      fragLoadingMaxRetry:    3,
-      manifestLoadingMaxRetry:2,
-      levelLoadingMaxRetry:   2,
-      fragLoadingRetryDelay:  1500,
+      enableWorker: true,
+      lowLatencyMode: true,
+      fragLoadingMaxRetry: 3,
+      manifestLoadingMaxRetry: 2,
+      levelLoadingMaxRetry: 2,
+      fragLoadingRetryDelay: 1500,
     });
 
     hls.loadSource(url);
     hls.attachMedia(video());
 
     hls.on(Hls.Events.MANIFEST_PARSED, () => {
-      video().play().catch(() => {});
+      video().play().catch(() => { });
       setStatus('ok', `${Lang.t('playback_ok')} — ${ch.name}`);
       setTimeout(clearStatus, 3000);
     });
@@ -111,7 +115,7 @@ const Player = (() => {
     vid.onerror = () => {
       const next = proxyIndex + 1;
       if (next < STREAM_PROXIES.length) {
-        setStatus('loading', Lang.t('retrying'));
+        setStatus('loading', `${Lang.t('retrying')} (proxy ${next}/${STREAM_PROXIES.length - 1})`);
         vid.onloadeddata = null;
         vid.onerror = null;
         const proxyUrl = STREAM_PROXIES[next](rawUrl);
@@ -121,15 +125,16 @@ const Player = (() => {
           setTimeout(clearStatus, 3000);
         };
         vid.onerror = () => {
-          setStatus('error', Lang.t('err_cors'));
+          // Try next proxy recursively
+          _playNative(STREAM_PROXIES[next](rawUrl), ch, rawUrl, next);
         };
-        vid.play().catch(() => {});
+        vid.play().catch(() => { });
       } else {
         setStatus('error', Lang.t('err_cors'));
       }
     };
 
-    vid.play().catch(() => {});
+    vid.play().catch(() => { });
   }
 
   function _destroy() {
@@ -151,11 +156,11 @@ const Player = (() => {
   function _updateNowPlaying(ch) {
     const np = nowPlaying();
     np.hidden = false;
-    document.getElementById('np-name').textContent  = ch.name;
+    document.getElementById('np-name').textContent = ch.name;
     document.getElementById('np-group').textContent = ch.group || '';
     const logo = document.getElementById('np-logo');
     if (ch.logo) { logo.src = ch.logo; logo.style.display = 'block'; }
-    else         { logo.style.display = 'none'; }
+    else { logo.style.display = 'none'; }
     document.getElementById('np-live').textContent = Lang.t('live');
   }
 

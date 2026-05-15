@@ -3,13 +3,13 @@ const App = (() => {
 
   // ── STATE ──
   const state = {
-    channels:     [],
-    filtered:     [],
+    channels: [],
+    filtered: [],
     currentIndex: -1,
-    currentCat:   '__all__',
-    currentTab:   'all',
-    favorites:    Store.get('iptv_favs', []),
-    history:      Store.get('iptv_hist', []),
+    currentCat: '__all__',
+    currentTab: 'all',
+    favorites: Store.get('iptv_favs', []),
+    history: Store.get('iptv_hist', []),
   };
 
   // ── CORS PROXIES FOR PLAYLIST FETCH ──
@@ -17,6 +17,8 @@ const App = (() => {
     url => url,
     url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
     url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    url => `https://corsproxy.org/?.${encodeURIComponent(url)}`,
+    url => `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}`,
   ];
 
   // ── INIT ──
@@ -80,7 +82,7 @@ const App = (() => {
       Store.set('iptv_session', { url: null, text });
     }
 
-    state.channels     = Parser.parse(text);
+    state.channels = Parser.parse(text);
     state.currentIndex = -1;
 
     if (!state.channels.length) {
@@ -167,7 +169,7 @@ const App = (() => {
   function filterChannels() { renderList(); }
 
   function renderList() {
-    const q   = document.getElementById('search').value.trim().toLowerCase();
+    const q = document.getElementById('search').value.trim().toLowerCase();
     const { channels, currentTab, currentCat, favorites, history } = state;
     let list = channels;
 
@@ -202,11 +204,12 @@ const App = (() => {
     }
 
     container.innerHTML = list.map((ch, i) => {
-      const faved  = favorites.includes(ch.url);
+      const faved = favorites.includes(ch.url);
       const active = i === state.currentIndex ? 'active' : '';
-      const logo   = ch.logo
+      const safeUrl = _escAttr(ch.url);
+      const logo = ch.logo
         ? `<img class="ch-logo" src="${_esc(ch.logo)}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
-          + `<div class="ch-logo-fallback" style="display:none"><i data-lucide="tv"></i></div>`
+        + `<div class="ch-logo-fallback" style="display:none"><i data-lucide="tv"></i></div>`
         : `<div class="ch-logo-fallback"><i data-lucide="tv"></i></div>`;
 
       return `
@@ -219,7 +222,8 @@ const App = (() => {
             <div class="ch-group">${_esc(ch.group || '')}</div>
           </div>
           <button class="fav-btn ${faved ? 'faved' : ''}"
-                  onclick="event.stopPropagation();App.toggleFav('${_escAttr(ch.url)}')"
+                  onclick="event.stopPropagation();App.toggleFav(this.dataset.url)"
+                  data-url="${safeUrl}"
                   data-nav aria-label="Favori">
             <i data-lucide="${faved ? 'star' : 'star-off'}"></i>
           </button>
@@ -237,7 +241,7 @@ const App = (() => {
   function toggleFav(url) {
     const idx = state.favorites.indexOf(url);
     if (idx === -1) state.favorites.push(url);
-    else            state.favorites.splice(idx, 1);
+    else state.favorites.splice(idx, 1);
     Store.set('iptv_favs', state.favorites);
     renderList();
   }
@@ -262,6 +266,17 @@ const App = (() => {
       </div>`).join('');
   }
 
+  // ── PRESET PLAYLISTS ──
+  function usePreset(url) {
+    document.getElementById('m3u-url').value = url;
+    // Highlight selected
+    document.querySelectorAll('.preset-btn').forEach(b => {
+      b.classList.toggle('selected', b.getAttribute('onclick').includes(url));
+    });
+    // Auto-load immediately
+    loadM3U();
+  }
+
   function _alert(msg) {
     _setStatus('error', msg);
     setTimeout(_clearStatus, 4000);
@@ -269,12 +284,12 @@ const App = (() => {
 
   function _esc(s) {
     return String(s)
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
   function _escAttr(s) {
-    return String(s).replace(/'/g,"\\'").replace(/"/g,'&quot;');
+    return String(s).replace(/'/g, "\\'").replace(/"/g, '&quot;');
   }
 
   function _sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -291,6 +306,7 @@ const App = (() => {
     switchTab,
     filterChannels,
     toggleFav,
+    usePreset,
   };
 })();
 
@@ -306,6 +322,19 @@ function switchModalTab(tab, btn) {
   btn.classList.add('active');
   document.querySelectorAll('.modal-panel').forEach(p => p.hidden = true);
   document.getElementById(`mtab-${tab}`).hidden = false;
+}
+function switchPresetTab(tab, btn) {
+  document.querySelectorAll('.ptab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('[id^="presets-grid"]').forEach(g => {
+    g.classList.remove('preset-grid-active');
+    g.classList.add('preset-grid-hidden');
+  });
+  const target = document.querySelector(`[id^="presets-grid"][data-ptab="${tab}"]`);
+  if (target) {
+    target.classList.remove('preset-grid-hidden');
+    target.classList.add('preset-grid-active');
+  }
 }
 document.getElementById('modal-bg')?.addEventListener('click', e => {
   if (e.target === e.currentTarget) closeModal();

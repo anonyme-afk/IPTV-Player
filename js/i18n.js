@@ -38,6 +38,8 @@ const I18N = {
     select_file:          'Sélectionnez un fichier.',
     paste_m3u:            'Collez du contenu M3U.',
     failed_load:          'Impossible de charger :',
+    presets_label:        'Playlists rapides',
+    preset_warning:       'La playlist principale contient +100 000 chaînes — chargement lent normal.',
   },
   en: {
     search_placeholder:   'Search for a channel...',
@@ -77,6 +79,8 @@ const I18N = {
     select_file:          'Select a file.',
     paste_m3u:            'Paste M3U content.',
     failed_load:          'Failed to load:',
+    presets_label:        'Quick Playlists',
+    preset_warning:       'The main playlist has 100,000+ channels — slow loading is normal.',
   },
   es: {
     search_placeholder:   'Buscar un canal...',
@@ -116,6 +120,8 @@ const I18N = {
     select_file:          'Seleccione un archivo.',
     paste_m3u:            'Pegue contenido M3U.',
     failed_load:          'No se pudo cargar:',
+    presets_label:        'Listas rápidas',
+    preset_warning:       'La lista principal tiene +100 000 canales — carga lenta es normal.',
   },
   de: {
     search_placeholder:   'Kanal suchen...',
@@ -155,6 +161,8 @@ const I18N = {
     select_file:          'Datei auswählen.',
     paste_m3u:            'M3U-Inhalt einfügen.',
     failed_load:          'Laden fehlgeschlagen:',
+    presets_label:        'Schnelle Playlists',
+    preset_warning:       'Die Hauptplaylist hat über 100.000 Kanäle — langsames Laden ist normal.',
   },
   ar: {
     search_placeholder:   'ابحث عن قناة...',
@@ -194,6 +202,8 @@ const I18N = {
     select_file:          'اختر ملفاً.',
     paste_m3u:            'الصق محتوى M3U.',
     failed_load:          'فشل التحميل:',
+    presets_label:        'قوائم تشغيل سريعة',
+    preset_warning:       'القائمة الرئيسية تحتوي على أكثر من 100,000 قناة — التحميل البطيء أمر طبيعي.',
   },
   pt: {
     search_placeholder:   'Pesquisar canal...',
@@ -233,6 +243,8 @@ const I18N = {
     select_file:          'Selecione um arquivo.',
     paste_m3u:            'Cole o conteúdo M3U.',
     failed_load:          'Falha ao carregar:',
+    presets_label:        'Playlists rápidas',
+    preset_warning:       'A playlist principal tem +100.000 canais — carregamento lento é normal.',
   },
 };
 
