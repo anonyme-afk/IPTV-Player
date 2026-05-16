@@ -22,10 +22,12 @@
 - Statistiques en temps reel (resolution, bande passante, buffer)
 - Capture d'ecran de la video en cours
 - Pre-check URL 3s avant lecture (HEAD request + AbortController)
+- Support des DRM / Geoblocages avec detection via banniere informative
 
 ### Playlists et Chaines
 - Chargement M3U/M3U8 depuis URL, fichier local ou texte colle
-- 80+ playlists pre-integreES (iptv-org) en 5 onglets (Populaires, Categories, Pays, Langues, Regions)
+- 80+ playlists pre-integrees en onglets (Populaires, Categories, Pays, Langues, Regions, Continents, Sources)
+- Listes exhaustives par pays (160+ pays classes par continents)
 - Virtual scrolling pour les listes de 100 000+ chaines (seulement 40-60 elements DOM rendus)
 - Parsing non-bloquant avec barre de progression (chunks de 2000 lignes)
 - Recherche instantanee avec debounce 250ms + index pre-calcule
@@ -36,12 +38,19 @@
 - Zapping numerique (taper 1-3 chiffres -> Enter)
 - Suggestion de chaines similaires en cas d'echec (meme groupe)
 
+### Geoblocage
+La banniere de geoblocage apparait en cas d'impossibilite de lire un flux. Deux raisons principales :
+1. Restriction geographique : La chaine est reservee a certains pays. Utilisez un VPN gratuit comme Proton VPN ou Windscribe.
+2. Flux protege (DRM) : La chaine bloque les lecteurs tiers. Utilisez l'application officielle requise.
+
 ### Interface et UX
+- Mode TV specifique : Navigation par cases (grille dynamique) pour grands ecrans (comme YouTube TV)
+- Logo vectoriel (SVG) pour l'interface de l'application et la PWA
 - Theme sombre / clair (detection automatique systeme + toggle manuel + touche T)
 - Responsive : mobile 360px -> desktop 4K -> Smart TV
 - Navigation 2D spatiale (clavier, manette Gamepad API, telecommande tactile)
-- Barre de categories scrollable avec fleches chevrons et degradEs visuels
-- i18n : Francais, English, Espanol, Deutsch, العربية, Portugues
+- Barre de categories scrollable avec fleches chevrons et degrades visuels
+- i18n : Francais, English, Espanol, Deutsch, Arabe, Portugues
 - Detection automatique de la langue du navigateur
 - Skeleton loading pendant le parsing
 - Raccourcis clavier complets (F, M, T, I, P, S, R, ?)
@@ -58,28 +67,24 @@
 - Installable sur ecran d'accueil (mobile + desktop)
 - Service Worker avec cache intelligent (network-first)
 - Fonctionne hors ligne (interface + derniere playlist)
-- Manifest complet (nom, icones, theme)
+- Manifest complet (nom, icones vectorielles dynamiques, theme)
 
 ---
 
 ## Utilisation
 
-### Option 1 -- Site en ligne (recommande)
-**https://anonyme-afk.github.io/IPTV-channe/**
-
-Aucune installation, fonctionne directement dans le navigateur.
-
-### Option 2 -- Serveur local (developpement)
+### Option 1 -- Serveur local (developpement)
 ```bash
 git clone https://github.com/anonyme-afk/IPTV-channe.git
 cd IPTV-channe
-node server.js
-# Ouvrir http://localhost:8080
+npm install
+npm run start
+# Ouvrir le port 3000 indique
 ```
 
-### Option 3 -- Auto-chargement via URL
+### Option 2 -- Auto-chargement via URL
 ```
-https://anonyme-afk.github.io/IPTV-channe/?m3u=https://URL_DE_TA_PLAYLIST.m3u
+http://localhost:3000/?m3u=https://URL_DE_TA_PLAYLIST.m3u
 ```
 
 ---
@@ -124,16 +129,16 @@ Support complet du Gamepad API :
 ```
 IPTV-channe/
   index.html          # Page principale (structure HTML, modale, presets)
-  server.js           # Serveur local Node.js (port 8080, dev)
+  server.js           # Serveur local Node.js (port 3000, dev)
   sw.js               # Service Worker PWA (cache strategique)
   manifest.json       # Manifest PWA (nom, icones, theme)
   assets/
-    favicon.ico
+    logo.svg          # Logo de l'application
   css/
     style.css         # CSS, variables CSS, themes clair/sombre, responsive
   js/
-    app.js            # Etat global, rendu virtual scroll, parsing chunke
-    player.js         # Lecteur HLS + stall detection + PiP + stats
+    app.js            # Etat global, rendu virtual scroll, parsing chunke, modales geoblocage
+    player.js         # Lecteur HLS + stall detection + PiP + stats + error handling
     parser.js         # Parseur M3U/M3U8 robuste
     nav.js            # Navigation 2D spatiale (clavier + manette + tactile)
     i18n.js           # Internationalisation 6 langues
@@ -158,13 +163,21 @@ IPTV-channe/
 
 > Toutes les playlists proviennent d'**[iptv-org/iptv](https://github.com/iptv-org/iptv)**
 
-| Onglet | Contenu |
-|--------|---------|
-| Populaires | Tout IPTV-org (100k+), France, USA, UK, Francais |
-| Categories | News, Sports, Films, Musique, Enfants, Cuisine... (20 categories) |
-| Pays | France, Maroc, Algerie, Tunisie, Belgique, USA... (20 pays) |
-| Langues | Francais, Anglais, Arabe, Espagnol, Portugais... (14 langues) |
-| Regions | Europe, Asie, Afrique, Ameriques, Moyen-Orient, Balkans... (12 regions) |
+### Plus de 160 pays par 6 continents :
+- Europe
+- Afrique
+- Moyen-Orient
+- Asie
+- Ameriques
+- Oceanie
+
+### Sources gratuites et legales :
+- Free-TV
+- Pluto TV
+- Plex TV
+- Roku
+- Tubi TV
+- DistroTV
 
 ---
 
@@ -223,7 +236,7 @@ IPTV-channe/
 
 - Playlists : **[iptv-org/iptv](https://github.com/iptv-org/iptv)** (Unlicense / domaine public)
 - Lecteur HLS : **[Hls.js](https://github.com/video-dev/hls.js)** (Apache 2.0)
-- Icônes : **[Lucide](https://lucide.dev/)** (ISC)
+- Icones : **[Lucide](https://lucide.dev/)** (ISC)
 - Polices : **[Rajdhani](https://fonts.google.com/specimen/Rajdhani)** et **[Share Tech Mono](https://fonts.google.com/specimen/Share+Tech+Mono)** (SIL Open Font License)
 
 ---

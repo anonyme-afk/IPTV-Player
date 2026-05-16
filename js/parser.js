@@ -26,24 +26,30 @@ const Parser = {
 
         // Name: strip all key="value" pairs, then take what's after the last comma
         // Also handle quoted names: #EXTINF:-1, "Name Here", http://...
-        let name = '';
-        const cleaned = line.replace(/[\w-]+="(?:[^"\\]|\\.)*"/g, '').trim();
-        const commaIdx = cleaned.lastIndexOf(',');
+        let name = 'Unnamed';
+        const cleaned = line.replace(/^#EXTINF:\s*-?\d+(\.\d+)?/, '').replace(/[\w-]+="(?:[^"\\]|\\.)*"/g, '').trim();
+        const commaIdx = cleaned.indexOf(',');
         if (commaIdx !== -1) {
-          name = cleaned.slice(commaIdx + 1).trim().replace(/^"|"$/g, '').trim();
+          name = cleaned.slice(commaIdx + 1).trim();
         }
+        name = name.replace(/^"|"$/g, '').trim();
         if (!name) name = 'Unnamed';
+
+        let groupRaw = tags['group-title'] || tags['tvg-group'] || 'General';
+        let group = groupRaw.split(/[;,|/]/)[0].trim();
+        if (!group) group = 'General';
 
         meta = {
           name: name,
-          group: tags['group-title'] || tags['tvg-group'] || 'General',
+          group: group,
           logo: tags['tvg-logo'] || tags['logo'] || '',
           id: tags['tvg-id'] || tags['tvg-name'] || '',
         };
       } else if (line.startsWith('#EXTVLCOPT') || line.startsWith('#EXTGRP')) {
         // Skip VLC options but grab group if present
         if (line.startsWith('#EXTGRP:') && meta) {
-          meta.group = line.slice(8).trim() || meta.group;
+          let grp = line.slice(8).trim();
+          meta.group = grp ? grp.split(/[;,|/]/)[0].trim() : meta.group;
         }
       } else if (line.startsWith('#KODIPROP') || line.startsWith('#EXTM3U')) {
         // Skip KODI properties and playlist header

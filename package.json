@@ -1,0 +1,13 @@
+{
+  "name": "iptv-player",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "build": "echo \"Nothing to build\""
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "lucide": "latest"
+  }
+}

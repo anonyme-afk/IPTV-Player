@@ -39,6 +39,22 @@ const Player = (() => {
   }
   function clearStatus() { setStatus('', ''); }
 
+  // ── GEO BLOCK BANNER ──
+  function showGeoBanner() {
+    const b = document.getElementById('geo-banner');
+    if (b) b.hidden = false;
+  }
+  function hideGeoBanner() {
+    const b = document.getElementById('geo-banner');
+    if (b) b.hidden = true;
+  }
+  function checkGeoBlock(ch) {
+    const n = (ch?.name || '').toLowerCase();
+    if (n.includes('geo-block') || n.includes('geoblocked')) {
+      setTimeout(showGeoBanner, 1500);
+    }
+  }
+
   // ── TIMEOUT MANAGER ──
   function _startTimeout(ms = 10000) {
     _clearTimeout();
@@ -66,7 +82,7 @@ const Player = (() => {
     _lastTime = video().currentTime || 0;
     _stallWatcher = setInterval(() => {
       const vid = video();
-      if (!vid || vid.paused || vid.ended || vid.seeking) return;
+      if (!vid || vid.paused || vid.ended || vid.seeking || vid.readyState < 2) return;
       const ct = vid.currentTime || 0;
       if (ct === _lastTime) {
         // No progress for 5s = stall
@@ -149,7 +165,7 @@ const Player = (() => {
     }
   }
 
-  // ── SIMILAR CHANNELS SUGGESTION ──
+  // ── SIMILAR CHANNELS ──
   function _checkSimilarChannels() {
     try {
       const { channels, filtered } = App.state;
@@ -160,7 +176,6 @@ const Player = (() => {
       if (similar.length) {
         const names = similar.map(c => c.name).join(', ');
         setStatus('error', `Indisponible. Essayer: ${names}`);
-        // Create suggestion buttons
         let existing = document.getElementById('similar-suggest');
         if (existing) existing.remove();
         const bar = document.getElementById('status-bar');
@@ -194,8 +209,9 @@ const Player = (() => {
     const sel = statsEl();
     if (sel) sel.style.display = 'none';
 
-    // Clean up previous
-    _cleanupMedia();
+    hideGeoBanner();
+
+    await _cleanupMedia();
     const vid = video();
     overlay().style.display = 'none';
 
@@ -205,7 +221,6 @@ const Player = (() => {
     const url = STREAM_PROXIES[proxyIndex] ? STREAM_PROXIES[proxyIndex](rawUrl) : rawUrl;
     const isHls = rawUrl.match(/\.m3u8(\?|$)/i) || rawUrl.includes('/hls/') || rawUrl.includes('.m3u');
 
-    // Pre-check on first attempt (direct)
     if (proxyIndex === 0) {
       const alive = await _preCheckUrl(rawUrl);
       if (!alive) {
@@ -226,6 +241,7 @@ const Player = (() => {
 
     _updateNowPlaying(ch);
     try { App.addHistory(ch); } catch (_) { }
+    checkGeoBlock(ch);
   }
 
   // ── HLS PLAYBACK ──
@@ -239,11 +255,11 @@ const Player = (() => {
       backbufferLength: 10,
       maxBufferLength: 20,
       maxMaxBufferLength: 30,
-      maxBufferSize: 30 * 1000 * 1000,
+      maxBufferSize: 20 * 1000 * 1000,
       maxBufferHole: 1.0,
-      fragLoadingMaxRetry: 2,
-      manifestLoadingMaxRetry: 2,
-      levelLoadingMaxRetry: 1,
+      fragLoadingMaxRetry: 3,
+      manifestLoadingMaxRetry: 3,
+      levelLoadingMaxRetry: 2,
       fragLoadingRetryDelay: 1000,
       fragLoadingTimeOut: 8000,
       manifestLoadingTimeOut: 8000,
@@ -271,7 +287,6 @@ const Player = (() => {
       setTimeout(clearStatus, 3000);
     });
 
-    // Track fragment loading to detect issues
     let fragLoadFailCount = 0;
     hls.on(Hls.Events.LEVEL_LOADED, () => _clearTimeout());
     hls.on(Hls.Events.FRAG_LOADED, () => { _retryCount = 0; fragLoadFailCount = 0; });
@@ -289,7 +304,10 @@ const Player = (() => {
       }
 
       _stopStallWatch();
-      _destroyHls();
+      if (hls) {
+        try { hls.stopLoad(); hls.detachMedia(); hls.destroy(); } catch (_) { }
+        hls = null;
+      }
 
       const next = proxyIndex + 1;
       if (next < STREAM_PROXIES.length) {
@@ -344,45 +362,49 @@ const Player = (() => {
     };
   }
 
-  // ── CLEANUP ──
-  function _cleanupMedia() {
+  // ── CLEANUP (async to prevent Hls conflicts) ──
+  async function _cleanupMedia() {
     _clearTimeout();
     _stopStallWatch();
-    _destroyHls();
-    const vid = video();
-    try {
-      vid.pause();
-      vid.removeAttribute('src');
-      if (typeof vid.srcObject !== 'undefined') {
-        if (vid.srcObject) {
-          const tracks = vid.srcObject.getTracks?.() || [];
-          tracks.forEach(t => t.stop());
-        }
-        vid.srcObject = null;
-      }
-      vid.load();
-    } catch (_) { }
-    vid.onloadeddata = null;
-    vid.onerror = null;
-    vid.onwaiting = null;
-    vid.onstalled = null;
-    vid.onplay = null;
-    vid.onloadedmetadata = null;
-    if (_abortController) { try { _abortController.abort(); } catch (_) { } _abortController = null; }
-    // Remove suggestions
-    document.getElementById('similar-suggest')?.remove();
-  }
-
-  function _destroyHls() {
     if (hls) {
       try { hls.stopLoad(); hls.detachMedia(); hls.destroy(); } catch (_) { }
       hls = null;
     }
+    const vid = video();
+    if (vid) {
+      try {
+        vid.pause();
+        vid.removeAttribute('src');
+        if (typeof vid.srcObject !== 'undefined') {
+          if (vid.srcObject) {
+            const tracks = vid.srcObject.getTracks?.() || [];
+            tracks.forEach(t => t.stop());
+          }
+          vid.srcObject = null;
+        }
+        vid.load();
+      } catch (_) { }
+      vid.onloadeddata = null;
+      vid.onerror = null;
+      vid.onwaiting = null;
+      vid.onstalled = null;
+      vid.onplay = null;
+      vid.onloadedmetadata = null;
+    }
+    if (_abortController) { try { _abortController.abort(); } catch (_) { } _abortController = null; }
+    document.getElementById('similar-suggest')?.remove();
+
+    await new Promise(r => setTimeout(r, 50));
+  }
+
+  // For backward compatibility / external stop
+  function _destroyFull() {
+    _cleanupMedia();
   }
 
   // ── STOP ──
-  function stop() {
-    _cleanupMedia();
+  async function stop() {
+    await _cleanupMedia();
     overlay().style.display = 'flex';
     nowPlaying().hidden = true;
     clearStatus();
@@ -432,7 +454,7 @@ const Player = (() => {
       return;
     }
     if (!document.fullscreenElement) {
-      document.getElementById('video-wrap').requestFullscreen?.().catch(() => { });
+      document.getElementById('player-area').requestFullscreen?.().catch(() => { });
     } else {
       document.exitFullscreen?.().catch(() => { });
     }
@@ -488,7 +510,6 @@ const Player = (() => {
         if (active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA')) return;
         clearTimeout(_zapTimer);
         _zapBuffer += e.key;
-        // Show preview
         const idx = parseInt(_zapBuffer) - 1;
         const { filtered } = App.state;
         if (idx >= 0 && idx < filtered.length) {
@@ -507,6 +528,6 @@ const Player = (() => {
     play, stop, prev, next,
     setVolume, toggleMute, toggleFullscreen,
     playUrl, togglePiP, captureFrame, toggleStats,
-    initZapping,
+    initZapping, hideGeoBanner,
   };
 })();

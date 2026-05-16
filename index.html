@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IPTV Player</title>
-  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
-  <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="shortcut icon" type="image/svg+xml" href="assets/logo.svg">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0a0c0f" id="meta-theme">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="css/style.css">
-  <!-- Anti-FOUT : restore theme before paint -->
   <script>
-    // Always default to dark theme (no localStorage persistence)
     document.documentElement.setAttribute('data-theme', 'dark');
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.12/hls.min.js" defer></script>
@@ -26,17 +23,15 @@
   <script src="js/nav.js" defer></script>
   <script src="js/app.js" defer></script>
 </head>
-
 <body>
   <div id="app">
-
     <!-- TOP BAR -->
     <header id="topbar">
       <button id="sidebar-toggle" onclick="toggleSidebar()" data-nav aria-label="Menu">
         <i data-lucide="menu"></i>
       </button>
       <div id="logo">
-        <i data-lucide="tv"></i>
+        <img src="assets/logo.svg" alt="Logo" width="28" height="28" style="border-radius: 6px;">
         <span>IPTV <small>PLAYER</small></span>
       </div>
       <div id="search-wrap">
@@ -162,6 +157,24 @@
             <span data-i18n="play_url">Lire URL</span>
           </button>
         </div>
+
+        <!-- Banniere geoblocage -->
+        <div id="geo-banner" hidden>
+          <div class="geo-icon">&#127758;</div>
+          <div class="geo-content">
+            <div class="geo-title">Chaine geobloquee ou indisponible</div>
+            <div class="geo-text">
+              Deux raisons possibles :<br>
+              <b>1. Restriction geographique</b> — La chaine est reservee a certains pays. Utilise un VPN pour changer de region.<br>
+              <b>2. Flux protege (DRM)</b> — La chaine bloque les lecteurs tiers. Utilisez l'application officielle requise.
+            </div>
+            <div class="geo-links">
+              <a href="https://protonvpn.com" target="_blank" rel="noopener">Proton VPN (gratuit)</a>
+              <a href="https://windscribe.com" target="_blank" rel="noopener">Windscribe (gratuit)</a>
+            </div>
+          </div>
+          <button id="geo-close" onclick="Player.hideGeoBanner()" aria-label="Fermer">x</button>
+        </div>
       </section>
     </main>
   </div>
@@ -208,7 +221,27 @@
               data-nav><i data-lucide="flag"></i><span>UK</span><small>+500</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/fra.m3u')"
               data-nav><i data-lucide="message-circle"></i><span>Francais</span><small>422 chaines</small></button>
+            
+            <button class="preset-btn preset-btn--free" onclick="App.usePreset('https://raw.githubusercontent.com/Free-TV/IPTV/master/playlist.m3u8')" data-nav>
+              <i data-lucide="tv-2"></i><span>Free-TV</span><small>Legal mondial</small>
+            </button>
+            <button class="preset-btn preset-btn--free" onclick="App.usePreset('https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plutotv_us.m3u')" data-nav>
+              <i data-lucide="play-circle"></i><span>Pluto TV</span><small>100+ chaines</small>
+            </button>
+            <button class="preset-btn preset-btn--free" onclick="App.usePreset('https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plex_all.m3u')" data-nav>
+              <i data-lucide="monitor-play"></i><span>Plex TV</span><small>Films + Series</small>
+            </button>
+            <button class="preset-btn preset-btn--free" onclick="App.usePreset('https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/roku_all.m3u')" data-nav>
+              <i data-lucide="tv"></i><span>Roku</span><small>Chaines gratuites</small>
+            </button>
+            <button class="preset-btn preset-btn--free" onclick="App.usePreset('https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/tubi_all.m3u')" data-nav>
+              <i data-lucide="film"></i><span>Tubi TV</span><small>VOD + Live</small>
+            </button>
+            <button class="preset-btn preset-btn--free" onclick="App.usePreset('https://www.apsattv.com/distro.m3u')" data-nav>
+              <i data-lucide="globe"></i><span>DistroTV</span><small>200+ chaines</small>
+            </button>
           </div>
+          
           <div id="presets-grid-categories" class="preset-grid-hidden" data-ptab="categories">
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/news.m3u')"
               data-nav><i data-lucide="newspaper"></i><span>News</span><small>940</small></button>
@@ -259,47 +292,361 @@
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/shop.m3u')"
               data-nav><i data-lucide="shopping-cart"></i><span>Shopping</span><small>79</small></button>
           </div>
+          
           <div id="presets-grid-countries" class="preset-grid-hidden" data-ptab="countries">
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/fr.m3u')"
-              data-nav><i data-lucide="flag"></i><span>France</span><small>FR</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/be.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Belgique</span><small>BE</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ch.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Suisse</span><small>CH</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ca.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Canada</span><small>CA</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/us.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Etats-Unis</span><small>US</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gb.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Royaume-Uni</span><small>GB</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/de.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Allemagne</span><small>DE</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/es.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Espagne</span><small>ES</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/it.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Italie</span><small>IT</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pt.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Portugal</span><small>PT</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/nl.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Pays-Bas</span><small>NL</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/br.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Bresil</span><small>BR</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/in.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Inde</span><small>IN</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/jp.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Japon</span><small>JP</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/kr.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Coree</span><small>KR</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cn.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Chine</span><small>CN</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ru.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Russie</span><small>RU</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ma.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Maroc</span><small>MA</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/dz.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Algerie</span><small>DZ</small></button>
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tn.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Tunisie</span><small>TN</small></button>
+            <!-- SEPARATEUR CONTINENT -->
+            <div class="continent-sep">Europe</div>
+          
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/fr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>France</span><small>FR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/be.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Belgique</span><small>BE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ch.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Suisse</span><small>CH</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gb.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Royaume-Uni</span><small>GB</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/de.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Allemagne</span><small>DE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/es.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Espagne</span><small>ES</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/it.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Italie</span><small>IT</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pt.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Portugal</span><small>PT</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/nl.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Pays-Bas</span><small>NL</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pl.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Pologne</span><small>PL</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ru.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Russie</span><small>RU</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ua.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Ukraine</span><small>UA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Turquie</span><small>TR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Grece</span><small>GR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ro.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Roumanie</span><small>RO</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/se.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Suede</span><small>SE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/no.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Norvege</span><small>NO</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/dk.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Danemark</span><small>DK</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/fi.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Finlande</span><small>FI</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/rs.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Serbie</span><small>RS</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/hr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Croatie</span><small>HR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/sk.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Slovaquie</span><small>SK</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cz.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Tcheque</span><small>CZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/hu.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Hongrie</span><small>HU</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/bg.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Bulgarie</span><small>BG</small>
+            </button>
+          
+            <!-- SEPARATEUR -->
+            <div class="continent-sep">Afrique</div>
+          
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ma.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Maroc</span><small>MA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/dz.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Algerie</span><small>DZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tn.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Tunisie</span><small>TN</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/sn.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Senegal</span><small>SN</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ci.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Cote d'Ivoire</span><small>CI</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cm.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Cameroun</span><small>CM</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ng.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Nigeria</span><small>NG</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gh.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Ghana</span><small>GH</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/eg.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Egypte</span><small>EG</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/za.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Afrique du Sud</span><small>ZA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cd.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>RD Congo</span><small>CD</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ml.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Mali</span><small>ML</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/bf.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Burkina Faso</span><small>BF</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tg.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Togo</span><small>TG</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/bj.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Benin</span><small>BJ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ga.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Gabon</span><small>GA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/mg.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Madagascar</span><small>MG</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ke.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Kenya</span><small>KE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/et.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Ethiopie</span><small>ET</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tz.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Tanzanie</span><small>TZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ly.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Libye</span><small>LY</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/mr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Mauritanie</span><small>MR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/rw.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Rwanda</span><small>RW</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/mu.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Maurice</span><small>MU</small>
+            </button>
+          
+            <!-- SEPARATEUR -->
+            <div class="continent-sep">Moyen-Orient</div>
+          
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/sa.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Arabie Saoudite</span><small>SA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ae.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Emirats Arabes</span><small>AE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/qa.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Qatar</span><small>QA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/kw.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Koweit</span><small>KW</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/lb.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Liban</span><small>LB</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/iq.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Irak</span><small>IQ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ir.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Iran</span><small>IR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/jo.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Jordanie</span><small>JO</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ps.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Palestine</span><small>PS</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/sy.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Syrie</span><small>SY</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ye.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Yemen</span><small>YE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/om.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Oman</span><small>OM</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/bh.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Bahrein</span><small>BH</small>
+            </button>
+          
+            <!-- SEPARATEUR -->
+            <div class="continent-sep">Asie</div>
+          
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/in.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Inde</span><small>IN</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cn.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Chine</span><small>CN</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/jp.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Japon</span><small>JP</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/kr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Coree du Sud</span><small>KR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/id.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Indonesie</span><small>ID</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pk.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Pakistan</span><small>PK</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/bd.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Bangladesh</span><small>BD</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/th.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Thailande</span><small>TH</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/vn.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Vietnam</span><small>VN</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ph.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Philippines</span><small>PH</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/my.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Malaisie</span><small>MY</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/sg.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Singapour</span><small>SG</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/hk.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Hong Kong</span><small>HK</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tw.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Taiwan</span><small>TW</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/kz.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Kazakhstan</span><small>KZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/uz.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Ouzbekistan</span><small>UZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/mm.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Myanmar</span><small>MM</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/kh.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Cambodge</span><small>KH</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/lk.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Sri Lanka</span><small>LK</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/np.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Nepal</span><small>NP</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/mn.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Mongolie</span><small>MN</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ge.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Georgie</span><small>GE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/az.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Azerbaidjan</span><small>AZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/am.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Armenie</span><small>AM</small>
+            </button>
+          
+            <!-- SEPARATEUR -->
+            <div class="continent-sep">Ameriques</div>
+          
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/us.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Etats-Unis</span><small>US</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ca.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Canada</span><small>CA</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/mx.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Mexique</span><small>MX</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/br.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Bresil</span><small>BR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ar.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Argentine</span><small>AR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/co.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Colombie</span><small>CO</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cl.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Chili</span><small>CL</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pe.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Perou</span><small>PE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ve.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Venezuela</span><small>VE</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ec.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Equateur</span><small>EC</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/bo.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Bolivie</span><small>BO</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cu.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Cuba</span><small>CU</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/do.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Republique Dom.</span><small>DO</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gt.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Guatemala</span><small>GT</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ht.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Haiti</span><small>HT</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pr.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Porto Rico</span><small>PR</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/uy.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Uruguay</span><small>UY</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/py.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Paraguay</span><small>PY</small>
+            </button>
+          
+            <!-- SEPARATEUR -->
+            <div class="continent-sep">Oceanie</div>
+          
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/au.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Australie</span><small>AU</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/nz.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Nouvelle-Zelande</span><small>NZ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/fj.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Fidji</span><small>FJ</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pg.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Papouasie</span><small>PG</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/nc.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Nelle-Caledonie</span><small>NC</small>
+            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pf.m3u')" data-nav>
+              <i data-lucide="flag"></i><span>Polynesie Fr.</span><small>PF</small>
+            </button>
           </div>
           <div id="presets-grid-languages" class="preset-grid-hidden" data-ptab="languages">
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/fra.m3u')"
@@ -385,5 +732,4 @@
   </div>
 
 </body>
-
 </html>

@@ -1,12 +1,12 @@
 // ── IPTV Player - Serveur local ──
 // Lance avec : node server.js
-// Puis ouvre http://localhost:8080
+// Puis ouvre http://localhost:3000
 
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const PORT = 8080;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 const ROOT = __dirname;
 
 const MIME_TYPES = {
@@ -68,10 +68,9 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, '0.0.0.0', () => {
     console.log('');
     console.log('╔══════════════════════════════════════╗');
-    console.log('║       📺 IPTV Player Server          ║');
+    console.log('║       [TV] IPTV Player Server        ║');
     console.log('╠══════════════════════════════════════╣');
     console.log(`║  Local   : http://localhost:${PORT}     ║`);
-    console.log(`║  Network : http://192.168.1.x:${PORT}   ║`);
     console.log('║                                      ║');
     console.log('║  Appuie sur Ctrl+C pour arrêter      ║');
     console.log('╚══════════════════════════════════════╝');
