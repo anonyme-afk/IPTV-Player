@@ -38,6 +38,17 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Rajdhani', sans-serif;
+  transition: background-color .25s ease, color .25s ease;
+}
+
+/* Smooth theme transition on all theme-dependent elements (exclude video/canvas) */
+* {
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+
+video,
+canvas {
+  transition: none !important;
 }
 
 button {
@@ -291,21 +302,97 @@ svg {
 }
 
 /* Categories */
+/* ── CATEGORIES WRAPPER (scrollable with arrows) ── */
+#cats-wrap {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
 #cats {
   display: flex;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  border-bottom: 1px solid var(--border);
   flex-shrink: 0;
+  flex: 1;
   padding-bottom: 0;
   -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 #cats::-webkit-scrollbar {
   display: none;
+}
+
+.cats-arrow {
+  width: 28px;
+  min-width: 28px;
+  background: var(--bg2);
+  border: none;
+  color: var(--text2);
+  font-size: 18px;
+  cursor: pointer;
+  transition: .15s ease;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  padding: 0;
+  line-height: 1;
+}
+
+.cats-arrow:hover {
+  color: var(--accent);
+  background: var(--bg3);
+}
+
+/* Gradient overlays for scroll hint */
+#cats-wrap::before,
+#cats-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+
+#cats-wrap::before {
+  left: 28px;
+  background: linear-gradient(to right, var(--bg2), transparent);
+}
+
+#cats-wrap::after {
+  right: 28px;
+  background: linear-gradient(to left, var(--bg2), transparent);
+}
+
+#cats-wrap.can-scroll-left::before {
+  opacity: 1;
+}
+
+#cats-wrap.can-scroll-right::after {
+  opacity: 1;
+}
+
+/* On mobile, hide arrows and remove gradient */
+@media (max-width: 680px) {
+  .cats-arrow {
+    display: none !important;
+  }
+
+  #cats-wrap::before,
+  #cats-wrap::after {
+    display: none !important;
+  }
 }
 
 .cat-btn {
@@ -320,7 +407,7 @@ svg {
   border-bottom: 2px solid transparent;
   transition: var(--transition);
   flex-shrink: 0;
-  scroll-snap-align: start;
+  cursor: pointer;
 }
 
 .cat-btn:hover {
@@ -1203,6 +1290,75 @@ svg {
 
 #video {
   will-change: transform;
+}
+
+/* ── PLAYER STATS ── */
+#player-stats {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, .7);
+  color: #0f0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  border-radius: 6px;
+  display: none;
+  pointer-events: none;
+  z-index: 5;
+  backdrop-filter: blur(4px);
+}
+
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg: #f0f2f5;
+  --bg2: #ffffff;
+  --bg3: #e8eaed;
+  --bg4: #dde0e6;
+  --text: #1a1d23;
+  --text2: #4a5568;
+  --text3: #8892a4;
+  --border: #d0d5df;
+  --accent: #d48a00;
+  --accent2: #e8a020;
+  --glow: 0 0 20px rgba(212, 138, 0, .25);
+  --focus-ring: 0 0 0 2px rgba(212, 138, 0, .4);
+}
+
+/* ── iOS FIXES ── */
+body.is-ios #video {
+  object-fit: cover;
+}
+
+body.is-ios [style*="backdrop-filter"],
+body.is-ios [style*="-webkit-backdrop-filter"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+body.is-ios #sidebar {
+  background: rgba(13, 17, 23, .95);
+}
+
+body.is-ios #topbar {
+  background: rgba(13, 17, 23, .95);
+}
+
+body.is-ios #controls {
+  background: rgba(13, 17, 23, .95);
+}
+
+/* ── SLOW DEVICE ── */
+body.is-slow #app {
+  background-image: none;
+}
+
+body.is-slow [data-nav]:focus {
+  transform: none;
+}
+
+body.is-slow .remote-overlay {
+  display: none;
 }
 
 /* ── FOCUS (TV NAVIGATION) ── */

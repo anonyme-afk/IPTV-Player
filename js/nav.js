@@ -392,6 +392,7 @@ const Nav = (() => {
         case 'R': case 'r': _showRemoteOverlay(); e.preventDefault(); return;
         case '?': case '/': e.preventDefault(); _toggleHelp(); return;
         case 'D': case 'd': _debug = !_debug; _log('Debug mode', _debug ? 'ON' : 'OFF'); return;
+        case 'T': case 't': ThemeManager.toggle(); e.preventDefault(); return;
       }
     }
 
@@ -462,6 +463,10 @@ const Nav = (() => {
           <span class="key">Pg↑ Pg↓</span><span>Chaîne préc./suiv.</span>
           <span class="key">Home</span><span>Premier élément</span>
           <span class="key">Tab ↹</span><span>Élément suivant</span>
+          <span class="key">T</span><span>Theme clair/sombre</span>
+          <span class="key">I</span><span>Stats flux</span>
+          <span class="key">P</span><span>Picture-in-Picture</span>
+          <span class="key">S</span><span>Capture ecran</span>
           <span class="key">D</span><span>Mode debug</span>
           <span class="key">?</span><span>Cette aide</span>
         </div>

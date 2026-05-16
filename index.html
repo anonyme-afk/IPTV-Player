@@ -8,10 +8,15 @@
   <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico">
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#f08c00">
+  <meta name="theme-color" content="#0a0c0f" id="meta-theme">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="stylesheet" href="css/style.css">
+  <!-- Anti-FOUT : restore theme before paint -->
+  <script>
+    // Always default to dark theme (no localStorage persistence)
+    document.documentElement.setAttribute('data-theme', 'dark');
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.12/hls.min.js" defer></script>
   <script src="https://unpkg.com/lucide@latest" defer></script>
   <script src="js/i18n.js" defer></script>
@@ -52,6 +57,10 @@
           <i data-lucide="clock"></i>
           <span data-i18n="hist">Historique</span>
         </button>
+        <button class="icon-btn" id="theme-toggle" onclick="ThemeManager.toggle()" data-nav title="Changer de thème"
+          aria-label="Basculer thème clair/sombre">
+          <span id="theme-icon">🌙</span>
+        </button>
         <button id="load-btn" onclick="openModal()" data-nav>
           <i data-lucide="plus-circle"></i>
           <span data-i18n="load">Charger</span>
@@ -61,13 +70,10 @@
 
     <!-- MAIN -->
     <main id="main">
-
-      <!-- Sidebar overlay (mobile) -->
       <div id="sidebar-overlay" onclick="closeSidebar()"></div>
 
       <!-- SIDEBAR -->
       <aside id="sidebar">
-        <!-- Mobile tabs inside sidebar -->
         <div id="mobile-tabs">
           <button class="tab-btn active" data-tab="all" onclick="App.switchTab('all',this)" data-nav>
             <i data-lucide="layout-grid"></i>
@@ -79,11 +85,15 @@
             <i data-lucide="clock"></i>
           </button>
         </div>
-        <div id="cats"></div>
+        <div id="cats-wrap">
+          <button id="cats-prev" class="cats-arrow" aria-label="Categories precedentes">‹</button>
+          <div id="cats"></div>
+          <button id="cats-next" class="cats-arrow" aria-label="Categories suivantes">›</button>
+        </div>
         <div id="ch-list">
           <div id="no-ch">
             <i data-lucide="tv-2"></i>
-            <p data-i18n="no_channels">Aucune chaîne chargée.<br>Clique sur <b>Charger</b>.</p>
+            <p data-i18n="no_channels">Aucune chaine chargee.<br>Clique sur <b>Charger</b>.</p>
           </div>
         </div>
       </aside>
@@ -94,12 +104,12 @@
           <video id="video" playsinline></video>
           <div id="overlay">
             <i data-lucide="play-circle" id="overlay-icon"></i>
-            <div id="overlay-text" data-i18n="no_channel_selected">Aucune chaîne sélectionnée</div>
-            <div id="overlay-sub" data-i18n="load_playlist_hint">Charge ta playlist M3U et choisis une chaîne</div>
+            <div id="overlay-text" data-i18n="no_channel_selected">Aucune chaine selectionnee</div>
+            <div id="overlay-sub" data-i18n="load_playlist_hint">Charge ta playlist M3U et choisis une chaine</div>
           </div>
+          <div id="player-stats"></div>
           <div id="status-bar"></div>
         </div>
-
         <div id="now-playing" hidden>
           <img id="np-logo" src="" alt="">
           <div id="np-info">
@@ -108,11 +118,10 @@
           </div>
           <div id="np-live" data-i18n="live">LIVE</div>
         </div>
-
         <div id="controls">
-          <button class="ctrl-btn" onclick="Player.prev()" data-nav title="Précédent">
+          <button class="ctrl-btn" onclick="Player.prev()" data-nav title="Precedent">
             <i data-lucide="skip-back"></i>
-            <span data-i18n="prev">Préc</span>
+            <span data-i18n="prev">Prec</span>
           </button>
           <button class="ctrl-btn" onclick="Player.next()" data-nav title="Suivant">
             <span data-i18n="next">Suiv</span>
@@ -127,7 +136,7 @@
           </div>
           <button class="ctrl-btn" onclick="Player.toggleFullscreen()" data-nav>
             <i data-lucide="maximize"></i>
-            <span data-i18n="fullscreen">Plein écran</span>
+            <span data-i18n="fullscreen">Plein ecran</span>
           </button>
           <button class="ctrl-btn danger" onclick="Player.stop()" data-nav>
             <i data-lucide="square"></i>
@@ -136,23 +145,31 @@
           <div id="url-bar">
             <input type="text" id="url-input" data-i18n-placeholder="url_placeholder" data-nav>
           </div>
+          <button class="ctrl-btn" onclick="Player.togglePiP()" data-nav title="Picture-in-Picture">
+            <i data-lucide="picture-in-picture-2"></i>
+          </button>
+          <button class="ctrl-btn" onclick="Player.captureFrame()" data-nav title="Capture d ecran">
+            <i data-lucide="camera"></i>
+          </button>
+          <button class="ctrl-btn" onclick="App.exportFavorites()" data-nav title="Exporter favoris">
+            <i data-lucide="download"></i>
+          </button>
+          <button class="ctrl-btn" onclick="Player.toggleStats()" data-nav title="Stats flux">
+            <i data-lucide="activity"></i>
+          </button>
           <button class="ctrl-btn" onclick="Player.playUrl()" data-nav>
             <i data-lucide="play"></i>
             <span data-i18n="play_url">Lire URL</span>
           </button>
         </div>
       </section>
-
     </main>
   </div>
 
   <!-- MODAL -->
   <div id="modal-bg" role="dialog" aria-modal="true">
     <div id="modal">
-      <h2>
-        <i data-lucide="folder-open"></i>
-        <span data-i18n="modal_title">Charger une playlist</span>
-      </h2>
+      <h2><i data-lucide="folder-open"></i> <span data-i18n="modal_title">Charger une playlist</span></h2>
       <div id="modal-tabs">
         <button class="m-tab active" data-modal-tab="url" onclick="switchModalTab('url',this)" data-nav>URL</button>
         <button class="m-tab" data-modal-tab="file" onclick="switchModalTab('file',this)" data-nav
@@ -167,61 +184,30 @@
             <button class="ptab active" data-ptab="popular" onclick="switchPresetTab('popular',this)"
               data-nav>Populaires</button>
             <button class="ptab" data-ptab="categories" onclick="switchPresetTab('categories',this)"
-              data-nav>Catégories</button>
+              data-nav>Categories</button>
             <button class="ptab" data-ptab="countries" onclick="switchPresetTab('countries',this)"
               data-nav>Pays</button>
             <button class="ptab" data-ptab="languages" onclick="switchPresetTab('languages',this)"
               data-nav>Langues</button>
-            <button class="ptab" data-ptab="regions" onclick="switchPresetTab('regions',this)" data-nav>Régions</button>
+            <button class="ptab" data-ptab="regions" onclick="switchPresetTab('regions',this)" data-nav>Regions</button>
           </div>
           <div id="presets-grid" class="preset-grid-active" data-ptab="popular">
-            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/index.m3u')" data-nav>
-              <i data-lucide="globe"></i>
-              <span>Tout IPTV-org</span>
-              <small>100k+ chaînes</small>
-            </button>
+            <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/index.m3u')" data-nav><i
+                data-lucide="globe"></i><span>Tout IPTV-org</span><small>100k+ chaines</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/index.category.m3u')"
-              data-nav>
-              <i data-lucide="folder-tree"></i>
-              <span>Par catégorie</span>
-              <small>index</small>
-            </button>
+              data-nav><i data-lucide="folder-tree"></i><span>Par categorie</span><small>index</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/index.country.m3u')"
-              data-nav>
-              <i data-lucide="flag"></i>
-              <span>Par pays</span>
-              <small>index</small>
-            </button>
+              data-nav><i data-lucide="flag"></i><span>Par pays</span><small>index</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/index.language.m3u')"
-              data-nav>
-              <i data-lucide="languages"></i>
-              <span>Par langue</span>
-              <small>index</small>
-            </button>
+              data-nav><i data-lucide="languages"></i><span>Par langue</span><small>index</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/fr.m3u')"
-              data-nav>
-              <i data-lucide="flag-triangle-right"></i>
-              <span>France</span>
-              <small>422 chaînes</small>
-            </button>
+              data-nav><i data-lucide="flag-triangle-right"></i><span>France</span><small>422 chaines</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/us.m3u')"
-              data-nav>
-              <i data-lucide="flag"></i>
-              <span>USA</span>
-              <small>+2000</small>
-            </button>
+              data-nav><i data-lucide="flag"></i><span>USA</span><small>+2000</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gb.m3u')"
-              data-nav>
-              <i data-lucide="flag"></i>
-              <span>UK</span>
-              <small>+500</small>
-            </button>
+              data-nav><i data-lucide="flag"></i><span>UK</span><small>+500</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/fra.m3u')"
-              data-nav>
-              <i data-lucide="message-circle"></i>
-              <span>Français</span>
-              <small>422 chaînes</small>
-            </button>
+              data-nav><i data-lucide="message-circle"></i><span>Francais</span><small>422 chaines</small></button>
           </div>
           <div id="presets-grid-categories" class="preset-grid-hidden" data-ptab="categories">
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/news.m3u')"
@@ -242,9 +228,9 @@
                 data-lucide="book-open"></i><span>Documentaire</span><small>134</small></button>
             <button class="preset-btn"
               onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/education.m3u')" data-nav><i
-                data-lucide="graduation-cap"></i><span>Éducation</span><small>235</small></button>
+                data-lucide="graduation-cap"></i><span>Education</span><small>235</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/relax.m3u')"
-              data-nav><i data-lucide="coffee"></i><span>Détente</span><small>6</small></button>
+              data-nav><i data-lucide="coffee"></i><span>Detente</span><small>6</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/cooking.m3u')"
               data-nav><i data-lucide="utensils-crossed"></i><span>Cuisine</span><small>34</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/travel.m3u')"
@@ -255,7 +241,7 @@
               onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/business.m3u')" data-nav><i
                 data-lucide="briefcase"></i><span>Business</span><small>74</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/series.m3u')"
-              data-nav><i data-lucide="clapperboard"></i><span>Séries</span><small>194</small></button>
+              data-nav><i data-lucide="clapperboard"></i><span>Series</span><small>194</small></button>
             <button class="preset-btn"
               onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/animation.m3u')" data-nav><i
                 data-lucide="palette"></i><span>Animation</span><small>80</small></button>
@@ -263,61 +249,61 @@
               onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/religious.m3u')" data-nav><i
                 data-lucide="church"></i><span>Religieux</span><small>709</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/weather.m3u')"
-              data-nav><i data-lucide="cloud-sun"></i><span>Météo</span><small>16</small></button>
+              data-nav><i data-lucide="cloud-sun"></i><span>Meteo</span><small>16</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/auto.m3u')"
               data-nav><i data-lucide="car"></i><span>Auto</span><small>17</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/classic.m3u')"
               data-nav><i data-lucide="history"></i><span>Classique</span><small>50</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/comedy.m3u')"
-              data-nav><i data-lucide="laugh"></i><span>Comédie</span><small>69</small></button>
+              data-nav><i data-lucide="laugh"></i><span>Comedie</span><small>69</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/categories/shop.m3u')"
               data-nav><i data-lucide="shopping-cart"></i><span>Shopping</span><small>79</small></button>
           </div>
           <div id="presets-grid-countries" class="preset-grid-hidden" data-ptab="countries">
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/fr.m3u')"
-              data-nav><i data-lucide="flag"></i><span>France</span><small>🇫🇷</small></button>
+              data-nav><i data-lucide="flag"></i><span>France</span><small>FR</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/be.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Belgique</span><small>🇧🇪</small></button>
+              data-nav><i data-lucide="flag"></i><span>Belgique</span><small>BE</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ch.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Suisse</span><small>🇨🇭</small></button>
+              data-nav><i data-lucide="flag"></i><span>Suisse</span><small>CH</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ca.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Canada</span><small>🇨🇦</small></button>
+              data-nav><i data-lucide="flag"></i><span>Canada</span><small>CA</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/us.m3u')"
-              data-nav><i data-lucide="flag"></i><span>États-Unis</span><small>🇺🇸</small></button>
+              data-nav><i data-lucide="flag"></i><span>Etats-Unis</span><small>US</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/gb.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Royaume-Uni</span><small>🇬🇧</small></button>
+              data-nav><i data-lucide="flag"></i><span>Royaume-Uni</span><small>GB</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/de.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Allemagne</span><small>🇩🇪</small></button>
+              data-nav><i data-lucide="flag"></i><span>Allemagne</span><small>DE</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/es.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Espagne</span><small>🇪🇸</small></button>
+              data-nav><i data-lucide="flag"></i><span>Espagne</span><small>ES</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/it.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Italie</span><small>🇮🇹</small></button>
+              data-nav><i data-lucide="flag"></i><span>Italie</span><small>IT</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/pt.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Portugal</span><small>🇵🇹</small></button>
+              data-nav><i data-lucide="flag"></i><span>Portugal</span><small>PT</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/nl.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Pays-Bas</span><small>🇳🇱</small></button>
+              data-nav><i data-lucide="flag"></i><span>Pays-Bas</span><small>NL</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/br.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Brésil</span><small>🇧🇷</small></button>
+              data-nav><i data-lucide="flag"></i><span>Bresil</span><small>BR</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/in.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Inde</span><small>🇮🇳</small></button>
+              data-nav><i data-lucide="flag"></i><span>Inde</span><small>IN</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/jp.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Japon</span><small>🇯🇵</small></button>
+              data-nav><i data-lucide="flag"></i><span>Japon</span><small>JP</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/kr.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Corée</span><small>🇰🇷</small></button>
+              data-nav><i data-lucide="flag"></i><span>Coree</span><small>KR</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/cn.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Chine</span><small>🇨🇳</small></button>
+              data-nav><i data-lucide="flag"></i><span>Chine</span><small>CN</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ru.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Russie</span><small>🇷🇺</small></button>
+              data-nav><i data-lucide="flag"></i><span>Russie</span><small>RU</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/ma.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Maroc</span><small>🇲🇦</small></button>
+              data-nav><i data-lucide="flag"></i><span>Maroc</span><small>MA</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/dz.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Algérie</span><small>🇩🇿</small></button>
+              data-nav><i data-lucide="flag"></i><span>Algerie</span><small>DZ</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/countries/tn.m3u')"
-              data-nav><i data-lucide="flag"></i><span>Tunisie</span><small>🇹🇳</small></button>
+              data-nav><i data-lucide="flag"></i><span>Tunisie</span><small>TN</small></button>
           </div>
           <div id="presets-grid-languages" class="preset-grid-hidden" data-ptab="languages">
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/fra.m3u')"
-              data-nav><i data-lucide="message-circle"></i><span>Français</span><small>422</small></button>
+              data-nav><i data-lucide="message-circle"></i><span>Francais</span><small>422</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/eng.m3u')"
               data-nav><i data-lucide="message-circle"></i><span>Anglais</span><small>2314</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/spa.m3u')"
@@ -339,11 +325,11 @@
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/jpn.m3u')"
               data-nav><i data-lucide="message-circle"></i><span>Japonais</span><small>68</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/kor.m3u')"
-              data-nav><i data-lucide="message-circle"></i><span>Coréen</span><small>80</small></button>
+              data-nav><i data-lucide="message-circle"></i><span>Coreen</span><small>80</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/hin.m3u')"
               data-nav><i data-lucide="message-circle"></i><span>Hindi</span><small>349</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/languages/nld.m3u')"
-              data-nav><i data-lucide="message-circle"></i><span>Néerlandais</span><small>177</small></button>
+              data-nav><i data-lucide="message-circle"></i><span>Neerlandais</span><small>177</small></button>
           </div>
           <div id="presets-grid-regions" class="preset-grid-hidden" data-ptab="regions">
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/eur.m3u')"
@@ -353,13 +339,13 @@
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/afr.m3u')"
               data-nav><i data-lucide="earth"></i><span>Afrique</span><small>afr</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/noram.m3u')"
-              data-nav><i data-lucide="earth"></i><span>Amérique du Nord</span><small>noram</small></button>
+              data-nav><i data-lucide="earth"></i><span>Amerique du Nord</span><small>noram</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/southam.m3u')"
-              data-nav><i data-lucide="earth"></i><span>Amérique du Sud</span><small>southam</small></button>
+              data-nav><i data-lucide="earth"></i><span>Amerique du Sud</span><small>southam</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/latam.m3u')"
-              data-nav><i data-lucide="earth"></i><span>Amérique latine</span><small>latam</small></button>
+              data-nav><i data-lucide="earth"></i><span>Amerique latine</span><small>latam</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/oce.m3u')"
-              data-nav><i data-lucide="earth"></i><span>Océanie</span><small>oce</small></button>
+              data-nav><i data-lucide="earth"></i><span>Oceanie</span><small>oce</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/mena.m3u')"
               data-nav><i data-lucide="earth"></i><span>Moyen-Orient</span><small>mena</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/balkan.m3u')"
@@ -367,13 +353,13 @@
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/nord.m3u')"
               data-nav><i data-lucide="earth"></i><span>Nordiques</span><small>nord</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/carib.m3u')"
-              data-nav><i data-lucide="earth"></i><span>Caraïbes</span><small>carib</small></button>
+              data-nav><i data-lucide="earth"></i><span>Caraibes</span><small>carib</small></button>
             <button class="preset-btn" onclick="App.usePreset('https://iptv-org.github.io/iptv/regions/ww.m3u')"
               data-nav><i data-lucide="earth"></i><span>Monde entier</span><small>ww</small></button>
           </div>
           <div id="preset-warning">
             <i data-lucide="alert-triangle"></i>
-            <span data-i18n="preset_warning">La playlist principale contient +100 000 chaînes. Chargement lent.</span>
+            <span data-i18n="preset_warning">La playlist principale contient +100 000 chaines. Chargement lent.</span>
           </div>
         </div>
         <label data-i18n="label_url">URL M3U/M3U8</label>
@@ -386,7 +372,7 @@
       </div>
       <div id="mtab-text" class="modal-panel" hidden>
         <label data-i18n="label_text">Contenu M3U</label>
-        <textarea id="m3u-text" placeholder="#EXTM3U&#10;#EXTINF:-1,Ma Chaîne&#10;http://..." data-nav></textarea>
+        <textarea id="m3u-text" placeholder="#EXTM3U&#10;#EXTINF:-1,Ma Chaine&#10;http://..." data-nav></textarea>
       </div>
       <div id="modal-btns">
         <button class="m-btn secondary" onclick="closeModal()" data-nav data-i18n="cancel">Annuler</button>
