@@ -86,6 +86,14 @@ const server = http.createServer((req, res) => {
         };
 
         // ── COMPRESSION ──
+        // Special case: files in /ressource/compressed are already gzipped
+        if (filePath.includes('/ressource/compressed/') && ext === '.json') {
+            headers['Content-Encoding'] = 'gzip';
+            res.writeHead(200, headers);
+            fs.createReadStream(filePath).pipe(res);
+            return;
+        }
+
         let stream = fs.createReadStream(filePath);
         if (/\b(gzip)\b/.test(acceptEncoding) && (ext === '.js' || ext === '.css' || ext === '.html' || ext === '.json')) {
             headers['Content-Encoding'] = 'gzip';

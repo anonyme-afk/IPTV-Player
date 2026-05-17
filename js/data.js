@@ -306,97 +306,55 @@ const IPTV_ORG_REGIONS = [
    SOURCES POPULAIRES GRATUITES (streams valides)
 ══════════════════════════════════════════ */
 const POPULAR_SOURCES = [
-  // Sources validees (flux actifs)
+  // COEUR : IPTV-ORG (Sources stables)
   {
-    label:'Monde entier',
+    label:'Tout (IPTV-ORG)',
     icon:'globe',
-    sub:'iptv-org',
+    sub:'Collection mondiale (8k+)',
     url:'https://iptv-org.github.io/iptv/index.m3u',
     css:''
   },
   {
-    label:'Pluto TV',
+    label:'France (M3U)',
     icon:'tv-2',
-    sub:'FAST gratuit',
-    url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plutotv_us.m3u',
+    sub:'Chaînes FR (iptv-org)',
+    url:'https://iptv-org.github.io/iptv/countries/fr.m3u',
+    css:''
+  },
+  {
+    label:'USA (M3U)',
+    icon:'monitor',
+    sub:'Chaînes US (iptv-org)',
+    url:'https://iptv-org.github.io/iptv/countries/us.m3u',
+    css:''
+  },
+  // FAST TV & GRATUITS
+  {
+    label:'Pluto TV All',
+    icon:'play-circle',
+    sub:'FAST gratuits',
+    url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plutotv_all.m3u',
     css:'preset-btn--free'
   },
   {
-    label:'Plex TV',
-    icon:'play-circle',
-    sub:'FAST gratuit',
+    label:'Plex (US)',
+    icon:'settings-2',
+    sub:'FAST gratuits',
     url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plex_all.m3u',
     css:'preset-btn--free'
   },
   {
-    label:'Roku Channel',
-    icon:'tv',
-    sub:'FAST gratuit',
-    url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/roku_all.m3u',
-    css:'preset-btn--free'
-  },
-  {
     label:'Samsung TV+',
-    icon:'monitor',
-    sub:'FAST gratuit',
+    icon:'tv',
+    sub:'Chaînes Samsung',
     url:'https://apsattv.com/ssungusa.m3u',
     css:'preset-btn--free'
   },
   {
-    label:'DistroTV',
-    icon:'satellite',
-    sub:'200+ chaines',
-    url:'https://www.apsattv.com/distro.m3u',
+    label:'Free-TV/IPTV',
+    icon:'monitor',
+    sub:'Global, par pays',
+    url:'https://raw.githubusercontent.com/Free-TV/IPTV/master/playlists/uuh/by_country.m3u',
     css:'preset-btn--free'
-  },
-  {
-    label:'freecasthub News',
-    icon:'newspaper',
-    sub:'sources publiques',
-    url:'https://raw.githubusercontent.com/freecasthub/public-iptv/main/news.m3u',
-    css:'preset-btn--validated'
-  },
-  {
-    label:'freecasthub Sports',
-    icon:'trophy',
-    sub:'sources publiques',
-    url:'https://raw.githubusercontent.com/freecasthub/public-iptv/main/sports.m3u',
-    css:'preset-btn--validated'
-  },
-  {
-    label:'freecasthub Education',
-    icon:'graduation-cap',
-    sub:'sources publiques',
-    url:'https://raw.githubusercontent.com/freecasthub/public-iptv/main/education.m3u',
-    css:'preset-btn--validated'
-  },
-  {
-    label:'France 24',
-    icon:'globe',
-    sub:'officiel, gratuit',
-    url:'https://iptv-org.github.io/iptv/countries/fr.m3u',
-    css:'preset-btn--validated'
-  },
-  {
-    label:'Al Jazeera',
-    icon:'globe',
-    sub:'officiel, gratuit',
-    url:'https://iptv-org.github.io/iptv/countries/qa.m3u',
-    css:'preset-btn--validated'
-  },
-  {
-    label:'DW (Deutsche Welle)',
-    icon:'globe',
-    sub:'officiel, gratuit',
-    url:'https://iptv-org.github.io/iptv/countries/de.m3u',
-    css:'preset-btn--validated'
-  },
-  // Radios validees (browser-compatible)
-  {
-    label:'Radios monde entier',
-    icon:'radio',
-    sub:'famelack radio',
-    url:'https://raw.githubusercontent.com/famelack/famelack-data/main/radio/index.json',
-    css:'preset-btn--radio'
-  },
+  }
 ];

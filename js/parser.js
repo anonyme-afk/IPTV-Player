@@ -1,3 +1,50 @@
+// ── LOGO RESOLVER ──
+const LogoResolver = {
+  /**
+   * Tente de resoudre un logo si manquant
+   */
+  resolve(name, id) {
+    if (!name && !id) return '';
+    const cleanName = (name || '').trim();
+    if (!cleanName && !id) return '';
+
+    // 1. iptv-org assets (fiable)
+    if (id && !id.includes(' ')) {
+      return `https://iptv-org.github.io/vi-assets/images/channels/${id.toLowerCase()}.png`;
+    }
+
+    // 2. fanmingming assets (populaire pour chaines chinoises et mondiales)
+    const slug = cleanName.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '');
+    if (slug) {
+      // On prefere retourner une URL probable
+      return `https://raw.githubusercontent.com/fanmingming/live/main/tv/logo/${cleanName}.png`;
+    }
+
+    return '';
+  },
+
+  /**
+   * Fallbacks additionnels pour les images cassees (utilises par onerror)
+   */
+  getFallback(name, id, attempt = 1) {
+    const cleanName = (name || '').trim();
+    
+    if (attempt === 1) {
+      // Tenter picons
+      return `https://raw.githubusercontent.com/picons/picons/master/build-source/logos/${cleanName.toLowerCase()}.png`;
+    }
+    if (attempt === 2) {
+      // Tenter iptv-pro
+      return `https://iptv-pro.github.io/logos/${cleanName.toLowerCase()}.png`;
+    }
+    if (attempt === 3) {
+      // Tenter LyngSat
+      return `https://www.lyngsat.com/logo/${cleanName.toLowerCase().replace(/\s+/g, '')}.png`;
+    }
+    return '';
+  }
+};
+
 // ── ROBUST M3U PARSER ──
 const Parser = {
   parse(text) {
@@ -39,11 +86,14 @@ const Parser = {
         let group = groupRaw.split(/[;,|/]/)[0].trim();
         if (!group) group = 'General';
 
+        const logo = tags['tvg-logo'] || tags['logo'] || '';
+        const id = tags['tvg-id'] || tags['tvg-name'] || '';
+
         meta = {
           name: name,
           group: group,
-          logo: tags['tvg-logo'] || tags['logo'] || '',
-          id: tags['tvg-id'] || tags['tvg-name'] || '',
+          logo: logo || LogoResolver.resolve(name, id),
+          id: id,
         };
       } else if (line.startsWith('#EXTVLCOPT') || line.startsWith('#EXTGRP')) {
         // Skip VLC options but grab group if present
@@ -80,8 +130,13 @@ const Parser = {
    * Detecte si une URL pointe vers un JSON famelack
    */
   isFamelackJSON(url) {
-    return url.includes('famelack') ||
-           url.includes('raw.githubusercontent.com') && url.endsWith('.json');
+    if (!url) return false;
+    const low = url.toLowerCase();
+    return low.includes('famelack') ||
+           low.endsWith('.json') ||
+           low.includes('/ressource/') ||
+           low.includes('raw.githubusercontent.com') ||
+           low.includes('api.github.com');
   },
 
   /**
@@ -89,85 +144,108 @@ const Parser = {
    * Structure attendue : tableau de { name, url, logo, group, languages, country, ... }
    * ou objet { channels: [...] }
    */
-  parseJSON(json) {
+  parseJSON(json, defaultGroup = 'General') {
+    console.log('[Parser] Parsing JSON...', json);
     let raw = [];
     if (Array.isArray(json)) {
       raw = json;
-    } else if (json.channels && Array.isArray(json.channels)) {
+    } else if (json && json.channels && Array.isArray(json.channels)) {
       raw = json.channels;
-    } else if (typeof json === 'object') {
+    } else if (json && typeof json === 'object') {
       // Chercher le premier tableau dans l'objet
+      console.log('[Parser] JSON is object, looking for arrays...');
       for (const key of Object.keys(json)) {
-        if (Array.isArray(json[key])) { raw = json[key]; break; }
+        if (Array.isArray(json[key])) { 
+          console.log(`[Parser] Found array at key: ${key}`);
+          raw = json[key]; 
+          break; 
+        }
       }
     }
+    
+    if (!raw.length && json && json.name && (json.url || json.stream_url || (json.stream_urls && json.stream_urls.length))) {
+      // Cas d'un objet unique (une seule chaine)
+      console.log('[Parser] Single channel detected');
+      raw = [json];
+    }
+    
+    console.log(`[Parser] Found ${raw.length} channels`);
+    
+    return raw.filter(ch => {
+        if (!ch) return false;
+        return (ch.url || ch.stream_url || ch.stream || (ch.stream_urls && ch.stream_urls.length) || ch.link || ch.download_url);
+      })
+      .map((ch, i) => {
+        const url = ch.url || ch.stream_url || ch.stream || (ch.stream_urls && ch.stream_urls[0]) || ch.link || ch.download_url;
+        let group = ch.group || ch.category || ch.type || ch.genre || defaultGroup;
+        
+        // Nettoyage groupe (slug to label)
+        if (group && group.length < 30) {
+          group = slugToLabel(group.toString());
+        }
 
-    return raw
-      .filter(ch => ch && (ch.url || ch.stream_url || ch.stream))
-      .map((ch, i) => ({
-        name:     ch.name || ch.channel_name || `Channel ${i + 1}`,
-        url:      ch.url  || ch.stream_url   || ch.stream,
-        logo:     ch.logo || ch.logo_url     || ch.icon || '',
-        group:    ch.group || ch.category    || ch.type || 'General',
-        id:       ch.id   || ch.tvg_id       || '',
-        country:  ch.country || '',
-        language: (ch.languages || ch.language || [''])[0] || '',
-        is_radio: !!(ch.is_radio || ch.radio || (ch.type || '').toLowerCase().includes('radio'))
-      }));
+        const logo = ch.logo || ch.logo_url || ch.icon || ch.thumbnail || '';
+        const id = ch.id || ch.tvg_id || ch.nanoid || '';
+
+        return {
+          name:     ch.name || ch.channel_name || ch.label || `Channel ${i + 1}`,
+          url:      url,
+          logo:     logo || LogoResolver.resolve(ch.name || ch.label, id),
+          group:    group,
+          id:       id,
+          country:  ch.country || '',
+          language: (Array.isArray(ch.languages) ? ch.languages[0] : (ch.languages || ch.language || '')) || '',
+          is_radio: !!(ch.is_radio || ch.radio || (ch.type || '').toLowerCase().includes('radio') || (url && url.toLowerCase().endsWith('.mp3')))
+        };
+      });
   },
 
   /**
    * Charge un fichier JSON famelack depuis une URL et retourne les chaines parsees
    * Gere le cas ou le fichier contient une seule chaine ou un tableau
    */
-  async fetchFamelack(url) {
+  async fetchFamelack(url, defaultGroup) {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status} — ${url}`);
     const json = await res.json();
-    return Parser.parseJSON(json);
+    return Parser.parseJSON(json, defaultGroup);
   },
 
   /**
    * Charge la liste des pays disponibles dans famelack-data
    * Format retourne : [{ code, name, flag, url }]
    */
+  /**
+   * Charge la liste des pays disponibles depuis le metadata local ou GitHub
+   */
   async fetchFamelackCountries() {
-    // Index des pays disponibles dans famelack
-    // Source : https://github.com/famelack/famelack-data/tree/main/tv/raw/countries
-    const INDEX_URL = 'https://api.github.com/repos/famelack/famelack-data/contents/tv/raw/countries';
-    const res = await fetch(INDEX_URL);
-    if (!res.ok) throw new Error(`GitHub API : HTTP ${res.status}`);
-    const files = await res.json();
-    return files
-      .filter(f => f.name.endsWith('.json'))
-      .map(f => {
-        const code = f.name.replace('.json', '').toUpperCase();
-        return {
-          code,
-          name: COUNTRY_NAMES[code] || code,
-          flag: codeToFlag(code),
-          url:  f.download_url
-        };
-      })
-      .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+    // Fallback GitHub Raw
+    const COMMON_CODES = ['FR','US','UK','DE','IT','ES','CA','BR','MX','AR','BE','CH','DZ','MA','TN','AL','TR','PT','RU','CN','JP','KR'];
+    return COMMON_CODES.map(code => ({
+      code,
+      name: COUNTRY_NAMES[code] || code,
+      flag: codeToFlag(code),
+      url: `https://raw.githubusercontent.com/famelack/famelack-data/main/tv/raw/countries/${code.toLowerCase()}.json`
+    })).sort((a, b) => a.name.localeCompare(b.name, 'fr'));
   },
 
   /**
-   * Charge la liste des categories disponibles dans famelack-data
+   * Charge la liste des categories disponibles
    */
   async fetchFamelackCategories() {
-    const INDEX_URL = 'https://api.github.com/repos/famelack/famelack-data/contents/tv/raw/categories';
-    const res = await fetch(INDEX_URL);
-    if (!res.ok) throw new Error(`GitHub API : HTTP ${res.status}`);
-    const files = await res.json();
-    return files
-      .filter(f => f.name.endsWith('.json'))
-      .map(f => ({
-        slug: f.name.replace('.json', ''),
-        name: slugToLabel(f.name.replace('.json', '')),
-        url:  f.download_url
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name, 'fr'));
+    const LOCAL_CATS = [
+      'all', 'animation', 'auto', 'business', 'classic', 'comedy', 'cooking', 'culture', 
+      'documentary', 'education', 'entertainment', 'family', 'general', 
+      'kids', 'legislative', 'lifestyle', 'movies', 'music', 'news', 
+      'outdoor', 'public', 'relax', 'religious', 'science', 'series', 
+      'shop', 'show', 'sports', 'travel', 'weather', 'top-news'
+    ];
+    
+    return LOCAL_CATS.map(slug => ({
+      slug,
+      name: slugToLabel(slug),
+      url: `https://raw.githubusercontent.com/famelack/famelack-data/main/tv/raw/categories/${slug}.json`
+    })).sort((a, b) => a.name.localeCompare(b.name, 'fr'));
   }
 };
 

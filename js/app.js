@@ -272,9 +272,13 @@ App.loadFromInput = async function() {
 };
 
 App._loadChannels = async function(channels, label = '') {
-  if (!channels.length) {
-    App.showStatus('error', 'Aucune chaine trouvee dans cette source.');
+  if (!channels || !channels.length) {
+    const errorMsg = `Aucune chaine trouvée dans "${label}". Vérifiez que le format est correct (M3U ou JSON compatible).`;
+    App.showStatus('error', errorMsg);
     App.hideProgress();
+    
+    // Si on est dans le cas d'un JSON qui semble vide, logger pour debug
+    console.warn(`[App] Playlist vide chargee depuis: ${label}`, { channels });
     return;
   }
   App.state.channels = channels;
@@ -287,9 +291,9 @@ App._loadChannels = async function(channels, label = '') {
   App.closeModal();
   App.renderCategories();
   App.renderList();
-  App.showStatus('ok', `${channels.length} chaines chargees — ${label}`);
+  App.showStatus('ok', `${channels.length} chaînes chargées — ${label}`);
   App.hideProgress();
-  setTimeout(() => App.hideStatus(), 4000);
+  setTimeout(() => App.hideStatus(), 5000);
   const src = document.getElementById('ch-source');
   if (src) { src.textContent = label; src.title = label; }
 };
@@ -305,8 +309,14 @@ App.usePreset = async function(url, label = '') {
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     App.showProgress(50, 'Analyse de la playlist...');
-    const text = await res.text();
-    await App._loadChannels(Parser.parse(text), name);
+
+    if (typeof Parser !== 'undefined' && Parser.isFamelackJSON && Parser.isFamelackJSON(url)) {
+      const json = await res.json();
+      await App._loadChannels(Parser.parseJSON(json), name);
+    } else {
+      const text = await res.text();
+      await App._loadChannels(Parser.parse(text), name);
+    }
   } catch(e) {
     App.showStatus('error', `Erreur : ${e.message}`);
     App.hideProgress();
@@ -412,7 +422,7 @@ App.renderList = function(append = false) {
 
     const logo = safeLogo
       ? `<img class="ch-logo" src="${safeLogo}" alt="" loading="lazy"
-              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+              onerror="App.handleLogoError(this, '${safeName}', '${escHtml(ch.id || '')}')">`
       : '';
     const fallback = `<div class="ch-logo-fallback" style="${safeLogo ? 'display:none' : ''}">
       ${Icons.get(isRadio ? 'radio' : 'tv-2')}
@@ -742,10 +752,9 @@ function updateNowPlaying(ch) {
   const fallback = document.getElementById('np-logo-fallback');
   if (logo && ch.logo) {
     logo.src = ch.logo;
-    logo.onerror = () => {
-      logo.style.display = 'none';
-      if (fallback) fallback.style.display = 'flex';
-    };
+    logo.dataset.name = ch.name || '';
+    logo.dataset.id = ch.id || '';
+    logo.onerror = () => App.handleLogoError(logo, logo.dataset.name, logo.dataset.id);
     logo.style.display = 'block';
     if (fallback) fallback.style.display = 'none';
   } else {
@@ -821,6 +830,38 @@ function registerServiceWorker() {
 /* ══════════════════════════════════════════
    UTILITAIRES
 ══════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   GÉRIONS LES LOGOS CASSÉS
+   (Utilise les sources recommandées par l'utilisateur)
+ ══════════════════════════════════════════ */
+App.handleLogoError = function(img, name, id) {
+  if (!img) return;
+  const attempt = parseInt(img.dataset.logoAttempt || '0') + 1;
+  img.dataset.logoAttempt = attempt;
+
+  if (typeof LogoResolver !== 'undefined') {
+    const nextUrl = LogoResolver.getFallback(name, id, attempt);
+    if (nextUrl) {
+      // Éviter boucle infinie si l'URL est la même
+      if (nextUrl === img.src) {
+        return App.handleLogoError(img, name, id); // Passer à l'attempt suivant
+      }
+      img.src = nextUrl;
+      return;
+    }
+  }
+
+  // Si on est ici, plus d'options : switch sur le fallback SVG
+  img.style.display = 'none';
+  if (img.nextElementSibling && img.nextElementSibling.classList.contains('ch-logo-fallback')) {
+    img.nextElementSibling.style.display = 'flex';
+  } else {
+    // Cas Now Playing
+    const fallback = document.getElementById('np-logo-fallback');
+    if (fallback) fallback.style.display = 'flex';
+  }
+};
+
 function escHtml(s) {
   return String(s)
     .replace(/&/g, '&amp;')
@@ -840,27 +881,11 @@ const FAMELACK_BASE = {
 
 App.loadFamelack = async function(type = 'tv', by = 'country', code = 'fr', label = null) {
   const subfolder = by === 'country' ? 'countries' : 'categories';
-  const url = `${FAMELACK_BASE.tv}/${subfolder}/${code}.json`;
-
-  const bg = document.getElementById('modal-bg');
-  if (bg) bg.hidden = true;
-  App.showStatus('loading', `Chargement famelack : ${label || code}...`);
-  try {
-    App.showProgress(0, 'Connexion Famelack...');
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-
-    App.showProgress(40, 'Parsing JSON...');
-    const channels = Parser.parseJSON(json);
-
-    App.showProgress(80, 'Rendu interface...');
-    await App._loadChannels(channels, label || code);
-  } catch(e) {
-    console.error(e);
-    App.showStatus('error', `Erreur JSON: ${e.message}`);
-    App.hideProgress();
-  }
+  const codeLow = code.toLowerCase();
+  
+  // Utilisation directe de GitHub sans fallback local, car les fichiers ont ete supprimes
+  const githubUrl = `https://raw.githubusercontent.com/famelack/famelack-data/main/tv/raw/${subfolder}/${codeLow}.json`;
+  return App.loadFamelackSource(githubUrl, label || code);
 };
 
 /* ══════════════════════════════════════════
@@ -1007,12 +1032,15 @@ App.loadFamelackSource = async function(url, label) {
   if (bg) bg.hidden = true;
   App.showStatus('loading', `Chargement : ${label}...`);
   App.showProgress(0, `Connexion a famelack...`);
+  console.log(`[App] Fetching Famelack source: ${url}`);
   try {
     App.showProgress(30, 'Telechargement...');
-    const channels = await Parser.fetchFamelack(url);
+    const channels = await Parser.fetchFamelack(url, label);
+    console.log(`[App] Famelack source loaded, ${channels.length} channels`);
     App.showProgress(80, 'Traitement...');
     await App._loadChannels(channels, label);
   } catch(e) {
+    console.error(`[App] Famelack load error:`, e);
     App.showStatus('error', `Erreur : ${e.message}`);
     App.hideProgress();
   }
