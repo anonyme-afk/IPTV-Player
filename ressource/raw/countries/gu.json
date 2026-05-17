@@ -1,0 +1,15 @@
+[
+  {
+    "nanoid": "GhPgMfQiSel48D",
+    "name": "Star 101 FM",
+    "stream_urls": [
+      "https://live2.tensila.com/knut-v-1.choice/hls/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "gu",
+    "isGeoBlocked": false
+  }
+]

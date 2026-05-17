@@ -1,0 +1,266 @@
+[
+  {
+    "nanoid": "2vVci7MeIBudgn",
+    "name": "Canal Alpha Jura",
+    "stream_urls": [
+      "https://canalalphaju.vedge.infomaniak.com/livecast/ik:canalalphaju/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "EDuoxij0nldVBm",
+    "name": "Canal Alpha Neuchatel",
+    "stream_urls": [
+      "https://canalalpha.vedge.infomaniak.com/livecast/ik:canalalpha/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "fjYriRacd46Tsw",
+    "name": "Carac 1",
+    "stream_urls": [
+      "https://edge13.vedge.infomaniak.com/livecast/ik:event/manifest.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cIkg0H43fAL4zk",
+    "name": "Carac 2",
+    "stream_urls": [
+      "https://onefmmd.vedge.infomaniak.com/livecast/ik:onefmmd/manifest.m3u8",
+      "https://onefmhd.vedge.infomaniak.com/livecast/ik:onefmhd/manifest.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "uPhFpY546jefo6",
+    "name": "Carac 3",
+    "stream_urls": [
+      "https://lfmmd.vedge.infomaniak.com/livecast/smil:lfmmd.smil/manifest.m3u8",
+      "https://lfmhd.vedge.infomaniak.com/livecast/lfmhd/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "trjWtKrUtelzEV",
+    "name": "Carac 4",
+    "stream_urls": [
+      "https://edge17.vedge.infomaniak.com/livecast/ik:compack_media_1/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "2iFt0H3obXxR8a",
+    "name": "Clubbing TV France",
+    "stream_urls": [
+      "https://d1j2csarxnwazk.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-uze1m6xh4fiyr-ssai-prd/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng",
+      "fra"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Ii3WUTM9GvbeCB",
+    "name": "Die Neue Zeit TV",
+    "stream_urls": [
+      "https://bild-und-ton.stream/die-neue-zeit-tv-live/smil:dnz-de.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "v3jEvjJoQwE3I4",
+    "name": "GO-TV Canale 163",
+    "stream_urls": [
+      "https://6zklxkbbdw9b-hls-live.mariatvcdn.it/msmotor/2f759512164fc6fe4acbed6a5648993a.sdp/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ita"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "y9fcNWUvgSqvX9",
+    "name": "Immaculata TV",
+    "stream_urls": [
+      "https://g5nl63z8lpq6-hls-live.5centscdn.com/tvistream/a5586d8ea3b7b021120a05c60dc59876.sdp/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "u5IA5Y47IoddiC",
+    "name": "Max TV",
+    "stream_urls": [
+      "https://cdn.katapy.io/cache/stream/katapytv/dieu/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "xYgLb0tc6pAHED",
+    "name": "More Than Sports TV",
+    "stream_urls": [
+      "https://mts1.iptv-playoutcenter.de/mts/mts-web/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ZUrwxBDVVmyicG",
+    "name": "NDR Fernsehen International",
+    "stream_urls": [
+      "https://ndrint.akamaized.net/hls/live/2020766/ndr_int/index.m3u8",
+      "https://dash3.antik.sk/live/test_ndr_tizen/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "dL9dqEvKPfjTXy",
+    "name": "QS24.tv",
+    "stream_urls": [
+      "https://h030.video-stream-hosting.de/quantisana-live/_definst_/smil:livestream.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "mb7i550xYVEaod",
+    "name": "Radio 3i",
+    "stream_urls": [
+      "https://vstream-cdn.ch/hls/radio3i.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "deu"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Xd3CFrHmzj9MdH",
+    "name": "RADIO DISCOunt TV",
+    "stream_urls": [
+      "https://585b674743bbb.streamlock.net/9030/9030/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ita"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "48RqSkShlJpBo8",
+    "name": "RTV Pendimi",
+    "stream_urls": [
+      "https://www.rtvpendimi.com:19360/tvpendimi/tvpendimi.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "sqi"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "aI8CAI6ZaAK6J4",
+    "name": "Sivan TV",
+    "stream_urls": [
+      "https://sivantv.livebox.co.in/sivantvhls/sivan.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "tam"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "GkcwPCezd4sFP5",
+    "name": "Telenova",
+    "stream_urls": [
+      "https://64b16f23efbee.streamlock.net/telenova/telenova/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ita"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "OeC5ZVzNRndtBe",
+    "name": "TeleTicino",
+    "stream_urls": [
+      "https://vstream-cdn.ch/hls/teleticino.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ita"
+    ],
+    "country": "ch",
+    "isGeoBlocked": false
+  }
+]

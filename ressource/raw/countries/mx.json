@@ -1,0 +1,1395 @@
+[
+  {
+    "nanoid": "fF3KswxsGoweMO",
+    "name": "8NTV",
+    "stream_urls": [
+      "https://60417ddeaf0d9.streamlock.net/ntv/videontv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "6AYObDCpHjAFK9",
+    "name": "ADN 40",
+    "stream_urls": [
+      "https://mdstrm.com/live-stream-playlist/60b578b060947317de7b57ac.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "41NRdVptDAeh4w",
+    "name": "adn40Mx",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/d6sRTSG4rgs"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "drwJ1KWzBTlLLz",
+    "name": "Alcance TV",
+    "stream_urls": [
+      "https://5bf8041cb3fed.streamlock.net/AlcanceTV/AlcanceTV/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "14OgEakSRkYx8J",
+    "name": "AMX Noticias",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/mexiquense2/videomexiquense2/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "49nmeVhY8qIuOA",
+    "name": "Azteca Internacional",
+    "stream_urls": [
+      "https://azt-mun.otteravision.com/azt/mun/mun.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "I6SQhQn74t89lq",
+    "name": "B15 Fresnillo",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/lsac/lsac/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "9BZEZK4EYJz8lC",
+    "name": "B15 Zacatecas",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/envio2/envio2/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "z9NmlAa4TNcIbD",
+    "name": "BAMOS TV",
+    "stream_urls": [
+      "https://video2.getstreamhosting.com:19360/8092/8092.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "GYpj19hD6m2qFh",
+    "name": "California Medios TV",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/medios/medios/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "qhvLdupfMqmZsq",
+    "name": "Canal 5 TV Cozumel",
+    "stream_urls": [
+      "https://video0.rogohosting.com:19360/tvcozumel/tvcozumel.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "om7GIuOIZrQShy",
+    "name": "Canal 10 Durango",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/canal10durango/videocanal10durango/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "v6b78NmVD9WnBy",
+    "name": "Canal 23 Televisa Ensenada",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/O6jj-XK_-SE"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "L8CnobbQq5QEWf",
+    "name": "Canal 26",
+    "stream_urls": [
+      "https://60417ddeaf0d9.streamlock.net/telemetrika3/smil:telemetrika3.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Hpf3KI7ImTrsrI",
+    "name": "Canal 33 Tijuana",
+    "stream_urls": [
+      "https://5f2c1b0d880e5.streamlock.net/canal33tijuana/videocanal33tijuana/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "HAcrNNQqFwVBJ5",
+    "name": "Canal 44",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/canal442/videocanal442/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zjs8fScsFVoj7q",
+    "name": "Canal Parlamento del Congreso de Jalisco",
+    "stream_urls": [
+      "https://60417ddeaf0d9.streamlock.net/srtc/smil:srtc.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "kcUlTpEd2EjJLo",
+    "name": "Capital 21",
+    "stream_urls": [
+      "https://video.cdmx.gob.mx/redes/stream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "npvsow7O979Ja1",
+    "name": "Conecta TV",
+    "stream_urls": [
+      "https://stream8.mexiserver.com:19360/conectatvx/conectatvx.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "dE1MtHTFsxve60",
+    "name": "CreaLaTV",
+    "stream_urls": [
+      "https://stream8.mexiserver.com:2000/hls/crealatv/crealatv.m3u8"
+    ],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/trlAbCevSi4"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "0v8d7EFpyejD8F",
+    "name": "Eclipse TV",
+    "stream_urls": [
+      "https://vdo6.instainternet.com:3272/live/jobetalborezlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "7B5TL7KhdmamWP",
+    "name": "El Chavo del 8",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/fy_fYd3ZwPE"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nLjmNpKEQoalYU",
+    "name": "El Chavo TV",
+    "stream_urls": [
+      "https://live20.bozztv.com/giatvplayout7/giatv-211465/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "vEu4AbFWQq3rTn",
+    "name": "El Sonorense",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/elsonorense/elsonorense/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Y2XbgAUNu1jdKZ",
+    "name": "Expresa TV",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/teleradio/smil:teleradio.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "FmWRIKhG72Bl7Q",
+    "name": "Filmex",
+    "stream_urls": [
+      "https://filmex-filmex-xumo.amagi.tv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "57x1qIQqd5IFIt",
+    "name": "Filmex Clasico",
+    "stream_urls": [
+      "https://filmex-filmexclasico-xumo.amagi.tv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "duaSLomE9AQYzs",
+    "name": "Golden TV",
+    "stream_urls": [
+      "https://rpn.bozztv.com/gusa/gusa-goldentv/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "tsY7Oi70RUlWEA",
+    "name": "Icrtv Colima",
+    "stream_urls": [
+      "https://5fc584f3f19c9.streamlock.net/icrtvcolima/smil:icrtvcolima.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "9NYf5msdVIxgC1",
+    "name": "ILCE Canal 15 Summa Saberes",
+    "stream_urls": [
+      "https://live-ilce.ovp-vivaro.digital/ovp-origin-abr/ngrp:6359ef999f3fb_all/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "yk5LuaS8jCla7l",
+    "name": "Imagen Multicast",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/r21hWkxPKQc"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "dQroYObAPsPIjO",
+    "name": "Imagen TV+",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/a60Y5Xw-vbM"
+    ],
+    "languages": [],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ZiZzS4tyBeE4oz",
+    "name": "ITV Deportes",
+    "stream_urls": [
+      "https://thm-it-roku.otteravision.com/thm/it/it.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Pz1CuDeSJYHivR",
+    "name": "Jalisco TV",
+    "stream_urls": [
+      "https://video0.rogohosting.com:19360/sisjalisciense/sisjalisciense.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "MdYnmsFTlP5Wem",
+    "name": "Justicia TV",
+    "stream_urls": [
+      "https://live-scjn.ovp-vivaro.digital/ovp-origin/638a22b47746d/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "sGZGN77ULu3I6y",
+    "name": "Lobo TV",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/tvlobo/videotvlobo/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "OsHq1e2oxRPhKX",
+    "name": "Maria Vision",
+    "stream_urls": [
+      "https://1601580044.rsc.cdn77.org/live/_jcn_/amlst:Mariavision/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "P3PQh3YlBALxV5",
+    "name": "Mexiquense TV",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/mexiquense/videomexiquense/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Q8QxpvIPg5iVsc",
+    "name": "Milenio Television",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/tQ941SU5UR0"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "iSOfFIrnvu17Xp",
+    "name": "Monte Maria",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/montemaria/videomontemaria/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "kOILMSbtSvgFyR",
+    "name": "MULTIMEDIOS",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/weLXdwVjSxs"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "4i2dbm12cF2ARa",
+    "name": "Nayarit Comunica",
+    "stream_urls": [
+      "https://live.iplanay.gob.mx/hls/nayarittv.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "esFtoFYJpw3jIu",
+    "name": "Nueve TV",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/nuevetv/videonuevetv/.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "DKHLUT1IqpMkXM",
+    "name": "Presumiendo Mexico",
+    "stream_urls": [
+      "https://60417ddeaf0d9.streamlock.net/telemetrika/smil:telemetrika.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "eg1gONSWrKSqw4",
+    "name": "PSN",
+    "stream_urls": [
+      "https://srspsn.live/live/livestream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "rGCqu82AwJbUrk",
+    "name": "PSN Canal 45.2",
+    "stream_urls": [
+      "https://srspsn2.live/live/livestream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "XTIJ4Z66Z2ZX2y",
+    "name": "Raly TV",
+    "stream_urls": [
+      "https://cloudvideo.servers10.com:8081/8072/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "DTP0PlieY1RyjA",
+    "name": "RCG TV",
+    "stream_urls": [
+      "https://video1.getstreamhosting.com:1936/8172/8172/playlist.m3u8",
+      "https://video1.getstreamhosting.com:1936/8246/8246/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "iQxS2QFaXpg5Nd",
+    "name": "RTG",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/radtvguerrero/videoradtvguerrero/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "NUNEvvcYt2iZOI",
+    "name": "RTQ Queretaro",
+    "stream_urls": [
+      "https://59d39900ebfb8.streamlock.net/rytqrolive/rytqrolive/chunklist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "inKpcU1CFpY4af",
+    "name": "SIPSE TV 8.1",
+    "stream_urls": [
+      "https://webprod.sipse.com.mx:8080/show/merida.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "bqZG2nHHXJFyOO",
+    "name": "SIPSE TVCUN 8.1",
+    "stream_urls": [
+      "https://webprod.sipse.com.mx:8080/show/tvcun.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zMvnkO0BSIigRy",
+    "name": "Sistema Michoacano de TV",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/enlinea/enlinea/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ejJFGypGVZEjkg",
+    "name": "SQCS Canal 4",
+    "stream_urls": [
+      "https://video0.rogohosting.com:19360/4982/4982.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "bWHBTSEbyYf27m",
+    "name": "Super Channel 12",
+    "stream_urls": [
+      "https://servilive.com:3263/live/channel12live.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "irSoF8eTXd3jkl",
+    "name": "Tele Saltillo",
+    "stream_urls": [
+      "https://servilive.com:3879/live/telesaltillolive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "arUwONnDyiIo6o",
+    "name": "Tele Yucatan",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/teleyucatan/videoteleyucatan/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "248WyVmGTSntgh",
+    "name": "Telediario Guadalajara",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/cGbF7MRlr1M"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CV0J6mHYbHQoth",
+    "name": "Teleplay Sureste",
+    "stream_urls": [
+      "https://player.tvstream.mx/livestream/teleplay/livehd/playlist.m3u8",
+      "https://player.tvstream.mx/livestream/teleplay/livesd/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CjylGBv72H1pko",
+    "name": "Televisa Ciudad Juarez",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/X9H16eO9JDA"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "JNd0iWsZawqpeO",
+    "name": "Televisa Del Bajio",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/1nI-JKuSZ4o"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "EDHdYFZTyUWlzE",
+    "name": "Televisa Del Golfo",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/afQ1ELiXrsc"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "MFKuXvwOZbfP2b",
+    "name": "Televisa Guadalajara",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/YNcmkKp9eus"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "V9bf7FdY5Rbg5t",
+    "name": "Televisa Guerrero",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/nXPQoPB0ti4"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "pTFEVIhFVG7hq3",
+    "name": "Televisa Laguna",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/z8kWE2wJIsw"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ZvTqK9RkV2bYWz",
+    "name": "Televisa Mexicali",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/ysbrswZdn90"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "OqUk1Slt9fsdYN",
+    "name": "Televisa Monterrey",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/HsQP1Jr79pY"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Jiv0dDh9RrbAvZ",
+    "name": "Televisa Piedras Negras",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/Q0yRH-ziOeo"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "wD23SQp1LmAaeS",
+    "name": "Televisa Puebla",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/A7Yuhq6BhIQ"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nASLS2roa0P0yB",
+    "name": "Televisa Querétaro",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/R7mATyop9Q0"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "tCjDqfGsbMfsZi",
+    "name": "Televisa Sinaloa",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/u_nutpezIro"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Rds4SfQCR5Bcp9",
+    "name": "Televisa Sonora",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/Ak6gLgPeofY"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CYVWTZuNQ67W3k",
+    "name": "Televisa Tijuana",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/nx_zBUu_8fY"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "wxWI34kwK6mekY",
+    "name": "Televisa Veracruz",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/iCL8BVQS4pM"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "t4d8eUUDKhV1q6",
+    "name": "Televisa Victoria",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/6UYhzop7PhY"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nvgVlQtD4CwYJb",
+    "name": "Televisa Zacatecas",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/7ZF-6INVmFE"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "OI8K21MAbP4kpP",
+    "name": "Televisión de Galicia",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/aw8t8b1rN8c"
+    ],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "vw5YOQQ6YZDvZh",
+    "name": "Tlaxcala TV",
+    "stream_urls": [
+      "https://vid26.mega00.com:5443/live/streams/qNmc7nulmq8zPYZE1582752735050.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "LIcwsfed7X4ZRx",
+    "name": "TRC TV",
+    "stream_urls": [
+      "https://5fe2654d6127d.streamlock.net/trc/videotrc/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "gc9aeOkbQG1vYx",
+    "name": "Turistik TV",
+    "stream_urls": [
+      "https://cdn1.cef-technology.com/stream_web/turistik/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "BqjUF0ZKQE6ngg",
+    "name": "TV Cuatro 4.1",
+    "stream_urls": [
+      "https://5f1af61612fb5.streamlock.net/tv4/tv4.smil/.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cWWftSEuzr59Qo",
+    "name": "TV Cuatro 4.2",
+    "stream_urls": [
+      "https://5f2c1b0d880e5.streamlock.net/tv42/tv42.smil/.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ql898Hb5o5onXW",
+    "name": "TV Lobo",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/lobodurango/videolobodurango/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "2eqKKZD9vsVmKP",
+    "name": "TV Mar La Paz",
+    "stream_urls": [
+      "https://5fc584f3f19c9.streamlock.net/tvmarlapaz/smil:tvmarlapaz.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Z8y7pyWQF00bRD",
+    "name": "TV Mar Los Cabos",
+    "stream_urls": [
+      "https://5fc584f3f19c9.streamlock.net/tvmarloscabos/smil:tvmarloscabos.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "UB1O3LUxfTUgSf",
+    "name": "TV Mar Puerto Vallarta",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/tvmarvallarta/videotvmarvallarta/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "g7YtvRUN199O67",
+    "name": "TV UG",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/universidadgto/videouniversidadgto/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "wbA0Ma6O1OQNwg",
+    "name": "TV UJAT",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/ujat/videoujat/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "44FCkvJ9nZtnKa",
+    "name": "TVP Culiacan",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/gpacifico1/smil:gpculiacan.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CXFEfwBakQ1YSI",
+    "name": "TVP Los Mochis",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/gpacifico2/mochis.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "bUg0odmxv7tPNK",
+    "name": "TVP Mazatlan",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/gpacifico4/smil:mazatlan.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "qPMJMAbibR0k8d",
+    "name": "TVP Obregon",
+    "stream_urls": [
+      "https://5ca3e84a76d30.streamlock.net/gpacifico3/obregon.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "EHXNJG9CKImTT2",
+    "name": "Ultra TV Puebla",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/telemetrika2/smil:telemetrika2.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "XC2uNbOMKneW9c",
+    "name": "UMTV",
+    "stream_urls": [
+      "https://60417ddeaf0d9.streamlock.net/montemorelos/videomontemorelos/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "2EyL9brYPFxMTy",
+    "name": "VB Media TV",
+    "stream_urls": [
+      "https://capomo01-enitv.eninetworks.com/locales_vbmedia_publico/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "bmK9McortbPFr4",
+    "name": "Vision Television",
+    "stream_urls": [
+      "https://cloudvideo.servers10.com:8081/8016/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "qY3In36TCPaQmA",
+    "name": "XEIPN-TDT",
+    "stream_urls": [
+      "https://vivo.canaloncelive.tv/securepkgr3/oncemexico/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "IomnjUMD148fu8",
+    "name": "XEWH-TDT",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/telemax/telemax/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "H0OAJ7XIO9zEZF",
+    "name": "XHBZC-TDT",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/xhbzc81/xhbzc81/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "1eJU4mPC18iVYo",
+    "name": "XHGV-TDT",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/rtv/videortv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "PgWHL7lZbyEg7S",
+    "name": "XHIJ-TDT",
+    "stream_urls": [
+      "https://5e50264bd6766.streamlock.net/canal44/videocanal44/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "5X15DRPWWS1LoX",
+    "name": "XHMNL-TDT",
+    "stream_urls": [
+      "https://s5.mexside.net:1936/canal28/canal28/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CIkEFZcLn9ruGH",
+    "name": "XHPBZC-TDT1",
+    "stream_urls": [
+      "https://5d0d1d7a6be9e.streamlock.net/sicom/canal1/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "MvxVdnZ8G06Wbd",
+    "name": "XHPBZC-TDT2",
+    "stream_urls": [
+      "https://5d0d1d7a6be9e.streamlock.net/sicom/canal2/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "73XssOK3RAP6Kw",
+    "name": "XHTTG-TDT",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/chiapas/videochiapas/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "47o1HNzoeOQk95",
+    "name": "XHUNES-TDT",
+    "stream_urls": [
+      "https://tv91.hostingnuclear.com:19360/xhunestv/xhunestv.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "bduXE4B0XA4Kef",
+    "name": "XHZHZ-TDT",
+    "stream_urls": [
+      "https://5f2c1b0d880e5.streamlock.net/zacatecas/videozacatecas/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "mx",
+    "isGeoBlocked": false
+  }
+]

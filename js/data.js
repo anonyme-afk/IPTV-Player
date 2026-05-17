@@ -1,0 +1,402 @@
+/**
+ * IPTV Player — data.js
+ * Donnees statiques : pays iptv-org, categories, langues, regions
+ * Sources verifiees depuis https://iptv-org.github.io/iptv/
+ */
+
+/* ══════════════════════════════════════════
+   PAYS iptv-org — liste complete ~190 pays
+   Format URL : https://iptv-org.github.io/iptv/countries/XX.m3u
+   Codes ISO 3166-1 alpha-2 verifies
+══════════════════════════════════════════ */
+const IPTV_ORG_COUNTRIES = [
+  // EUROPE
+  {code:'AD',name:'Andorre',         flag:'🇦🇩', url:'https://iptv-org.github.io/iptv/countries/ad.m3u'},
+  {code:'AL',name:'Albanie',         flag:'🇦🇱', url:'https://iptv-org.github.io/iptv/countries/al.m3u'},
+  {code:'AT',name:'Autriche',        flag:'🇦🇹', url:'https://iptv-org.github.io/iptv/countries/at.m3u'},
+  {code:'BA',name:'Bosnie',          flag:'🇧🇦', url:'https://iptv-org.github.io/iptv/countries/ba.m3u'},
+  {code:'BE',name:'Belgique',        flag:'🇧🇪', url:'https://iptv-org.github.io/iptv/countries/be.m3u'},
+  {code:'BG',name:'Bulgarie',        flag:'🇧🇬', url:'https://iptv-org.github.io/iptv/countries/bg.m3u'},
+  {code:'BY',name:'Bielorussie',     flag:'🇧🇾', url:'https://iptv-org.github.io/iptv/countries/by.m3u'},
+  {code:'CH',name:'Suisse',          flag:'🇨🇭', url:'https://iptv-org.github.io/iptv/countries/ch.m3u'},
+  {code:'CY',name:'Chypre',          flag:'🇨🇾', url:'https://iptv-org.github.io/iptv/countries/cy.m3u'},
+  {code:'CZ',name:'Rep. tcheque',    flag:'🇨🇿', url:'https://iptv-org.github.io/iptv/countries/cz.m3u'},
+  {code:'DE',name:'Allemagne',       flag:'🇩🇪', url:'https://iptv-org.github.io/iptv/countries/de.m3u'},
+  {code:'DK',name:'Danemark',        flag:'🇩🇰', url:'https://iptv-org.github.io/iptv/countries/dk.m3u'},
+  {code:'EE',name:'Estonie',         flag:'🇪🇪', url:'https://iptv-org.github.io/iptv/countries/ee.m3u'},
+  {code:'ES',name:'Espagne',         flag:'🇪🇸', url:'https://iptv-org.github.io/iptv/countries/es.m3u'},
+  {code:'FI',name:'Finlande',        flag:'🇫🇮', url:'https://iptv-org.github.io/iptv/countries/fi.m3u'},
+  {code:'FR',name:'France',          flag:'🇫🇷', url:'https://iptv-org.github.io/iptv/countries/fr.m3u'},
+  {code:'GB',name:'Royaume-Uni',     flag:'🇬🇧', url:'https://iptv-org.github.io/iptv/countries/gb.m3u'},
+  {code:'GR',name:'Grece',           flag:'🇬🇷', url:'https://iptv-org.github.io/iptv/countries/gr.m3u'},
+  {code:'HR',name:'Croatie',         flag:'🇭🇷', url:'https://iptv-org.github.io/iptv/countries/hr.m3u'},
+  {code:'HU',name:'Hongrie',         flag:'🇭🇺', url:'https://iptv-org.github.io/iptv/countries/hu.m3u'},
+  {code:'IE',name:'Irlande',         flag:'🇮🇪', url:'https://iptv-org.github.io/iptv/countries/ie.m3u'},
+  {code:'IS',name:'Islande',         flag:'🇮🇸', url:'https://iptv-org.github.io/iptv/countries/is.m3u'},
+  {code:'IT',name:'Italie',          flag:'🇮🇹', url:'https://iptv-org.github.io/iptv/countries/it.m3u'},
+  {code:'LI',name:'Liechtenstein',   flag:'🇱🇮', url:'https://iptv-org.github.io/iptv/countries/li.m3u'},
+  {code:'LT',name:'Lituanie',        flag:'🇱🇹', url:'https://iptv-org.github.io/iptv/countries/lt.m3u'},
+  {code:'LU',name:'Luxembourg',      flag:'🇱🇺', url:'https://iptv-org.github.io/iptv/countries/lu.m3u'},
+  {code:'LV',name:'Lettonie',        flag:'🇱🇻', url:'https://iptv-org.github.io/iptv/countries/lv.m3u'},
+  {code:'MC',name:'Monaco',          flag:'🇲🇨', url:'https://iptv-org.github.io/iptv/countries/mc.m3u'},
+  {code:'MD',name:'Moldavie',        flag:'🇲🇩', url:'https://iptv-org.github.io/iptv/countries/md.m3u'},
+  {code:'ME',name:'Montenegro',      flag:'🇲🇪', url:'https://iptv-org.github.io/iptv/countries/me.m3u'},
+  {code:'MK',name:'Macedoine du N.', flag:'🇲🇰', url:'https://iptv-org.github.io/iptv/countries/mk.m3u'},
+  {code:'MT',name:'Malte',           flag:'🇲🇹', url:'https://iptv-org.github.io/iptv/countries/mt.m3u'},
+  {code:'NL',name:'Pays-Bas',        flag:'🇳🇱', url:'https://iptv-org.github.io/iptv/countries/nl.m3u'},
+  {code:'NO',name:'Norvege',         flag:'🇳🇴', url:'https://iptv-org.github.io/iptv/countries/no.m3u'},
+  {code:'PL',name:'Pologne',         flag:'🇵🇱', url:'https://iptv-org.github.io/iptv/countries/pl.m3u'},
+  {code:'PT',name:'Portugal',        flag:'🇵🇹', url:'https://iptv-org.github.io/iptv/countries/pt.m3u'},
+  {code:'RO',name:'Roumanie',        flag:'🇷🇴', url:'https://iptv-org.github.io/iptv/countries/ro.m3u'},
+  {code:'RS',name:'Serbie',          flag:'🇷🇸', url:'https://iptv-org.github.io/iptv/countries/rs.m3u'},
+  {code:'RU',name:'Russie',          flag:'🇷🇺', url:'https://iptv-org.github.io/iptv/countries/ru.m3u'},
+  {code:'SE',name:'Suede',           flag:'🇸🇪', url:'https://iptv-org.github.io/iptv/countries/se.m3u'},
+  {code:'SI',name:'Slovenie',        flag:'🇸🇮', url:'https://iptv-org.github.io/iptv/countries/si.m3u'},
+  {code:'SK',name:'Slovaquie',       flag:'🇸🇰', url:'https://iptv-org.github.io/iptv/countries/sk.m3u'},
+  {code:'SM',name:'Saint-Marin',     flag:'🇸🇲', url:'https://iptv-org.github.io/iptv/countries/sm.m3u'},
+  {code:'TR',name:'Turquie',         flag:'🇹🇷', url:'https://iptv-org.github.io/iptv/countries/tr.m3u'},
+  {code:'UA',name:'Ukraine',         flag:'🇺🇦', url:'https://iptv-org.github.io/iptv/countries/ua.m3u'},
+  {code:'XK',name:'Kosovo',          flag:'🇽🇰', url:'https://iptv-org.github.io/iptv/countries/xk.m3u'},
+
+  // AFRIQUE
+  {code:'AO',name:'Angola',          flag:'🇦🇴', url:'https://iptv-org.github.io/iptv/countries/ao.m3u'},
+  {code:'BF',name:'Burkina Faso',    flag:'🇧🇫', url:'https://iptv-org.github.io/iptv/countries/bf.m3u'},
+  {code:'BI',name:'Burundi',         flag:'🇧🇮', url:'https://iptv-org.github.io/iptv/countries/bi.m3u'},
+  {code:'BJ',name:'Benin',           flag:'🇧🇯', url:'https://iptv-org.github.io/iptv/countries/bj.m3u'},
+  {code:'BW',name:'Botswana',        flag:'🇧🇼', url:'https://iptv-org.github.io/iptv/countries/bw.m3u'},
+  {code:'CD',name:'RD Congo',        flag:'🇨🇩', url:'https://iptv-org.github.io/iptv/countries/cd.m3u'},
+  {code:'CF',name:'Centrafrique',    flag:'🇨🇫', url:'https://iptv-org.github.io/iptv/countries/cf.m3u'},
+  {code:'CG',name:'Congo',           flag:'🇨🇬', url:'https://iptv-org.github.io/iptv/countries/cg.m3u'},
+  {code:'CI',name:"Cote d'Ivoire",   flag:'🇨🇮', url:'https://iptv-org.github.io/iptv/countries/ci.m3u'},
+  {code:'CM',name:'Cameroun',        flag:'🇨🇲', url:'https://iptv-org.github.io/iptv/countries/cm.m3u'},
+  {code:'CV',name:'Cap-Vert',        flag:'🇨🇻', url:'https://iptv-org.github.io/iptv/countries/cv.m3u'},
+  {code:'DJ',name:'Djibouti',        flag:'🇩🇯', url:'https://iptv-org.github.io/iptv/countries/dj.m3u'},
+  {code:'DZ',name:'Algerie',         flag:'🇩🇿', url:'https://iptv-org.github.io/iptv/countries/dz.m3u'},
+  {code:'EG',name:'Egypte',          flag:'🇪🇬', url:'https://iptv-org.github.io/iptv/countries/eg.m3u'},
+  {code:'ER',name:'Erythree',        flag:'🇪🇷', url:'https://iptv-org.github.io/iptv/countries/er.m3u'},
+  {code:'ET',name:'Ethiopie',        flag:'🇪🇹', url:'https://iptv-org.github.io/iptv/countries/et.m3u'},
+  {code:'GA',name:'Gabon',           flag:'🇬🇦', url:'https://iptv-org.github.io/iptv/countries/ga.m3u'},
+  {code:'GH',name:'Ghana',           flag:'🇬🇭', url:'https://iptv-org.github.io/iptv/countries/gh.m3u'},
+  {code:'GM',name:'Gambie',          flag:'🇬🇲', url:'https://iptv-org.github.io/iptv/countries/gm.m3u'},
+  {code:'GN',name:'Guinee',          flag:'🇬🇳', url:'https://iptv-org.github.io/iptv/countries/gn.m3u'},
+  {code:'GQ',name:'Guinee equat.',   flag:'🇬🇶', url:'https://iptv-org.github.io/iptv/countries/gq.m3u'},
+  {code:'GW',name:'Guinee-Bissau',   flag:'🇬🇼', url:'https://iptv-org.github.io/iptv/countries/gw.m3u'},
+  {code:'KE',name:'Kenya',           flag:'🇰🇪', url:'https://iptv-org.github.io/iptv/countries/ke.m3u'},
+  {code:'KM',name:'Comores',         flag:'🇰🇲', url:'https://iptv-org.github.io/iptv/countries/km.m3u'},
+  {code:'LR',name:'Liberia',         flag:'🇱🇷', url:'https://iptv-org.github.io/iptv/countries/lr.m3u'},
+  {code:'LS',name:'Lesotho',         flag:'🇱🇸', url:'https://iptv-org.github.io/iptv/countries/ls.m3u'},
+  {code:'LY',name:'Libye',           flag:'🇱🇾', url:'https://iptv-org.github.io/iptv/countries/ly.m3u'},
+  {code:'MA',name:'Maroc',           flag:'🇲🇦', url:'https://iptv-org.github.io/iptv/countries/ma.m3u'},
+  {code:'MG',name:'Madagascar',      flag:'🇲🇬', url:'https://iptv-org.github.io/iptv/countries/mg.m3u'},
+  {code:'ML',name:'Mali',            flag:'🇲🇱', url:'https://iptv-org.github.io/iptv/countries/ml.m3u'},
+  {code:'MR',name:'Mauritanie',      flag:'🇲🇷', url:'https://iptv-org.github.io/iptv/countries/mr.m3u'},
+  {code:'MU',name:'Maurice',         flag:'🇲🇺', url:'https://iptv-org.github.io/iptv/countries/mu.m3u'},
+  {code:'MW',name:'Malawi',          flag:'🇲🇼', url:'https://iptv-org.github.io/iptv/countries/mw.m3u'},
+  {code:'MZ',name:'Mozambique',      flag:'🇲🇿', url:'https://iptv-org.github.io/iptv/countries/mz.m3u'},
+  {code:'NA',name:'Namibie',         flag:'🇳🇦', url:'https://iptv-org.github.io/iptv/countries/na.m3u'},
+  {code:'NE',name:'Niger',           flag:'🇳🇪', url:'https://iptv-org.github.io/iptv/countries/ne.m3u'},
+  {code:'NG',name:'Nigeria',         flag:'🇳🇬', url:'https://iptv-org.github.io/iptv/countries/ng.m3u'},
+  {code:'RW',name:'Rwanda',          flag:'🇷🇼', url:'https://iptv-org.github.io/iptv/countries/rw.m3u'},
+  {code:'SC',name:'Seychelles',      flag:'🇸🇨', url:'https://iptv-org.github.io/iptv/countries/sc.m3u'},
+  {code:'SD',name:'Soudan',          flag:'🇸🇩', url:'https://iptv-org.github.io/iptv/countries/sd.m3u'},
+  {code:'SL',name:'Sierra Leone',    flag:'🇸🇱', url:'https://iptv-org.github.io/iptv/countries/sl.m3u'},
+  {code:'SN',name:'Senegal',         flag:'🇸🇳', url:'https://iptv-org.github.io/iptv/countries/sn.m3u'},
+  {code:'SO',name:'Somalie',         flag:'🇸🇴', url:'https://iptv-org.github.io/iptv/countries/so.m3u'},
+  {code:'SS',name:'Soudan du Sud',   flag:'🇸🇸', url:'https://iptv-org.github.io/iptv/countries/ss.m3u'},
+  {code:'ST',name:'Sao Tome',        flag:'🇸🇹', url:'https://iptv-org.github.io/iptv/countries/st.m3u'},
+  {code:'SZ',name:'Eswatini',        flag:'🇸🇿', url:'https://iptv-org.github.io/iptv/countries/sz.m3u'},
+  {code:'TD',name:'Tchad',           flag:'🇹🇩', url:'https://iptv-org.github.io/iptv/countries/td.m3u'},
+  {code:'TG',name:'Togo',            flag:'🇹🇬', url:'https://iptv-org.github.io/iptv/countries/tg.m3u'},
+  {code:'TN',name:'Tunisie',         flag:'🇹🇳', url:'https://iptv-org.github.io/iptv/countries/tn.m3u'},
+  {code:'TZ',name:'Tanzanie',        flag:'🇹🇿', url:'https://iptv-org.github.io/iptv/countries/tz.m3u'},
+  {code:'UG',name:'Ouganda',         flag:'🇺🇬', url:'https://iptv-org.github.io/iptv/countries/ug.m3u'},
+  {code:'ZA',name:'Afrique du Sud',  flag:'🇿🇦', url:'https://iptv-org.github.io/iptv/countries/za.m3u'},
+  {code:'ZM',name:'Zambie',          flag:'🇿🇲', url:'https://iptv-org.github.io/iptv/countries/zm.m3u'},
+  {code:'ZW',name:'Zimbabwe',        flag:'🇿🇼', url:'https://iptv-org.github.io/iptv/countries/zw.m3u'},
+
+  // MOYEN-ORIENT
+  {code:'AE',name:'Emirats arabes',  flag:'🇦🇪', url:'https://iptv-org.github.io/iptv/countries/ae.m3u'},
+  {code:'BH',name:'Bahrein',         flag:'🇧🇭', url:'https://iptv-org.github.io/iptv/countries/bh.m3u'},
+  {code:'IQ',name:'Irak',            flag:'🇮🇶', url:'https://iptv-org.github.io/iptv/countries/iq.m3u'},
+  {code:'IL',name:'Israel',          flag:'🇮🇱', url:'https://iptv-org.github.io/iptv/countries/il.m3u'},
+  {code:'IR',name:'Iran',            flag:'🇮🇷', url:'https://iptv-org.github.io/iptv/countries/ir.m3u'},
+  {code:'JO',name:'Jordanie',        flag:'🇯🇴', url:'https://iptv-org.github.io/iptv/countries/jo.m3u'},
+  {code:'KW',name:'Koweit',          flag:'🇰🇼', url:'https://iptv-org.github.io/iptv/countries/kw.m3u'},
+  {code:'LB',name:'Liban',           flag:'🇱🇧', url:'https://iptv-org.github.io/iptv/countries/lb.m3u'},
+  {code:'OM',name:'Oman',            flag:'🇴🇲', url:'https://iptv-org.github.io/iptv/countries/om.m3u'},
+  {code:'PS',name:'Palestine',       flag:'🇵🇸', url:'https://iptv-org.github.io/iptv/countries/ps.m3u'},
+  {code:'QA',name:'Qatar',           flag:'🇶🇦', url:'https://iptv-org.github.io/iptv/countries/qa.m3u'},
+  {code:'SA',name:'Arabie saoudite', flag:'🇸🇦', url:'https://iptv-org.github.io/iptv/countries/sa.m3u'},
+  {code:'SY',name:'Syrie',           flag:'🇸🇾', url:'https://iptv-org.github.io/iptv/countries/sy.m3u'},
+  {code:'YE',name:'Yemen',           flag:'🇾🇪', url:'https://iptv-org.github.io/iptv/countries/ye.m3u'},
+
+  // ASIE
+  {code:'AF',name:'Afghanistan',     flag:'🇦🇫', url:'https://iptv-org.github.io/iptv/countries/af.m3u'},
+  {code:'AM',name:'Armenie',         flag:'🇦🇲', url:'https://iptv-org.github.io/iptv/countries/am.m3u'},
+  {code:'AZ',name:'Azerbaidjan',     flag:'🇦🇿', url:'https://iptv-org.github.io/iptv/countries/az.m3u'},
+  {code:'BD',name:'Bangladesh',      flag:'🇧🇩', url:'https://iptv-org.github.io/iptv/countries/bd.m3u'},
+  {code:'BN',name:'Brunei',          flag:'🇧🇳', url:'https://iptv-org.github.io/iptv/countries/bn.m3u'},
+  {code:'BT',name:'Bhoutan',         flag:'🇧🇹', url:'https://iptv-org.github.io/iptv/countries/bt.m3u'},
+  {code:'CN',name:'Chine',           flag:'🇨🇳', url:'https://iptv-org.github.io/iptv/countries/cn.m3u'},
+  {code:'GE',name:'Georgie',         flag:'🇬🇪', url:'https://iptv-org.github.io/iptv/countries/ge.m3u'},
+  {code:'ID',name:'Indonesie',       flag:'🇮🇩', url:'https://iptv-org.github.io/iptv/countries/id.m3u'},
+  {code:'IN',name:'Inde',            flag:'🇮🇳', url:'https://iptv-org.github.io/iptv/countries/in.m3u'},
+  {code:'JP',name:'Japon',           flag:'🇯🇵', url:'https://iptv-org.github.io/iptv/countries/jp.m3u'},
+  {code:'KG',name:'Kirghizistan',    flag:'🇰🇬', url:'https://iptv-org.github.io/iptv/countries/kg.m3u'},
+  {code:'KH',name:'Cambodge',        flag:'🇰🇭', url:'https://iptv-org.github.io/iptv/countries/kh.m3u'},
+  {code:'KP',name:'Coree du Nord',   flag:'🇰🇵', url:'https://iptv-org.github.io/iptv/countries/kp.m3u'},
+  {code:'KR',name:'Coree du Sud',    flag:'🇰🇷', url:'https://iptv-org.github.io/iptv/countries/kr.m3u'},
+  {code:'KZ',name:'Kazakhstan',      flag:'🇰🇿', url:'https://iptv-org.github.io/iptv/countries/kz.m3u'},
+  {code:'LA',name:'Laos',            flag:'🇱🇦', url:'https://iptv-org.github.io/iptv/countries/la.m3u'},
+  {code:'LK',name:'Sri Lanka',       flag:'🇱🇰', url:'https://iptv-org.github.io/iptv/countries/lk.m3u'},
+  {code:'MM',name:'Myanmar',         flag:'🇲🇲', url:'https://iptv-org.github.io/iptv/countries/mm.m3u'},
+  {code:'MN',name:'Mongolie',        flag:'🇲🇳', url:'https://iptv-org.github.io/iptv/countries/mn.m3u'},
+  {code:'MV',name:'Maldives',        flag:'🇲🇻', url:'https://iptv-org.github.io/iptv/countries/mv.m3u'},
+  {code:'MY',name:'Malaisie',        flag:'🇲🇾', url:'https://iptv-org.github.io/iptv/countries/my.m3u'},
+  {code:'NP',name:'Nepal',           flag:'🇳🇵', url:'https://iptv-org.github.io/iptv/countries/np.m3u'},
+  {code:'PH',name:'Philippines',     flag:'🇵🇭', url:'https://iptv-org.github.io/iptv/countries/ph.m3u'},
+  {code:'PK',name:'Pakistan',        flag:'🇵🇰', url:'https://iptv-org.github.io/iptv/countries/pk.m3u'},
+  {code:'SG',name:'Singapour',       flag:'🇸🇬', url:'https://iptv-org.github.io/iptv/countries/sg.m3u'},
+  {code:'TH',name:'Thailande',       flag:'🇹🇭', url:'https://iptv-org.github.io/iptv/countries/th.m3u'},
+  {code:'TJ',name:'Tadjikistan',     flag:'🇹🇯', url:'https://iptv-org.github.io/iptv/countries/tj.m3u'},
+  {code:'TL',name:'Timor oriental',  flag:'🇹🇱', url:'https://iptv-org.github.io/iptv/countries/tl.m3u'},
+  {code:'TM',name:'Turkmenistan',    flag:'🇹🇲', url:'https://iptv-org.github.io/iptv/countries/tm.m3u'},
+  {code:'TW',name:'Taiwan',          flag:'🇹🇼', url:'https://iptv-org.github.io/iptv/countries/tw.m3u'},
+  {code:'UZ',name:'Ouzbekistan',     flag:'🇺🇿', url:'https://iptv-org.github.io/iptv/countries/uz.m3u'},
+  {code:'VN',name:'Vietnam',         flag:'🇻🇳', url:'https://iptv-org.github.io/iptv/countries/vn.m3u'},
+
+  // AMERIQUES
+  {code:'AG',name:'Antigua',         flag:'🇦🇬', url:'https://iptv-org.github.io/iptv/countries/ag.m3u'},
+  {code:'AR',name:'Argentine',       flag:'🇦🇷', url:'https://iptv-org.github.io/iptv/countries/ar.m3u'},
+  {code:'BB',name:'Barbade',         flag:'🇧🇧', url:'https://iptv-org.github.io/iptv/countries/bb.m3u'},
+  {code:'BO',name:'Bolivie',         flag:'🇧🇴', url:'https://iptv-org.github.io/iptv/countries/bo.m3u'},
+  {code:'BR',name:'Bresil',          flag:'🇧🇷', url:'https://iptv-org.github.io/iptv/countries/br.m3u'},
+  {code:'BS',name:'Bahamas',         flag:'🇧🇸', url:'https://iptv-org.github.io/iptv/countries/bs.m3u'},
+  {code:'BZ',name:'Belize',          flag:'🇧🇿', url:'https://iptv-org.github.io/iptv/countries/bz.m3u'},
+  {code:'CA',name:'Canada',          flag:'🇨🇦', url:'https://iptv-org.github.io/iptv/countries/ca.m3u'},
+  {code:'CL',name:'Chili',           flag:'🇨🇱', url:'https://iptv-org.github.io/iptv/countries/cl.m3u'},
+  {code:'CO',name:'Colombie',        flag:'🇨🇴', url:'https://iptv-org.github.io/iptv/countries/co.m3u'},
+  {code:'CR',name:'Costa Rica',      flag:'🇨🇷', url:'https://iptv-org.github.io/iptv/countries/cr.m3u'},
+  {code:'CU',name:'Cuba',            flag:'🇨🇺', url:'https://iptv-org.github.io/iptv/countries/cu.m3u'},
+  {code:'DO',name:'Rep. domin.',     flag:'🇩🇴', url:'https://iptv-org.github.io/iptv/countries/do.m3u'},
+  {code:'EC',name:'Equateur',        flag:'🇪🇨', url:'https://iptv-org.github.io/iptv/countries/ec.m3u'},
+  {code:'GT',name:'Guatemala',       flag:'🇬🇹', url:'https://iptv-org.github.io/iptv/countries/gt.m3u'},
+  {code:'GY',name:'Guyana',          flag:'🇬🇾', url:'https://iptv-org.github.io/iptv/countries/gy.m3u'},
+  {code:'HN',name:'Honduras',        flag:'🇭🇳', url:'https://iptv-org.github.io/iptv/countries/hn.m3u'},
+  {code:'HT',name:'Haiti',           flag:'🇭🇹', url:'https://iptv-org.github.io/iptv/countries/ht.m3u'},
+  {code:'JM',name:'Jamaique',        flag:'🇯🇲', url:'https://iptv-org.github.io/iptv/countries/jm.m3u'},
+  {code:'MX',name:'Mexique',         flag:'🇲🇽', url:'https://iptv-org.github.io/iptv/countries/mx.m3u'},
+  {code:'NI',name:'Nicaragua',       flag:'🇳🇮', url:'https://iptv-org.github.io/iptv/countries/ni.m3u'},
+  {code:'PA',name:'Panama',          flag:'🇵🇦', url:'https://iptv-org.github.io/iptv/countries/pa.m3u'},
+  {code:'PE',name:'Perou',           flag:'🇵🇪', url:'https://iptv-org.github.io/iptv/countries/pe.m3u'},
+  {code:'PY',name:'Paraguay',        flag:'🇵🇾', url:'https://iptv-org.github.io/iptv/countries/py.m3u'},
+  {code:'SR',name:'Suriname',        flag:'🇸🇷', url:'https://iptv-org.github.io/iptv/countries/sr.m3u'},
+  {code:'SV',name:'El Salvador',     flag:'🇸🇻', url:'https://iptv-org.github.io/iptv/countries/sv.m3u'},
+  {code:'TT',name:'Trinite',         flag:'🇹🇹', url:'https://iptv-org.github.io/iptv/countries/tt.m3u'},
+  {code:'US',name:'Etats-Unis',      flag:'🇺🇸', url:'https://iptv-org.github.io/iptv/countries/us.m3u'},
+  {code:'UY',name:'Uruguay',         flag:'🇺🇾', url:'https://iptv-org.github.io/iptv/countries/uy.m3u'},
+  {code:'VE',name:'Venezuela',       flag:'🇻🇪', url:'https://iptv-org.github.io/iptv/countries/ve.m3u'},
+
+  // OCEANIE
+  {code:'AU',name:'Australie',       flag:'🇦🇺', url:'https://iptv-org.github.io/iptv/countries/au.m3u'},
+  {code:'FJ',name:'Fidji',           flag:'🇫🇯', url:'https://iptv-org.github.io/iptv/countries/fj.m3u'},
+  {code:'NZ',name:'Nouvelle-Zelande',flag:'🇳🇿', url:'https://iptv-org.github.io/iptv/countries/nz.m3u'},
+  {code:'PG',name:'Papouasie',       flag:'🇵🇬', url:'https://iptv-org.github.io/iptv/countries/pg.m3u'},
+  {code:'SB',name:'Iles Salomon',    flag:'🇸🇧', url:'https://iptv-org.github.io/iptv/countries/sb.m3u'},
+  {code:'TO',name:'Tonga',           flag:'🇹🇴', url:'https://iptv-org.github.io/iptv/countries/to.m3u'},
+  {code:'VU',name:'Vanuatu',         flag:'🇻🇺', url:'https://iptv-org.github.io/iptv/countries/vu.m3u'},
+  {code:'WS',name:'Samoa',           flag:'🇼🇸', url:'https://iptv-org.github.io/iptv/countries/ws.m3u'},
+];
+
+/* ══════════════════════════════════════════
+   CATEGORIES iptv-org
+══════════════════════════════════════════ */
+const IPTV_ORG_CATEGORIES = [
+  {slug:'animation',    name:'Animation',      url:'https://iptv-org.github.io/iptv/categories/animation.m3u'},
+  {slug:'auto',         name:'Automobile',     url:'https://iptv-org.github.io/iptv/categories/auto.m3u'},
+  {slug:'business',     name:'Business',       url:'https://iptv-org.github.io/iptv/categories/business.m3u'},
+  {slug:'classic',      name:'Classique',      url:'https://iptv-org.github.io/iptv/categories/classic.m3u'},
+  {slug:'comedy',       name:'Comedie',        url:'https://iptv-org.github.io/iptv/categories/comedy.m3u'},
+  {slug:'cooking',      name:'Cuisine',        url:'https://iptv-org.github.io/iptv/categories/cooking.m3u'},
+  {slug:'culture',      name:'Culture',        url:'https://iptv-org.github.io/iptv/categories/culture.m3u'},
+  {slug:'documentary',  name:'Documentaire',   url:'https://iptv-org.github.io/iptv/categories/documentary.m3u'},
+  {slug:'education',    name:'Education',      url:'https://iptv-org.github.io/iptv/categories/education.m3u'},
+  {slug:'entertainment',name:'Divertissement', url:'https://iptv-org.github.io/iptv/categories/entertainment.m3u'},
+  {slug:'family',       name:'Famille',        url:'https://iptv-org.github.io/iptv/categories/family.m3u'},
+  {slug:'general',      name:'General',        url:'https://iptv-org.github.io/iptv/categories/general.m3u'},
+  {slug:'kids',         name:'Enfants',        url:'https://iptv-org.github.io/iptv/categories/kids.m3u'},
+  {slug:'legislative',  name:'Parlement',      url:'https://iptv-org.github.io/iptv/categories/legislative.m3u'},
+  {slug:'lifestyle',    name:'Lifestyle',      url:'https://iptv-org.github.io/iptv/categories/lifestyle.m3u'},
+  {slug:'movies',       name:'Films',          url:'https://iptv-org.github.io/iptv/categories/movies.m3u'},
+  {slug:'music',        name:'Musique',        url:'https://iptv-org.github.io/iptv/categories/music.m3u'},
+  {slug:'news',         name:'Actualites',     url:'https://iptv-org.github.io/iptv/categories/news.m3u'},
+  {slug:'outdoor',      name:'Nature',         url:'https://iptv-org.github.io/iptv/categories/outdoor.m3u'},
+  {slug:'relax',        name:'Relaxation',     url:'https://iptv-org.github.io/iptv/categories/relax.m3u'},
+  {slug:'religion',     name:'Religion',       url:'https://iptv-org.github.io/iptv/categories/religion.m3u'},
+  {slug:'series',       name:'Series',         url:'https://iptv-org.github.io/iptv/categories/series.m3u'},
+  {slug:'shop',         name:'Shopping',       url:'https://iptv-org.github.io/iptv/categories/shop.m3u'},
+  {slug:'sports',       name:'Sports',         url:'https://iptv-org.github.io/iptv/categories/sports.m3u'},
+  {slug:'travel',       name:'Voyage',         url:'https://iptv-org.github.io/iptv/categories/travel.m3u'},
+  {slug:'weather',      name:'Meteo',          url:'https://iptv-org.github.io/iptv/categories/weather.m3u'},
+  {slug:'xxx',          name:'Adulte',         url:'https://iptv-org.github.io/iptv/categories/xxx.m3u'},
+];
+
+/* ══════════════════════════════════════════
+   LANGUES iptv-org
+   Format : https://iptv-org.github.io/iptv/languages/XXX.m3u
+   Codes ISO 639-3
+══════════════════════════════════════════ */
+const IPTV_ORG_LANGUAGES = [
+  {code:'ara', name:'Arabe',       flag:'🌍', url:'https://iptv-org.github.io/iptv/languages/ara.m3u'},
+  {code:'ben', name:'Bengali',     flag:'🇧🇩', url:'https://iptv-org.github.io/iptv/languages/ben.m3u'},
+  {code:'cmn', name:'Mandarin',    flag:'🇨🇳', url:'https://iptv-org.github.io/iptv/languages/cmn.m3u'},
+  {code:'deu', name:'Allemand',    flag:'🇩🇪', url:'https://iptv-org.github.io/iptv/languages/deu.m3u'},
+  {code:'eng', name:'Anglais',     flag:'🇬🇧', url:'https://iptv-org.github.io/iptv/languages/eng.m3u'},
+  {code:'fas', name:'Persan',      flag:'🇮🇷', url:'https://iptv-org.github.io/iptv/languages/fas.m3u'},
+  {code:'fra', name:'Francais',    flag:'🇫🇷', url:'https://iptv-org.github.io/iptv/languages/fra.m3u'},
+  {code:'hin', name:'Hindi',       flag:'🇮🇳', url:'https://iptv-org.github.io/iptv/languages/hin.m3u'},
+  {code:'ind', name:'Indonesien',  flag:'🇮🇩', url:'https://iptv-org.github.io/iptv/languages/ind.m3u'},
+  {code:'ita', name:'Italien',     flag:'🇮🇹', url:'https://iptv-org.github.io/iptv/languages/ita.m3u'},
+  {code:'jpn', name:'Japonais',    flag:'🇯🇵', url:'https://iptv-org.github.io/iptv/languages/jpn.m3u'},
+  {code:'kor', name:'Coreen',      flag:'🇰🇷', url:'https://iptv-org.github.io/iptv/languages/kor.m3u'},
+  {code:'msa', name:'Malais',      flag:'🇲🇾', url:'https://iptv-org.github.io/iptv/languages/msa.m3u'},
+  {code:'pol', name:'Polonais',    flag:'🇵🇱', url:'https://iptv-org.github.io/iptv/languages/pol.m3u'},
+  {code:'por', name:'Portugais',   flag:'🇧🇷', url:'https://iptv-org.github.io/iptv/languages/por.m3u'},
+  {code:'ron', name:'Roumain',     flag:'🇷🇴', url:'https://iptv-org.github.io/iptv/languages/ron.m3u'},
+  {code:'rus', name:'Russe',       flag:'🇷🇺', url:'https://iptv-org.github.io/iptv/languages/rus.m3u'},
+  {code:'spa', name:'Espagnol',    flag:'🇪🇸', url:'https://iptv-org.github.io/iptv/languages/spa.m3u'},
+  {code:'tam', name:'Tamoul',      flag:'🇮🇳', url:'https://iptv-org.github.io/iptv/languages/tam.m3u'},
+  {code:'tha', name:'Thai',        flag:'🇹🇭', url:'https://iptv-org.github.io/iptv/languages/tha.m3u'},
+  {code:'tur', name:'Turc',        flag:'🇹🇷', url:'https://iptv-org.github.io/iptv/languages/tur.m3u'},
+  {code:'ukr', name:'Ukrainien',   flag:'🇺🇦', url:'https://iptv-org.github.io/iptv/languages/ukr.m3u'},
+  {code:'urd', name:'Ourdou',      flag:'🇵🇰', url:'https://iptv-org.github.io/iptv/languages/urd.m3u'},
+  {code:'vie', name:'Vietnamien',  flag:'🇻🇳', url:'https://iptv-org.github.io/iptv/languages/vie.m3u'},
+  {code:'zho', name:'Chinois',     flag:'🇨🇳', url:'https://iptv-org.github.io/iptv/languages/zho.m3u'},
+];
+
+/* ══════════════════════════════════════════
+   REGIONS iptv-org
+   Format : https://iptv-org.github.io/iptv/regions/XXX.m3u
+══════════════════════════════════════════ */
+const IPTV_ORG_REGIONS = [
+  {code:'afr',  name:'Afrique',           url:'https://iptv-org.github.io/iptv/regions/afr.m3u'},
+  {code:'amer', name:'Ameriques',         url:'https://iptv-org.github.io/iptv/regions/amer.m3u'},
+  {code:'arab', name:'Monde arabe',       url:'https://iptv-org.github.io/iptv/regions/arab.m3u'},
+  {code:'asia', name:'Asie',              url:'https://iptv-org.github.io/iptv/regions/asia.m3u'},
+  {code:'carib',name:'Caraibes',          url:'https://iptv-org.github.io/iptv/regions/carib.m3u'},
+  {code:'cas',  name:'Asie centrale',     url:'https://iptv-org.github.io/iptv/regions/cas.m3u'},
+  {code:'cis',  name:'CEI',               url:'https://iptv-org.github.io/iptv/regions/cis.m3u'},
+  {code:'eu',   name:'Europe',            url:'https://iptv-org.github.io/iptv/regions/eu.m3u'},
+  {code:'euro', name:'Eurasia',           url:'https://iptv-org.github.io/iptv/regions/euro.m3u'},
+  {code:'int',  name:'International',     url:'https://iptv-org.github.io/iptv/regions/int.m3u'},
+  {code:'lac',  name:'Amerique latine',   url:'https://iptv-org.github.io/iptv/regions/lac.m3u'},
+  {code:'mena', name:'Moyen-Orient/Afrique du Nord', url:'https://iptv-org.github.io/iptv/regions/mena.m3u'},
+  {code:'mideast',name:'Moyen-Orient',    url:'https://iptv-org.github.io/iptv/regions/mideast.m3u'},
+  {code:'nam',  name:'Amerique du Nord',  url:'https://iptv-org.github.io/iptv/regions/nam.m3u'},
+  {code:'north-africa',name:'Afrique du Nord', url:'https://iptv-org.github.io/iptv/regions/north-africa.m3u'},
+  {code:'oce',  name:'Oceanie',           url:'https://iptv-org.github.io/iptv/regions/oce.m3u'},
+  {code:'sahel',name:'Sahel',             url:'https://iptv-org.github.io/iptv/regions/sahel.m3u'},
+  {code:'sea',  name:'Asie du Sud-Est',   url:'https://iptv-org.github.io/iptv/regions/sea.m3u'},
+  {code:'south-asia',name:'Asie du Sud', url:'https://iptv-org.github.io/iptv/regions/south-asia.m3u'},
+  {code:'sub-saharan-africa',name:'Afrique subsaharienne', url:'https://iptv-org.github.io/iptv/regions/sub-saharan-africa.m3u'},
+  {code:'west-africa',name:'Afrique de l\'Ouest', url:'https://iptv-org.github.io/iptv/regions/west-africa.m3u'},
+];
+
+/* ══════════════════════════════════════════
+   SOURCES POPULAIRES GRATUITES (streams valides)
+══════════════════════════════════════════ */
+const POPULAR_SOURCES = [
+  // Sources validees (flux actifs)
+  {
+    label:'Monde entier',
+    icon:'globe',
+    sub:'iptv-org',
+    url:'https://iptv-org.github.io/iptv/index.m3u',
+    css:''
+  },
+  {
+    label:'Pluto TV',
+    icon:'tv-2',
+    sub:'FAST gratuit',
+    url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plutotv_us.m3u',
+    css:'preset-btn--free'
+  },
+  {
+    label:'Plex TV',
+    icon:'play-circle',
+    sub:'FAST gratuit',
+    url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/plex_all.m3u',
+    css:'preset-btn--free'
+  },
+  {
+    label:'Roku Channel',
+    icon:'tv',
+    sub:'FAST gratuit',
+    url:'https://raw.githubusercontent.com/BuddyChewChew/app-m3u-generator/refs/heads/main/playlists/roku_all.m3u',
+    css:'preset-btn--free'
+  },
+  {
+    label:'Samsung TV+',
+    icon:'monitor',
+    sub:'FAST gratuit',
+    url:'https://apsattv.com/ssungusa.m3u',
+    css:'preset-btn--free'
+  },
+  {
+    label:'DistroTV',
+    icon:'satellite',
+    sub:'200+ chaines',
+    url:'https://www.apsattv.com/distro.m3u',
+    css:'preset-btn--free'
+  },
+  {
+    label:'freecasthub News',
+    icon:'newspaper',
+    sub:'sources publiques',
+    url:'https://raw.githubusercontent.com/freecasthub/public-iptv/main/news.m3u',
+    css:'preset-btn--validated'
+  },
+  {
+    label:'freecasthub Sports',
+    icon:'trophy',
+    sub:'sources publiques',
+    url:'https://raw.githubusercontent.com/freecasthub/public-iptv/main/sports.m3u',
+    css:'preset-btn--validated'
+  },
+  {
+    label:'freecasthub Education',
+    icon:'graduation-cap',
+    sub:'sources publiques',
+    url:'https://raw.githubusercontent.com/freecasthub/public-iptv/main/education.m3u',
+    css:'preset-btn--validated'
+  },
+  {
+    label:'France 24',
+    icon:'globe',
+    sub:'officiel, gratuit',
+    url:'https://iptv-org.github.io/iptv/countries/fr.m3u',
+    css:'preset-btn--validated'
+  },
+  {
+    label:'Al Jazeera',
+    icon:'globe',
+    sub:'officiel, gratuit',
+    url:'https://iptv-org.github.io/iptv/countries/qa.m3u',
+    css:'preset-btn--validated'
+  },
+  {
+    label:'DW (Deutsche Welle)',
+    icon:'globe',
+    sub:'officiel, gratuit',
+    url:'https://iptv-org.github.io/iptv/countries/de.m3u',
+    css:'preset-btn--validated'
+  },
+  // Radios validees (browser-compatible)
+  {
+    label:'Radios monde entier',
+    icon:'radio',
+    sub:'famelack radio',
+    url:'https://raw.githubusercontent.com/famelack/famelack-data/main/radio/index.json',
+    css:'preset-btn--radio'
+  },
+];

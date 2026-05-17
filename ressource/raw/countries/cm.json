@@ -1,0 +1,55 @@
+[
+  {
+    "nanoid": "ZvKn9UbtNH6u8X",
+    "name": "Afrique54 TV",
+    "stream_urls": [
+      "https://video1.getstreamhosting.com:1936/8318/8318/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng",
+      "fra"
+    ],
+    "country": "cm",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "vSeAetx7SHaifK",
+    "name": "CAM 10 TV",
+    "stream_urls": [
+      "https://stream.it-innov.com/cam10tv/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "cm",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nNsF0VqWbNqktH",
+    "name": "CEN Television",
+    "stream_urls": [
+      "https://strhlslb01.streamakaci.tv/cen/cen-multi/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "cm",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "I6Aibqu4gfNeTW",
+    "name": "TR24 Television",
+    "stream_urls": [
+      "https://stream.it-innov.com/tr24/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "cm",
+    "isGeoBlocked": false
+  }
+]

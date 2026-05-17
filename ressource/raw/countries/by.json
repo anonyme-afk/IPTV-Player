@@ -1,0 +1,97 @@
+[
+  {
+    "nanoid": "VtHTEOxTK0CD0C",
+    "name": "Belarus-3",
+    "stream_urls": [
+      "https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus3.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "rus"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "yxXfCHd5uHQMJD",
+    "name": "Belarus-5",
+    "stream_urls": [
+      "https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus5.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "rus"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Fzrfx3wDU4y6Uc",
+    "name": "Belarus-24",
+    "stream_urls": [
+      "https://edge53.dc.beltelecom.by/ngtrk/smil:belarus24.smil/playlist.m3u8",
+      "https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus24.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "bel",
+      "eng",
+      "rus"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "sLUJ6TnLS6Lwbj",
+    "name": "BelRos",
+    "stream_urls": [
+      "https://live2.mediacdn.ru/sr1/tro/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "bel",
+      "rus"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "esaPDq84VF68oV",
+    "name": "Perviy Informationniy",
+    "stream_urls": [
+      "https://ngtrk.dc.beltelecom.by/ngtrk/smil:informacionnyy.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "bel"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "iVRQOIdUpv5uQH",
+    "name": "STV",
+    "stream_urls": [
+      "https://ctv.dc.beltelecom.by/ctv/ctv.stream/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "rus"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "e1Kg7iPhVSl1dS",
+    "name": "БЕЛСАТ NEWS",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/YA9ukP4k_Fk"
+    ],
+    "languages": [
+      "bel"
+    ],
+    "country": "by",
+    "isGeoBlocked": false
+  }
+]

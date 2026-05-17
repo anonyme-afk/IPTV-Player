@@ -1,0 +1,65 @@
+[
+  {
+    "nanoid": "4C34DA8hS5DUmR",
+    "name": "Astro Awani",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/mkVyNaGee8A"
+    ],
+    "languages": [
+      "msa"
+    ],
+    "country": "my",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "DYBLtycErqVQgF",
+    "name": "Berita RTM",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/NpVkmPLAx2Q"
+    ],
+    "languages": [
+      "msa"
+    ],
+    "country": "my",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "ZOTkMMGUEIitr9",
+    "name": "Molek TV",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/mIaYkjKTfXI"
+    ],
+    "languages": [
+      "msa"
+    ],
+    "country": "my",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "aLRI25BZ5Nmrta",
+    "name": "SuriaTV",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/iP6Z6MO6oSo"
+    ],
+    "languages": [
+      "msa"
+    ],
+    "country": "my",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "68Yr0ZtgcyFDZd",
+    "name": "Susun TV",
+    "stream_urls": [
+      "https://vodcdn.bamboo-cloud.com/livehls/6901607706304423c1685213/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [],
+    "country": "my",
+    "isGeoBlocked": false
+  }
+]

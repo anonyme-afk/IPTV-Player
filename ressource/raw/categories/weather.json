@@ -1,0 +1,125 @@
+[
+  {
+    "nanoid": "JVUe7nnKCNgESR",
+    "name": "3Cat Cameres del temps",
+    "stream_urls": [
+      "https://directes-tv-int.3catdirectes.cat/live-content/beauties-hls/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "cat"
+    ],
+    "country": "es",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "AQflHxNei4CCgO",
+    "name": "AccuWeather NOW",
+    "stream_urls": [
+      "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg00684-accuweather-accuweather-plex/playlist.m3u8",
+      "https://amg00684-accuweather-accuweather-rokuus-0endj.amagi.tv/playlist.m3u8",
+      "https://d1gldweznovt26.cloudfront.net/Accuweather.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "us",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "IP9BtoTfdM66NO",
+    "name": "Fox Weather",
+    "stream_urls": [
+      "https://foxweather-xumo.amagi.tv/playlist.m3u8",
+      "https://pb-hum8cczphcrpf.akamaized.net/FOX_Weather.m3u8",
+      "https://247wlive.foxweather.com/stream/index.m3u8"
+    ],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/wt6SIE7BXS8"
+    ],
+    "languages": [
+      "eng"
+    ],
+    "country": "us",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "dfvV9SkyUqJgjs",
+    "name": "MeteoTV",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/8fbh6cDtw7g"
+    ],
+    "languages": [
+      "ron"
+    ],
+    "country": "ro",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CkqK0vHvwZKLiX",
+    "name": "Sky News Weather",
+    "stream_urls": [
+      "https://distro001-gb-hls1-prd.delivery.skycdp.com/easel_cdn/ngrp:weather_loop.stream_all/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "uk",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "rsgBN1CiczuZvL",
+    "name": "WeatherNation",
+    "stream_urls": [
+      "https://stream.weathernationtv.com/WNTVStirr_eokxldieulowixkdimn/ND1/playlistSCTE35.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "us",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "1e4u9CoSiGAicT",
+    "name": "WeatherSpy",
+    "stream_urls": [
+      "https://d12gab6t5iutxf.cloudfront.net/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "us",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "EHhc90wawtgTuv",
+    "name": "Wetter-Panorama",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/NIuO6hrFTrg"
+    ],
+    "languages": [
+      "deu"
+    ],
+    "country": "at",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Kvj45TeK4JM1CO",
+    "name": "WMUR-TV 9.1",
+    "stream_urls": [
+      "https://aegis-cloudfront-1.tubi.video/b77ffe96-c5d1-43a7-8687-306ff244d725/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "us",
+    "isGeoBlocked": false
+  }
+]

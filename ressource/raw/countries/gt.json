@@ -1,0 +1,262 @@
+[
+  {
+    "nanoid": "tp4aSE2XbjzMxZ",
+    "name": "Amigos TV Chiquimula",
+    "stream_urls": [
+      "https://antmedia.cablevisionrobles.com:5443/LiveApp/streams/CqwAgRagMvBNYN8c1731608980342.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "qS9h25t8tf42wr",
+    "name": "Aurora Media Films",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3417/live/auroramflive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "hgyQQg5rlyVNkf",
+    "name": "Barbe TV",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3549/live/barbetvlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "N4gLQ8UnMpP3sJ",
+    "name": "Canal 6 Panadish",
+    "stream_urls": [
+      "https://stream.meteorito.cloud:1947/canal6/smil:canal6.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "tkEITU2bEZ7qMi",
+    "name": "Canal 13 Esquipulas",
+    "stream_urls": [
+      "https://tv91.hostingnuclear.com:19360/intercable/intercable.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "HQW2P8evqWenGp",
+    "name": "Canal 30 TV Bethel",
+    "stream_urls": [
+      "https://s.emisoras.tv:8081/canal30tvbethel/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "H9gOtmwx3FUQi5",
+    "name": "El-Roi TV",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3648/live/elroitvlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "BwRr61iTuY4MpG",
+    "name": "Maxivision TV",
+    "stream_urls": [
+      "https://video03.logicahost.com.br/maxivisiontv/maxivisiontv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "LX1jOBuAPab8Ct",
+    "name": "Nim TV",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3210/live/nimtvgtlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "6aRL3vWbwcvOYV",
+    "name": "Peniel K&Y",
+    "stream_urls": [
+      "https://s.emisoras.tv:8081/penielkids/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "1edx2hpbF6zhmR",
+    "name": "Peniel Musical",
+    "stream_urls": [
+      "https://s.emisoras.tv:8081/penielmusical/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "c3BqnYa8hxJ1bn",
+    "name": "Peniel TV Biblia Abierta",
+    "stream_urls": [
+      "https://s.emisoras.tv:8081/penielbibliaabierta/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "2LfjTVfmckF8U9",
+    "name": "Rhema TV",
+    "stream_urls": [
+      "https://5e85d90130e77.streamlock.net/6006/6006/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "AXMHX6tuUnfRvm",
+    "name": "SIL TV",
+    "stream_urls": [
+      "https://live20.bozztv.com/giatv/giatv-SilTvOnline/SilTvOnline/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "OsYebOtVABr4xl",
+    "name": "Sol TV",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3409/live/soltvlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "sjT63Yqrczmdqs",
+    "name": "Telecosta",
+    "stream_urls": [
+      "https://tv91.hostingnuclear.com:19360/telecosta/telecosta.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "fGTZi0sSjZTjHF",
+    "name": "TV Florencia",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3819/live/tvflorecialive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "r1oGqxJA7bXTXS",
+    "name": "TV Maya",
+    "stream_urls": [
+      "https://5ca9af4645e15.streamlock.net/mayas/videomayas/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "yua"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "XwiDGKdsH20Bju",
+    "name": "TVS Retro",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3531/live/tvsretrogtlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "CIC3OB0eRrwRa3",
+    "name": "Vision TV",
+    "stream_urls": [
+      "https://cdn.streamhispanatv.net:3076/live/visiontvlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "gt",
+    "isGeoBlocked": false
+  }
+]

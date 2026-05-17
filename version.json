@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "build": 1,
+  "date": "2026-05-16",
+  "changelog": "Version initiale — lecteur IPTV complet",
+  "download": {
+    "windows": "https://github.com/anonyme-afk/IPTV-channe/releases/latest/download/IPTV-Player-Setup.exe",
+    "android": "https://github.com/anonyme-afk/IPTV-channe/releases/latest/download/IPTV-Player.apk",
+    "androidtv": "https://github.com/anonyme-afk/IPTV-channe/releases/latest/download/IPTV-Player-TV.apk"
+  }
+}

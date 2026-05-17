@@ -1,0 +1,54 @@
+[
+  {
+    "nanoid": "PyldYXsoAXUikk",
+    "name": "Pingviins",
+    "stream_urls": [
+      "https://sirius.greenhosting.ru/PingvinRu/video.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "lav"
+    ],
+    "country": "lv",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "LHzrqD9sr7EPlw",
+    "name": "Radio SWH TV",
+    "stream_urls": [
+      "https://00ff00.latnet.media/edge/swh_tv.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "lav"
+    ],
+    "country": "lv",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "YigI7cZVQDDBuz",
+    "name": "Re TV",
+    "stream_urls": [
+      "https://retv2132.cloudycdn.services/slive/_definst_/retv_retv_channel_5k7_42787_default_891_hls.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "lav"
+    ],
+    "country": "lv",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "D4XzxfQIBxlNgz",
+    "name": "Vidusdaugavas Televizija",
+    "stream_urls": [
+      "https://straume.vdtv.lv/vdtv2/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "lav"
+    ],
+    "country": "lv",
+    "isGeoBlocked": false
+  }
+]

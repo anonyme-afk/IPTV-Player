@@ -532,6 +532,7 @@ const Nav = (() => {
     // Gamepad (lazy init on user interaction)
     if (navigator.getGamepads) {
       const startGP = () => {
+        if (_gamepadInterval) clearInterval(_gamepadInterval);
         _initGamepad();
         ['click', 'keydown', 'touchstart'].forEach(ev =>
           document.removeEventListener(ev, startGP, { once: true }));
@@ -565,3 +566,9 @@ const Nav = (() => {
 
   return { init, move, reset, getElements };
 })();
+
+// Initialize navigation on load
+document.addEventListener('DOMContentLoaded', () => {
+  Nav.init();
+});
+

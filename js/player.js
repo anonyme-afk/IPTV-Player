@@ -21,13 +21,20 @@ const Player = (() => {
   const STREAM_PROXIES = [
     url => url,
     url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-    url => `https://corsproxy.org/?.${encodeURIComponent(url)}`,
-    url => `https://thingproxy.freeboard.io/fetch/${encodeURIComponent(url)}`,
+    url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
   ];
 
   // Detect iOS
   function _isiOS() {
-    return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    return /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  }
+
+  // Detect slow device
+  function _isSlowDevice() {
+    return (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+      (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) ||
+      /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent);
   }
 
   // ── STATUS ──
@@ -57,13 +64,10 @@ const Player = (() => {
 
   // ── TIMEOUT MANAGER ──
   function _startTimeout(ms = 10000) {
-    _clearTimeout();
+    clearTimeout(_playTimer);
     _playTimer = setTimeout(() => {
-      console.warn('[Player] Timeout');
       _retryCount++;
       if (_retryCount < 2) {
-        setStatus('loading', 'Timeout - tentative proxy...');
-        _destroyFull();
         if (current) play(current, { proxyIndex: (current._proxyIdx || 0) + 1 });
       } else {
         setStatus('error', 'Flux indisponible (timeout)');
@@ -79,43 +83,19 @@ const Player = (() => {
   // ── STALL DETECTION ──
   function _startStallWatch() {
     _stopStallWatch();
-    _lastTime = video().currentTime || 0;
+    const vid = video();
+    _lastTime = vid?.currentTime || 0;
     _stallWatcher = setInterval(() => {
-      const vid = video();
-      if (!vid || vid.paused || vid.ended || vid.seeking || vid.readyState < 2) return;
-      const ct = vid.currentTime || 0;
-      if (ct === _lastTime) {
-        // No progress for 5s = stall
-        if (!vid._stallStart) vid._stallStart = Date.now();
-        const stallDuration = Date.now() - vid._stallStart;
-        if (stallDuration > 5000) {
-          console.warn('[Player] Stall detecte, tentative recovery');
-          setStatus('loading', 'Recuperation flux...');
-          if (hls) {
-            try { hls.recoverMediaError(); } catch (_) { }
-            // If recovery fails, try next level
-            try {
-              const cl = hls.currentLevel;
-              if (cl > 0) hls.currentLevel = cl - 1;
-              else if (hls.levels?.length > 1) hls.currentLevel = 1;
-            } catch (_) { }
-          } else {
-            // Native stall: try seek to current to unstuck
-            try { vid.currentTime = ct; } catch (_) { }
-          }
-          vid._stallStart = null;
-        }
-      } else {
-        vid._stallStart = null;
-        _lastTime = ct;
-        _retryCount = 0;
+      if (!vid || vid.paused || vid.ended || vid.readyState < 2) return;
+      if (vid.currentTime === _lastTime) {
+        console.warn('[Player] Stall detecte, recovery...');
+        Player.hls?.recoverMediaError?.();
       }
-    }, 2000);
+      _lastTime = vid.currentTime;
+    }, 3500);
   }
   function _stopStallWatch() {
     if (_stallWatcher) { clearInterval(_stallWatcher); _stallWatcher = null; }
-    const vid = video();
-    if (vid) vid._stallStart = null;
   }
 
   // ── STATS DISPLAY ──
@@ -125,10 +105,10 @@ const Player = (() => {
     if (!el) return;
     const vid = video();
     let text = '';
-    if (hls) {
+    if (Player.hls) {
       try {
-        const level = hls.levels?.[hls.currentLevel];
-        const bw = Math.round(hls.bandwidthEstimate / 1000);
+        const level = Player.hls.levels?.[Player.hls.currentLevel];
+        const bw = Math.round(Player.hls.bandwidthEstimate / 1000);
         const buf = vid.buffered?.length ? (vid.buffered.end(vid.buffered.length - 1) - vid.currentTime).toFixed(1) : '0';
         text = level ? `${level.width}x${level.height} | ${bw} kbps | buf: ${buf}s` : `${bw} kbps | buf: ${buf}s`;
       } catch (_) { }
@@ -199,6 +179,20 @@ const Player = (() => {
     } catch (_) { }
   }
 
+  // ── RADIO DETECTION ──
+  function isRadioChannel(channel) {
+    if (!channel) return false;
+    if (channel.is_radio === true) return true;
+    const url = (channel.url || '').toLowerCase();
+    return url.endsWith('.mp3') ||
+           url.endsWith('.aac') ||
+           url.endsWith('.ogg') ||
+           url.includes('icecast') ||
+           url.includes('shoutcast') ||
+           url.includes('/stream') ||
+           (url.includes('/live') && !url.includes('.m3u8'));
+  }
+
   // ── PLAY ──
   async function play(ch, { proxyIndex = 0 } = {}) {
     if (!ch) return;
@@ -219,14 +213,15 @@ const Player = (() => {
 
     const rawUrl = ch.url;
     const url = STREAM_PROXIES[proxyIndex] ? STREAM_PROXIES[proxyIndex](rawUrl) : rawUrl;
-    const isHls = rawUrl.match(/\.m3u8(\?|$)/i) || rawUrl.includes('/hls/') || rawUrl.includes('.m3u');
+    
+    const isRadio = isRadioChannel(ch);
+    const isHls = !isRadio && (rawUrl.match(/\.m3u8(\?|$)/i) || rawUrl.includes('/hls/') || rawUrl.includes('.m3u'));
 
     if (proxyIndex === 0) {
-      const alive = await _preCheckUrl(rawUrl);
+      const alive = await _preCheckUrl(rawUrl, 2000);
       if (!alive) {
-        setStatus('error', 'Serveur ne repond pas - tentative proxy...');
-        setTimeout(() => play(ch, { proxyIndex: 1 }), 500);
-        return;
+        setStatus('loading', 'Lien direct inaccessible, essai proxy...');
+        return play(ch, { proxyIndex: 1 });
       }
     }
 
@@ -249,38 +244,36 @@ const Player = (() => {
     _startTimeout(15000);
 
     const isIOS = _isiOS();
-    hls = new Hls({
-      enableWorker: !isIOS && typeof Worker !== 'undefined',
-      lowLatencyMode: false,
-      backbufferLength: 10,
-      maxBufferLength: 20,
-      maxMaxBufferLength: 30,
-      maxBufferSize: 20 * 1000 * 1000,
-      maxBufferHole: 1.0,
-      fragLoadingMaxRetry: 3,
-      manifestLoadingMaxRetry: 3,
-      levelLoadingMaxRetry: 2,
-      fragLoadingRetryDelay: 1000,
-      fragLoadingTimeOut: 8000,
-      manifestLoadingTimeOut: 8000,
-      levelLoadingTimeOut: 8000,
-      startLevel: -1,
-      capLevelToPlayerSize: true,
-      debug: false,
-      testBandwidth: true,
-      progressive: false,
+    const isSlow = _isSlowDevice();
+    Player.hls = new Hls({
+      enableWorker:           !isIOS,
+      lowLatencyMode:         true,
+      liveSyncDurationCount:  3,
+      liveMaxLatencyDurationCount: 10,
+      backbufferLength:       isSlow ? 6 : 10,       // 30 -> 10 : economise la memoire
+      maxBufferLength:        isSlow ? 10 : 15,
+      maxMaxBufferLength:     isSlow ? 15 : 30,
+      maxBufferSize:          isSlow ? 15 * 1024 * 1024 : 30 * 1024 * 1024,
+      maxBufferHole:          1.0,      // 0.5 -> 1.0 : plus tolerant aux trous
+      fragLoadingMaxRetry:    3,
+      manifestLoadingMaxRetry:3,
+      levelLoadingMaxRetry:   2,
+      fragLoadingTimeOut:     10000,
+      manifestLoadingTimeOut: 10000,
+      startLevel:             isSlow ? 0 : -1,
+      capLevelToPlayerSize:   true,
     });
 
-    hls.loadSource(url);
-    hls.attachMedia(video());
+    Player.hls.loadSource(url);
+    Player.hls.attachMedia(video());
 
-    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+    Player.hls.on(Hls.Events.MANIFEST_PARSED, () => {
       _clearTimeout();
       _startStallWatch();
-      const levels = hls.levels || [];
+      const levels = Player.hls.levels || [];
       if (levels.length > 1) {
         const mid = Math.floor(levels.length / 2);
-        hls.currentLevel = mid;
+        Player.hls.currentLevel = mid;
       }
       setStatus('ok', `${Lang.t('playback_ok')} - ${ch.name}`);
       video().play().catch(() => { });
@@ -288,14 +281,14 @@ const Player = (() => {
     });
 
     let fragLoadFailCount = 0;
-    hls.on(Hls.Events.LEVEL_LOADED, () => _clearTimeout());
-    hls.on(Hls.Events.FRAG_LOADED, () => { _retryCount = 0; fragLoadFailCount = 0; });
+    Player.hls.on(Hls.Events.LEVEL_LOADED, () => _clearTimeout());
+    Player.hls.on(Hls.Events.FRAG_LOADED, () => { _retryCount = 0; fragLoadFailCount = 0; });
 
-    hls.on(Hls.Events.ERROR, (_, data) => {
+    Player.hls.on(Hls.Events.ERROR, (_, data) => {
       if (!data.fatal) return;
 
       if (data.type === Hls.ErrorTypes.MEDIA_ERROR) {
-        try { hls.recoverMediaError(); return; } catch (_) { }
+        try { Player.hls.recoverMediaError(); return; } catch (_) { }
       }
 
       if (data.type === Hls.ErrorTypes.NETWORK_ERROR) {
@@ -304,9 +297,9 @@ const Player = (() => {
       }
 
       _stopStallWatch();
-      if (hls) {
-        try { hls.stopLoad(); hls.detachMedia(); hls.destroy(); } catch (_) { }
-        hls = null;
+      if (Player.hls) {
+        try { Player.hls.stopLoad(); Player.hls.detachMedia(); Player.hls.destroy(); } catch (_) { }
+        Player.hls = null;
       }
 
       const next = proxyIndex + 1;
@@ -364,32 +357,21 @@ const Player = (() => {
 
   // ── CLEANUP (async to prevent Hls conflicts) ──
   async function _cleanupMedia() {
-    _clearTimeout();
     _stopStallWatch();
-    if (hls) {
-      try { hls.stopLoad(); hls.detachMedia(); hls.destroy(); } catch (_) { }
-      hls = null;
+    if (Player.hls) {
+      try { 
+        Player.hls.stopLoad();
+        Player.hls.detachMedia();
+        Player.hls.destroy(); 
+      } catch (_) { }
+      Player.hls = null;
     }
     const vid = video();
     if (vid) {
       try {
-        vid.pause();
         vid.removeAttribute('src');
-        if (typeof vid.srcObject !== 'undefined') {
-          if (vid.srcObject) {
-            const tracks = vid.srcObject.getTracks?.() || [];
-            tracks.forEach(t => t.stop());
-          }
-          vid.srcObject = null;
-        }
         vid.load();
       } catch (_) { }
-      vid.onloadeddata = null;
-      vid.onerror = null;
-      vid.onwaiting = null;
-      vid.onstalled = null;
-      vid.onplay = null;
-      vid.onloadedmetadata = null;
     }
     if (_abortController) { try { _abortController.abort(); } catch (_) { } _abortController = null; }
     document.getElementById('similar-suggest')?.remove();
@@ -429,21 +411,21 @@ const Player = (() => {
   function toggleMute() { muted = !muted; video().muted = muted; _updateVolIcon(muted); }
   function _updateVolIcon(isMuted) {
     const btn = document.getElementById('vol-icon');
-    const icon = isMuted ? 'volume-x' : 'volume-2';
-    btn.innerHTML = `<i data-lucide="${icon}"></i>`;
-    if (typeof lucide !== 'undefined') lucide.createIcons({ nodes: [btn] });
+    if (!btn) return;
+    const iconName = isMuted ? 'volume-x' : 'volume-2';
+    btn.innerHTML = Icons.get(iconName);
   }
 
   // ── NAVIGATION ──
   function prev() {
-    const { filtered, currentIndex } = App.state;
+    const { filtered, currentIdx } = App.state;
     if (!filtered.length) return;
-    App.playAt(currentIndex <= 0 ? filtered.length - 1 : currentIndex - 1);
+    App.playAt(currentIdx <= 0 ? filtered.length - 1 : currentIdx - 1);
   }
   function next() {
-    const { filtered, currentIndex } = App.state;
+    const { filtered, currentIdx } = App.state;
     if (!filtered.length) return;
-    App.playAt(currentIndex >= filtered.length - 1 ? 0 : currentIndex + 1);
+    App.playAt(currentIdx >= filtered.length - 1 ? 0 : currentIdx + 1);
   }
 
   // ── FULLSCREEN ──
@@ -531,3 +513,6 @@ const Player = (() => {
     initZapping, hideGeoBanner,
   };
 })();
+
+// EXPOSER hls pour les stats
+Player.hls = null;

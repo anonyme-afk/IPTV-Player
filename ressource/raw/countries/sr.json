@@ -1,0 +1,30 @@
+[
+  {
+    "nanoid": "pHriSuinPSVWI4",
+    "name": "Shalom TV",
+    "stream_urls": [
+      "https://media.streambrothers.com:1936/8400/8400/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "nld"
+    ],
+    "country": "sr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "SQGH8tX9KocSpb",
+    "name": "Trishul Broadcasting Network",
+    "stream_urls": [
+      "https://live.suricloud.com/hls/tbntv/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng",
+      "hin",
+      "nld"
+    ],
+    "country": "sr",
+    "isGeoBlocked": false
+  }
+]

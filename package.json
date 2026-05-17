@@ -1,13 +1,68 @@
 {
   "name": "iptv-player",
   "version": "1.0.0",
+  "description": "Lecteur IPTV web pour PC, mobile et TV",
+  "author": "anonyme-afk",
+  "license": "MIT",
+  "main": "electron/main.js",
   "scripts": {
-    "dev": "node server.js",
     "start": "node server.js",
-    "build": "echo \"Nothing to build\""
+    "dev": "node server.js",
+    "build": "echo \"Ready to preview\"",
+    "lint": "echo \"Linting skipped\"",
+    "electron:start": "electron .",
+    "electron:dev": "electron . --dev",
+    "electron:build": "electron-builder --win",
+    "electron:build:all": "electron-builder --win --linux"
   },
-  "dependencies": {},
+  "dependencies": {
+    "electron-updater": "^6.1.8"
+  },
   "devDependencies": {
-    "lucide": "latest"
+    "electron": "^30.0.0",
+    "electron-builder": "^24.13.0"
+  },
+  "build": {
+    "appId":       "com.anonyme-afk.iptv-player",
+    "productName": "IPTV Player",
+    "copyright":   "MIT",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "index.html",
+      "css/**",
+      "js/**",
+      "assets/**",
+      "manifest.json",
+      "version.json",
+      "electron/**"
+    ],
+    "win": {
+      "target":         "nsis",
+      "icon":           "build/icon.ico",
+      "publisherName":  "IPTV Player",
+      "artifactName":   "IPTV-Player-Setup-${version}.exe"
+    },
+    "nsis": {
+      "oneClick":              false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName":          "IPTV Player",
+      "installerIcon":         "build/icon.ico",
+      "installerHeaderIcon":   "build/icon.ico"
+    },
+    "linux": {
+      "target":        ["AppImage", "deb"],
+      "icon":          "build/icon.png",
+      "category":      "Video",
+      "artifactName":  "IPTV-Player-${version}.${ext}"
+    },
+    "publish": {
+      "provider": "github",
+      "owner":    "anonyme-afk",
+      "repo":     "IPTV-channe"
+    }
   }
 }

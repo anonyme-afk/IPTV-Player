@@ -5,6 +5,7 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const PORT = parseInt(process.env.PORT || '3000', 10);
 const ROOT = __dirname;
@@ -21,13 +22,36 @@ const MIME_TYPES = {
     '.m3u': 'text/plain; charset=utf-8',
     '.m3u8': 'text/plain; charset=utf-8',
     '.txt': 'text/plain; charset=utf-8',
+    '.woff2': 'font/woff2',
 };
 
 const server = http.createServer((req, res) => {
-    // CORS headers pour les requêtes fetch
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // ── SECURITY HEADERS ──
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    
+    // Content Security Policy (CSP)
+    // - Allow HLS.js from cdnjs
+    // - Allow icons from unpkg
+    // - Allow images from any source (for channel logos)
+    // - Allow media from any source (for streams)
+    const csp = [
+        "default-src 'self'",
+        "script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://unpkg.com",
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+        "img-src * data: blob:",
+        "media-src * blob:",
+        "connect-src *",
+        "font-src 'self' https://fonts.gstatic.com",
+        "object-src 'none'"
+    ].join('; ');
+    res.setHeader('Content-Security-Policy', csp);
+    
+    // CORS
+    res.setHeader('Access-Control-Allow-Origin', '*'); 
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
     if (req.method === 'OPTIONS') {
         res.writeHead(204);
@@ -35,10 +59,10 @@ const server = http.createServer((req, res) => {
         return;
     }
 
-    let filePath = req.url === '/' ? '/index.html' : req.url;
-    filePath = path.join(ROOT, filePath);
+    const urlParts = req.url.split('?');
+    let filePath = urlParts[0] === '/' ? '/index.html' : urlParts[0];
+    filePath = path.join(ROOT, decodeURIComponent(filePath));
 
-    // Security: prevent directory traversal
     if (!filePath.startsWith(ROOT)) {
         res.writeHead(403);
         res.end('Forbidden');
@@ -46,22 +70,39 @@ const server = http.createServer((req, res) => {
     }
 
     const ext = path.extname(filePath).toLowerCase();
+    const contentType = MIME_TYPES[ext] || 'application/octet-stream';
 
-    fs.readFile(filePath, (err, data) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                res.writeHead(404);
-                res.end('404 Not Found');
-            } else {
-                res.writeHead(500);
-                res.end('500 Internal Server Error');
-            }
+    fs.stat(filePath, (err, stats) => {
+        if (err || !stats.isFile()) {
+            res.writeHead(404);
+            res.end('404 Not Found');
             return;
         }
 
-        const contentType = MIME_TYPES[ext] || 'application/octet-stream';
-        res.writeHead(200, { 'Content-Type': contentType });
-        res.end(data);
+        const acceptEncoding = req.headers['accept-encoding'] || '';
+        const headers = {
+            'Content-Type': contentType,
+            'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000'
+        };
+
+        // ── COMPRESSION ──
+        let stream = fs.createReadStream(filePath);
+        if (/\b(gzip)\b/.test(acceptEncoding) && (ext === '.js' || ext === '.css' || ext === '.html' || ext === '.json')) {
+            headers['Content-Encoding'] = 'gzip';
+            res.writeHead(200, headers);
+            stream.pipe(zlib.createGzip()).pipe(res);
+        } else {
+            headers['Content-Length'] = stats.size;
+            res.writeHead(200, headers);
+            stream.pipe(res);
+        }
+
+        stream.on('error', () => {
+            if (!res.headersSent) {
+                res.writeHead(500);
+                res.end('500 Internal Server Error');
+            }
+        });
     });
 });
 

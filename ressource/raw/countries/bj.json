@@ -1,0 +1,61 @@
+[
+  {
+    "nanoid": "EgspbzPRaIJYXi",
+    "name": "ADO TV",
+    "stream_urls": [
+      "https://strhls.streamakaci.tv/ortb/ortb2-multi/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "bj",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "1fyxJbeOBe9SyI",
+    "name": "Eden TV",
+    "stream_urls": [
+      "https://rtmp.edentv.bj/hls/stream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ayb",
+      "fon",
+      "fra"
+    ],
+    "country": "bj",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "wl2lwPjKKxNRiK",
+    "name": "ORTB TV",
+    "stream_urls": [
+      "https://strhls.streamakaci.tv/ortb/ortb1-multi/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "bba",
+      "fon",
+      "fra",
+      "ful",
+      "gej",
+      "guw"
+    ],
+    "country": "bj",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "r701W6Krlv63Lr",
+    "name": "TVC Benin",
+    "stream_urls": [
+      "https://live.tvcbenin.com/direct/729c37a1d3319ee21991227b1f84c687.sdp/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "bj",
+    "isGeoBlocked": false
+  }
+]

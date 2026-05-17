@@ -1,0 +1,667 @@
+[
+  {
+    "nanoid": "aANHgmWHyppMiE",
+    "name": "1062 Mad Radio Live",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/k82aM7uGQOA"
+    ],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "F0m8xOZdwpScCP",
+    "name": "Acheloos TV",
+    "stream_urls": [
+      "https://acheloostv.streamings.gr/live/stream/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell",
+      "eng"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "FcrizhjFuogVcE",
+    "name": "Action 24",
+    "stream_urls": [
+      "https://actionlive.siliconweb.com/actionabr/actiontv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Vy0AuCngWxJT2u",
+    "name": "Aigaio TV",
+    "stream_urls": [
+      "https://fr.crystalweb.net:1936/aigaiotv/aigaiotv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cHmM9b8VS7jwKX",
+    "name": "Alert TV",
+    "stream_urls": [
+      "https://itv.streams.ovh/ALEERT/ALEERT/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "w8DEZO2sRSoZZO",
+    "name": "Alpha TV",
+    "stream_urls": [
+      "https://alphatvlive2.siliconweb.com/alphatvlive/live_abr/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "2c7snlK3LlpjiQ",
+    "name": "Astra TV",
+    "stream_urls": [
+      "https://server.gointernet.gr/live/livestream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "alnxPYvmVkicEU",
+    "name": "Baraza TV",
+    "stream_urls": [
+      "https://eco.streams.ovh:8081/barazatv/tracks-v1a1/mono.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "SwsWDthUMBPn2q",
+    "name": "Baraza TV Deep House",
+    "stream_urls": [
+      "https://rtmp.streams.ovh:1936/barazarelax/barazazararelax/barazarelax/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "fUzoQspzSgVpqR",
+    "name": "Baraza TV Relaxing",
+    "stream_urls": [
+      "https://rtmp.streams.ovh:1936/barazarelax/barazarelax/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nur67kMzGvKND6",
+    "name": "Best TV",
+    "stream_urls": [
+      "https://push-int.siliconweb.com/bestTV/stream/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "9nOkMHgBurW2UW",
+    "name": "Blue Sky TV",
+    "stream_urls": [
+      "https://cdn5.smart-tv-data.com/bluesky/bluesky-live/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "BQ588mGGkNcDqS",
+    "name": "Center TV",
+    "stream_urls": [
+      "https://eu1.streams.gr:8081/centertv/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cx45qZDgJuoYCN",
+    "name": "Channel 8",
+    "stream_urls": [
+      "https://gra1.crystalweb.net:1936/channel8/channel8/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "0iu8NXGmAws9mO",
+    "name": "Corfu Channel",
+    "stream_urls": [
+      "https://itv.streams.ovh:1936/corfuchannel/corfuchannel/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "gTRpcJwVgakhrn",
+    "name": "Diavata TV",
+    "stream_urls": [
+      "https://183.bozztv.com/giatv/giatv-diavatatvonline/diavatatvonline/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "c5sRTm8qGDYdgm",
+    "name": "ecclesiaTV.gr",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/RGnmsmHXEkU"
+    ],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "kQoJODyIVFBenm",
+    "name": "Egnatia TV",
+    "stream_urls": [
+      "https://video.streams.ovh:1936/egnatiatv/egnatiatv/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "HQxmczuRTCLJHk",
+    "name": "Ellinikos FM",
+    "stream_urls": [
+      "https://rtmp.win:3603/live/ellinikosfmlive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "W3ePyy3g6gIjfs",
+    "name": "ENA Channel",
+    "stream_urls": [
+      "https://cdn5.smart-tv-data.com/ena/ena_channel/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "J3MPb1GOMzrFyI",
+    "name": "Epirus TV1",
+    "stream_urls": [
+      "https://rtmp.win:3929/live/epiruslive.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "GI28zdliqFumzw",
+    "name": "ERT Cosmos",
+    "stream_urls": [
+      "https://ert-ucdn.broadpeak-aas.com/bpk-tv/ERTCosmos/default/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "lQUaMVorKskNow",
+    "name": "ERT News",
+    "stream_urls": [
+      "https://ert-ucdn.broadpeak-aas.com/bpk-tv/ERTNews/default/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "4z3jjg4HjNupEG",
+    "name": "ERT2",
+    "stream_urls": [
+      "https://ert-ucdn.broadpeak-aas.com/bpk-tv/ERT2/default/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "99p8zNQRqAzy6r",
+    "name": "ERT3",
+    "stream_urls": [
+      "https://ert-ucdn.broadpeak-aas.com/bpk-tv/ERT3/default/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "rNwXK8U9QtgSSA",
+    "name": "Faros TV2",
+    "stream_urls": [
+      "https://s1.cystream.net/live/faros2/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "gu2YUsPnmrWKEu",
+    "name": "FORMedia TV",
+    "stream_urls": [
+      "https://mercury.32bit.gr:19360/formediatv/720p.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "BBnkN7RuoWZuoo",
+    "name": "Gnomi TV",
+    "stream_urls": [
+      "https://live.streams.ovh:8081/gnomitv/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zfdgzXgQZmoAvu",
+    "name": "Hellenic Parliament TV",
+    "stream_urls": [
+      "https://ert-ucdn.broadpeak-aas.com/bpk-tv/VOULITV/default/index.m3u8",
+      "https://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zSgRIxf4rZgvt7",
+    "name": "Ionian TV",
+    "stream_urls": [
+      "https://stream.ioniantv.gr/ionian/live_abr/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "slRsHngNcym3tq",
+    "name": "Kontra Channel",
+    "stream_urls": [
+      "https://kontralive.siliconweb.com/live/kontratv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "1vkifiAz0M09X4",
+    "name": "Kriti TV",
+    "stream_urls": [
+      "https://cretetvlive.siliconweb.com/cretetv/liveabr/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "YpG1ImfWO1Q3HO",
+    "name": "Naftemporiki TV",
+    "stream_urls": [
+      "https://telmaco.ascdn.broadpeak.io/nafteboriki/default/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nOgaKVJqtjFRdy",
+    "name": "Nea TV",
+    "stream_urls": [
+      "https://live.neatv.gr:8888/hls/neatv.m3u8",
+      "https://live.neatv.gr:8888/hls/neatv_high/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "abovmNRAyWVzAt",
+    "name": "Netmax TV",
+    "stream_urls": [
+      "https://es1.crystalweb.net:1936/netmaxtv/netmaxtv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "va1T6JmoihYIa4",
+    "name": "Notioi TV",
+    "stream_urls": [
+      "https://srv.streamserver.gr:3451/stream/play.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "NRZMBeU73QGtG9",
+    "name": "One Channel",
+    "stream_urls": [
+      "https://onechannel.siliconweb.com/one/stream/chunks.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "L3j1vKGF6lnpfD",
+    "name": "Panik TV",
+    "stream_urls": [
+      "https://livetv.streams.ovh:1936/paniktv/paniktv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "PbQQ9Uu2aVWAvl",
+    "name": "Pella TV",
+    "stream_urls": [
+      "https://video.streams.ovh:1936/pellatv/pellatv/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "tIsI0Q7tcEru0t",
+    "name": "Skai TV",
+    "stream_urls": [
+      "https://skai-live-back.siliconweb.com/media/cambria4/index.m3u8",
+      "https://skai-live.siliconweb.com/media/cambria4/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "HzfqSOVb2ipubL",
+    "name": "Star Channel",
+    "stream_urls": [
+      "https://livestar.siliconweb.com/starvod/star4/star4.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "J0odgAtajSNXf0",
+    "name": "Star Kentrikis Elladas",
+    "stream_urls": [
+      "https://telmaco-cdn.akamaized.net/starcgr/default/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "axcim7j9dTO22W",
+    "name": "Start TV",
+    "stream_urls": [
+      "https://live.cast-control.eu/StartMedia/StartMedia/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ExXGZtUJaG1vOi",
+    "name": "Telekriti",
+    "stream_urls": [
+      "https://neon.streams.gr:8081/telekriti/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Nhov9FRmWvJ4cy",
+    "name": "Thraki Net TV",
+    "stream_urls": [
+      "https://cdn.onestreaming.com/thrakinettv/thrakinettv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "L7DGt24WcQkuGo",
+    "name": "Top Channel",
+    "stream_urls": [
+      "https://fr.crystalweb.net:1936/topchannel/topchannel/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "m8BDyIFQ09DrYt",
+    "name": "TRT",
+    "stream_urls": [
+      "https://av.hellasnet.tv/rst/trt/main_stream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "TGMLWTxBfujR39",
+    "name": "TV 100",
+    "stream_urls": [
+      "https://gwebstream.net/hls/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Xstsz3HxvmyGSQ",
+    "name": "TV Creta",
+    "stream_urls": [
+      "https://live.streams.ovh/tvcreta/tvcreta/chunklist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cu6RCMF1x7RHRd",
+    "name": "Vergina TV",
+    "stream_urls": [
+      "https://verginanews.gr:8443/hls_live/stream1.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ell"
+    ],
+    "country": "gr",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "at2mNido4XOnuc",
+    "name": "Zougla TV",
+    "stream_urls": [
+      "https://zouglacam-mdc-secure.akamaized.net/zouglalive/backup/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [],
+    "country": "gr",
+    "isGeoBlocked": false
+  }
+]

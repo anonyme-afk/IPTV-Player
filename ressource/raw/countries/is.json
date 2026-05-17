@@ -1,0 +1,41 @@
+[
+  {
+    "nanoid": "jyTWdinG00DuQy",
+    "name": "RUV",
+    "stream_urls": [
+      "https://ruv-web-live.akamaized.net/streymi/ruverl/ruverl.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "isl"
+    ],
+    "country": "is",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "N9DCid3vSfoS8E",
+    "name": "RUV 2",
+    "stream_urls": [
+      "https://ruvlive.akamaized.net/out/v1/2ff7673de40f419fa5164498fae89089/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "isl"
+    ],
+    "country": "is",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "W8Hc7h8stwrkfe",
+    "name": "Visir",
+    "stream_urls": [
+      "https://live.visir.is/hls-live/visir.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "isl"
+    ],
+    "country": "is",
+    "isGeoBlocked": false
+  }
+]

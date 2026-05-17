@@ -17,43 +17,24 @@ const Store = {
   },
 };
 
-// ── THEME MANAGER (no localStorage persistence — always dark default) ──
-const ThemeManager = {
-
-  apply(theme) {
-    document.documentElement.setAttribute('data-theme', theme);
-    const icon = document.getElementById('theme-icon');
-    if (icon) icon.textContent = theme === 'light' ? '☀️' : '🌙';
-    const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === 'light' ? '#f0f2f5' : '#0a0c0f';
+const Storage = {
+  getFavorites() { return Store.get('iptv_favs', []); },
+  toggleFavorite(url) {
+    let favs = this.getFavorites();
+    const idx = favs.indexOf(url);
+    if (idx === -1) favs.push(url); else favs.splice(idx, 1);
+    Store.set('iptv_favs', favs);
+    return favs;
   },
-
-  load() {
-    const theme = 'dark'; // always start dark
-    this.apply(theme);
-    return theme;
+  getHistory() { return Store.get('iptv_hist', []); },
+  addToHistory(url) {
+    let hist = this.getHistory();
+    hist = hist.filter(u => u !== url);
+    hist.unshift(url);
+    if (hist.length > 50) hist.pop();
+    Store.set('iptv_hist', hist);
   },
-
-  toggle() {
-    const current = document.documentElement.getAttribute('data-theme') || 'dark';
-    const next = current === 'dark' ? 'light' : 'dark';
-    this.apply(next);
-    return next;
-  },
-
-  watchSystem() {
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
-      // Always respond to system changes regardless of previous manual toggle
-      this.apply(e.matches ? 'light' : 'dark');
-    });
+  restoreSession() {
+    // Optionally restore last state
   }
 };
-
-// Auto-init on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  ThemeManager.load();
-  ThemeManager.watchSystem();
-  // Theme toggle button handler
-  const btn = document.getElementById('theme-toggle');
-  if (btn) btn.addEventListener('click', () => ThemeManager.toggle());
-});

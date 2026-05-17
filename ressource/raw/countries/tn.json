@@ -1,0 +1,69 @@
+[
+  {
+    "nanoid": "lDxRAC8VIZPSTr",
+    "name": "El Watania 1",
+    "stream_urls": [
+      "https://sw1.tanitweb.net/TunisiaTV/_definst_/watania1/chunklist.m3u8",
+      "https://sw1.tanitweb.net/TunisiaTV/_definst_/watania1/playlist.m3u8?DVR",
+      "https://sw1.tanitweb.net/TunisiaTV/_definst_/watania2/chunklist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "tn",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "4B3FCVdFtbVK3X",
+    "name": "El Watania 2",
+    "stream_urls": [
+      "https://sw1.tanitweb.net/TunisiaTV/_definst_/watania2/playlist.m3u8?DVR"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "tn",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "0vWRP5qYJXkBiC",
+    "name": "Mosaique FM",
+    "stream_urls": [
+      "https://webcam.mosaiquefm.net/mosatv/_definst_/studio/playlist.m3u8?DVR"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "tn",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "AtEof85QR5byYd",
+    "name": "Watania Replay",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/InI-TjjYP8k"
+    ],
+    "languages": [
+      "ara"
+    ],
+    "country": "tn",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "QMsKW2NGa9ux0Z",
+    "name": "Watania2 Replay",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/ivAN1VAoTTg"
+    ],
+    "languages": [
+      "ara"
+    ],
+    "country": "tn",
+    "isGeoBlocked": false
+  }
+]

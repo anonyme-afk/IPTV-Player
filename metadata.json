@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "IPTV Player",
+  "description": "Lecteur IPTV web moderne pour PC, Mobile et Smart TV.",
   "requestFramePermissions": [],
-  "majorCapabilities": []
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

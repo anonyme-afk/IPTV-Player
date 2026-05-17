@@ -1,0 +1,132 @@
+[
+  {
+    "nanoid": "hmJBHkCQQky6u9",
+    "name": "Aghapy TV",
+    "stream_urls": [
+      "https://5b622f07944df.streamlock.net/aghapy.tv/aghapy.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "WErO3slydR02br",
+    "name": "Alghad TV: قناة الغد",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/CjEqeIeBF3M"
+    ],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "aAl4vb2m3u5Edc",
+    "name": "AlKahera WalNas 2",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/W6w2bvSceMo"
+    ],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "PKOl6YLNA3xe6A",
+    "name": "ATVSat",
+    "stream_urls": [
+      "https://stream.atvsat.com/atvsatlive/smil:atvsatlive.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cldgrOT0slw0oJ",
+    "name": "Coptic TV",
+    "stream_urls": [
+      "https://ctv.icopts.app/CTV/index.fmp4.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "dSBCv9wMIeHZkP",
+    "name": "El Radio 9090 FM",
+    "stream_urls": [
+      "https://9090video.mobtada.com/hls/stream.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "ocf60Z4awZQ5ZB",
+    "name": "eXtra news",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/Z8eDtanwCQU"
+    ],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "7QNwjfAH3tZtOn",
+    "name": "Koogi TV",
+    "stream_urls": [
+      "https://5d658d7e9f562.streamlock.net/koogi.tv/koogi.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zNKcIL8vSfNOiJ",
+    "name": "Mix Hollywood",
+    "stream_urls": [
+      "https://ml-pull-hwc.myco.io/MixTV/hls/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "sq4B9IaZBUPu1Y",
+    "name": "Watan TV",
+    "stream_urls": [
+      "https://rp.tactivemedia.com/watantv_source/live/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "ara"
+    ],
+    "country": "eg",
+    "isGeoBlocked": false
+  }
+]

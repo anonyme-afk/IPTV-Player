@@ -1,0 +1,378 @@
+[
+  {
+    "nanoid": "UMtS6zsgi9sFxf",
+    "name": "ADB TV",
+    "stream_urls": [
+      "https://live-tv.waytv.pt/adbtv/adbtv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "k9YVnaB9vAhdV8",
+    "name": "Angel TV Portuguese",
+    "stream_urls": [
+      "https://janya-digimix.akamaized.net/vglive-sk-382409/portuese/ngrp:angelportuguese_all/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "aMfHfOa13YZ4ZC",
+    "name": "ARTV",
+    "stream_urls": [
+      "https://playout172.livextend.cloud/liveiframe/_definst_/liveartvabr/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "qRQX6zHTSR3gUI",
+    "name": "FUEL TV",
+    "stream_urls": [
+      "https://amg01074-fueltv-amg01074c1-stirr-us-4214.playouts.now.amagi.tv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Iuaewjg35O2O7W",
+    "name": "FUEL TV APAC",
+    "stream_urls": [
+      "https://amg01074-fueltv-fueltvau-samsungau-g09kq.amagi.tv/playlist/amg01074-fueltv-fueltvau-samsungau/playlist.m3u8",
+      "https://amg01074-fueltv-fueltvnz-samsungnz-i8ani.amagi.tv/playlist/amg01074-fueltv-fueltvnz-samsungnz/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "q2KimDhflePyDK",
+    "name": "FUEL TV Europe",
+    "stream_urls": [
+      "https://amg01074-fueltv-fueltvemeaen-rakuten-b6j62.amagi.tv/hls/amagi_hls_data_rakutenAA-fueltvemeaen/CDN/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "nbBlXP4f3cSDbo",
+    "name": "FUEL TV US",
+    "stream_urls": [
+      "https://amg01074-fueltv-amg01074c1-firetv-us-3150.playouts.now.amagi.tv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "pt",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "b7x9FsdKa3CXRR",
+    "name": "Kuriakos Cine",
+    "stream_urls": [
+      "https://w2.manasat.com/kcine/smil:kcine.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Mi17BkbSFMtULi",
+    "name": "Kuriakos Kids",
+    "stream_urls": [
+      "https://w2.manasat.com/kkids/smil:kkids.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "FvVFbOQRNLjmw4",
+    "name": "Kuriakos TV",
+    "stream_urls": [
+      "https://w1.manasat.com/ktv/smil:ktv.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "0J7I6WaxhPR14s",
+    "name": "Mana Church Online",
+    "stream_urls": [
+      "https://w2.manasat.com/church-online/smil:church-online.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "Juc1gztvVlHTFZ",
+    "name": "Mana Cirkev Online",
+    "stream_urls": [
+      "https://w2.manasat.com/cirkev-online/smil:cirkev-online.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "slk"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zLkjrrJO2d7fZT",
+    "name": "Mana Eglise Online",
+    "stream_urls": [
+      "https://w2.manasat.com/eglise-online/smil:eglise-online.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "uxVkA6yj2qeiYj",
+    "name": "Mana Iglesia Online",
+    "stream_urls": [
+      "https://w2.manasat.com/iglesia-online/smil:iglesia-online.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "vzYrcxLiw69sbE",
+    "name": "Mana Igreja Online",
+    "stream_urls": [
+      "https://w1.manasat.com/igrejaonline/smil:igrejaonline.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "2pdGna4gJSqznu",
+    "name": "Mana Tserkov' Onlayn",
+    "stream_urls": [
+      "https://w2.manasat.com/tserkov-online/smil:tserkov-online.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "rus"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "IowNjd0p51Ov4o",
+    "name": "NPC Radio e TV",
+    "stream_urls": [
+      "https://stmv5.samcast.com.br/nasciparacantartv/nasciparacantartv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "oGBDTLuvXcCKsV",
+    "name": "ON FM",
+    "stream_urls": [
+      "https://5ce9406b73c33.streamlock.net/ONFM/livestream/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "xjxSZKwVluReVC",
+    "name": "Porto Canal",
+    "stream_urls": [
+      "https://pull-live-156-1.global.ssl.fastly.net/pc5865dc25400thmb-ea6bf03b14fa318f7133/smil:pc1-jhrgyuoqe5865db-68tkgb14fa318f7133f03.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "zyLVOcYTONpkxG",
+    "name": "Radio Sines",
+    "stream_urls": [
+      "https://load-balancer.azotosolutions.com/cdnedge19/smil:live19.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "PUdpiv6E36htAt",
+    "name": "RFPtv",
+    "stream_urls": [
+      "https://video03.logicahost.com.br/rfptv/rfptv/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "wviT8L1evQdgaR",
+    "name": "SIC",
+    "stream_urls": [
+      "https://d1zx6l1dn8vaj5.cloudfront.net/out/v1/b89cc37caa6d418eb423cf092a2ef970/index.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "f1Qql9BKGeNMZz",
+    "name": "TV Mana 1",
+    "stream_urls": [
+      "https://w1.manasat.com/tvmana-1/smil:tvmana-1.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "3uF7WRN0kFbgMG",
+    "name": "TV Mana 2",
+    "stream_urls": [
+      "https://w1.manasat.com/tvmana-2/smil:tvmana-2.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "jkn0Y9QQQ5juVa",
+    "name": "TV Mana Brasil",
+    "stream_urls": [
+      "https://w1.manasat.com/tvmana-brasil/smil:tvmana-brasil.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "dwddHqZf8SNFMu",
+    "name": "TV Mana English",
+    "stream_urls": [
+      "https://w1.manasat.com/tvmana-english/smil:tvmana-english.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "uCIQpHv1Z9YPGJ",
+    "name": "TV Mana Espanhol",
+    "stream_urls": [
+      "https://w1.manasat.com/tvmana-espanol/smil:tvmana-espanol.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "spa"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "tSl4b1yvIcpNm0",
+    "name": "TV Mana Russkiy",
+    "stream_urls": [
+      "https://w1.manasat.com/tvmana-leste/smil:tvmana-leste.smil/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "rus"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "8Zval48r5m3T99",
+    "name": "TVI",
+    "stream_urls": [
+      "https://raw.githubusercontent.com/thomraider12/canaistvpt/main/m3u8s/tvi.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "por"
+    ],
+    "country": "pt",
+    "isGeoBlocked": false
+  }
+]

@@ -1,0 +1,15 @@
+[
+  {
+    "nanoid": "9NyaU429rnQzfC",
+    "name": "Tele Peyi",
+    "stream_urls": [
+      "https://edge20.vedge.infomaniak.com/livecast/ik:33dm06/manifest.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "fra"
+    ],
+    "country": "gf",
+    "isGeoBlocked": false
+  }
+]

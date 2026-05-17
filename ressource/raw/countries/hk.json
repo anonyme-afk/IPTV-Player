@@ -1,0 +1,57 @@
+[
+  {
+    "nanoid": "F2ze7vbKV6XjQT",
+    "name": "KIX",
+    "stream_urls": [
+      "https://liveh34.vtvprime.vn/hls/KIX/04.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "eng",
+      "ind",
+      "msa",
+      "zho"
+    ],
+    "country": "hk",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "cq6tthzEoEuekR",
+    "name": "Pet Club TV",
+    "stream_urls": [
+      "https://cdn-apse1-prod.tsv2.amagi.tv/linear/amg01076-lightningintern-petclub-samsungnz/playlist.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "yue"
+    ],
+    "country": "hk",
+    "isGeoBlocked": false
+  },
+  {
+    "nanoid": "fY95vrYP3HAi8i",
+    "name": "RTHK TV 31",
+    "stream_urls": [
+      "https://rthktv31-live.akamaized.net/hls/live/2036818/RTHKTV31/master.m3u8"
+    ],
+    "youtube_urls": [],
+    "languages": [
+      "zho"
+    ],
+    "country": "hk",
+    "isGeoBlocked": true
+  },
+  {
+    "nanoid": "3BsCNdHaOVE1Yl",
+    "name": "鳳凰資訊 PhoenixTVNews",
+    "stream_urls": [],
+    "youtube_urls": [
+      "https://www.youtube-nocookie.com/embed/fN9uYWCjQaw"
+    ],
+    "languages": [
+      "zho"
+    ],
+    "country": "hk",
+    "isGeoBlocked": false
+  }
+]
