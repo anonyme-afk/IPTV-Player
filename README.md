@@ -14,7 +14,7 @@ Lit les playlists au format M3U, M3U8 et JSON (famelack).
 ## Acces rapide
 
 Le site est disponible a l'adresse :
-https://anonyme-afk.github.io/IPTV-channe/
+https://anonyme-afk.github.io/IPTV-Player/
 
 ---
 
